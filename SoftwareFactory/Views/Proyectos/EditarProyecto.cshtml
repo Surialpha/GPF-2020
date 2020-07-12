@@ -1,0 +1,292 @@
+﻿@model SoftwareFactory.Models.Proyecto
+@{
+    ViewBag.Title = "Editar Proyecto";
+    Layout = "~/Views/Shared/_DashLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col" align="center">
+        <a href="~/Proyectos" class="btn btn-primary btn-circle float-left" data-toggle="tooltip" data-placement="right" title="Atras"><i class="fas fa-reply"></i></a>
+        <a onclick="Detalle()" data-toggle="modal" data-target="#renderModal" data-placement="right" class="btn btn-primary btn-circle float-left text-white mr-3 ml-3" style="cursor: pointer" title="Detalles Cliente"><i class='fas fa-flag'></i></a>
+        <h2>Editar Proyecto</h2>
+    </div>
+</div>
+
+<div class="container">
+
+    @using (Html.BeginForm("EditarProyecto", "Proyectos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(model => model.archivo)
+        @Html.HiddenFor(model => model.id_proyecto)
+
+        <div class="card text-center">
+            <div class="card-header">
+
+            </div>
+            <div class="card-body">
+                <div class="form-horizontal row">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">ID Proyecto:</label>
+                            <div class="input-group ">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-crown"></i></div>
+                                </div>
+                                @Html.DropDownList("id_proyecto", null, htmlAttributes: new { @class = "form-control", @disabled = true, @readonly = true })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.id_proyecto, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">Anexe archivo:</label>
+                            <div class="input-group">
+
+
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-gradient-info text-white" id="activar" style="cursor:pointer;">Elegir</div>
+                                </div>
+                                <input type="text" id="labelFile" class="form-control" readonly value="@Html.DisplayFor(model=>model.archivo)" />
+
+                                <input type="file" name="file" id="archivo2" hidden />
+                            </div>
+                            @Html.ValidationMessageFor(model => model.archivo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">Grupo a cargo:</label>
+                            <div class="input-group ">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-users"></i></div>
+                                </div>
+                                @Html.DropDownList("id_grupo", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.id_proyecto, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">Bitacora de seguimiento:</label>
+                            <div class="input-group ">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-thumbtack"></i></div>
+                                </div>
+                                @Html.DropDownList("id_bitacora", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.id_proyecto, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">Fecha inicio:</label>
+                            <div class="input-group ">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-gradient-info text-white"><i class="far fa-calendar"></i></div>
+                                </div>
+                                @Html.EditorFor(model => model.fecha_inicio, new { htmlAttributes = new { @class = "form-control", @placegolder = "Fin del contrato", @readonly = true, @autocomplete = "off" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.fecha_inicio, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6" id="fechaFinal" >
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">Fecha final:</label>
+                            <div class="input-group ">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-calendar"></i></div>
+                                </div>
+                                @Html.EditorFor(model => model.fecha_terminación, new { htmlAttributes = new { @class = "form-control", @placegolder = "Fin del contrato", @id = "fin", @autocomplete = "off", @readonly = true} })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.fecha_terminación, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">Estado Proyecto:</label>
+                            <div class="input-group ">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-toggle-on"></i></div>
+                                </div>
+                                @Html.DropDownList("id_estado", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.fecha_terminación, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">Alcance</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-gradient-info text-white"><i class="fab fa-buffer"></i></div>
+                                </div>
+                                <textarea rows="4" cols="50" class="form-control" name="alcance" asp-for="alcance" id="alcance">@Html.DisplayFor(m=>m.alcance)</textarea>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.alcance, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="form-group col-sm-12 col-md-12 col-lg-12" align="center">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Modificar" class="btn bg-gradient-info text-white" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                Formulario de Proyectos
+            </div>
+
+
+        </div>
+
+
+
+    }
+
+
+</div>
+
+<!-- Modal create -->
+<div class="modal fade" id="renderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-gradient-dark text-white" align="center">
+                <h5 class="modal-title" id="exampleModalLabel">Detalle cliente</h5>
+                <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="cuerpo">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section script{
+
+
+    <script>
+
+        var estado = 0
+
+        $(document).ready(function () {
+
+          estado = $('#id_estado').val()
+
+            if (estado != "2") {
+                $('#fechaFinal').attr("hidden",true)
+            }
+
+
+            $('#fin').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                minDate: '-1M',
+                maxDate: '+0D',
+                dateFormat: 'mm/dd/yy',
+                beforeShowDay: $.datepicker.noWeekends,
+
+            });
+
+            $("#activar").on("click", function () {
+
+                $("#archivo2").trigger("click");
+
+            });
+
+            $("#labelFile").on("click", function () {
+
+                $("#archivo2").trigger("click");
+
+            });
+
+        });
+
+        $("#archivo2").on("change", function () {
+
+            $("#labelFile").val($("#archivo2").val());
+
+        });
+
+        $("#id_estado").on("change", function () {
+
+            estado = $('#id_estado').val()
+
+            if (estado === "2") {
+                $('#fechaFinal').attr("hidden", false)
+                $('#fin').val("");
+            } else {
+                $('#fechaFinal').attr("hidden", true)
+                $('#fin').val("");
+            }
+
+        });
+
+
+
+        function Detalle() {
+
+            var url = "/Clientes/DetalleCliente/@ViewBag.idCliente";
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+                    var result2 = $(result)
+                    if (result2['length'] < 6) {
+                        $('#cuerpo').html(result);
+                    }
+                    else {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Su sesión ha vencido',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        var intervalo = setInterval(function () {
+                            $(location).attr('href', '/Proyectos/Index')
+                            clearInterval(intervalo);
+                        }, 1500);
+
+                    }
+                }
+            });
+        }
+
+    </script>
+
+}

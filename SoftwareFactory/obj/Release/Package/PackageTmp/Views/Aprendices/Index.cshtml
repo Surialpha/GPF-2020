@@ -1,0 +1,144 @@
+﻿@model IEnumerable<SoftwareFactory.Models.Usuarios>
+
+@{
+    ViewBag.Title = "Listado Aprendices";
+    Layout = "~/Views/Shared/_DashLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col" align="center">
+        <h2>Listado de Aprendices</h2>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <table id="aprendices" class="table table-striped display" style="width:100%">
+            <thead class="thead bg-gray-900 text-white">
+                <tr>
+                    <th>
+                        #ID Aprendiz
+                    </th>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Tipo de Contrato
+                    </th>
+                    <th>
+                        Inicio de Contrato
+                    </th>
+                    <th>
+                        Fin de Contrato
+                    </th>
+                    <th>
+                        Acciones
+
+                        <a href="~/Aprendices/Create" class="btn-circle btn-sm bg-gradient-success text-white btn-circle ml-5" data-toggle="tooltip" data-placement="right" title="Nuevo">
+                            <i class="fas fa-user-plus"></i>
+                        </a>
+                    </th>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+
+
+@section script{
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+    <script src="~/Scripts/DatatablesCDN/dataTables.select.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/jszip.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/pdfmake.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/vfs_fonts.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.html5.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.print.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.colVis.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/dataTables.jqueryui.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.jqueryui.min.js"></script>
+
+    <script>
+
+
+        $(document).ready(function () {
+
+
+          $("#aprendices").DataTable({
+
+                "ajax": {
+
+                    "url": '@Url.Action("Lista","Aprendices")',
+                    "type": "GET",
+                    "datatype":"json"
+                },
+
+
+                "language": {"url":'//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json'},
+
+                responsive: true,
+
+                "columns": [
+                    { "data":"id_aprendiz"},
+                    { "data":"nombre"},
+                    { "data": "email"},
+                    { "data": "tipoContrato" },
+                    { "data": "inicioContrato" },
+                    { "data": "finContrato" },
+                    { "data": "id_aprendiz", "render": function (data) {
+                        return "<a href='/Aprendices/Edit/" + data + "' class='btn  bg-gradient-primary text-white btn-circle' data-toggle='tooltip' data-placement='right' title='Editar'><i class='fas fa-edit'></i> "
+                            + "<a href='/Aprendices/Details/" + data + "' class='btn  bg-gradient-warning text-white btn-circle' data-toggle='tooltip' data-placement='right' title='Detalles'><i class='fas fa-search'></i> "
+                            +"<a href='/Aprendices/Delete/" + data + "' class='btn  bg-gradient-danger text-white btn-circle' data-toggle='tooltip' data-placement='right' title='Eliminar'><i class='fas fa-trash'></i> ";
+                    }, "oderable": false
+                    }
+
+                ],
+                                
+                    dom: 'Bfrtip',
+                    buttons: [{
+                        extend: 'print',
+                        className: 'btn btn-info',
+                        text: '<i class="fas fa-print"></i> Imprimir',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'excel',
+                        className: 'btn btn-success',
+                            text: '<i class="fas fa-file-excel"></i> Excel',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'pdf',
+                        className: 'btn btn-danger',
+                            text: '<i class="fas fa-file-pdf"></i> pdf',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                        },
+                    {
+                        extend: 'colvis',
+                        className: 'btn btn-dark',
+                        text: '<i class="fas fa-chevron-circle-down"></i>'
+                    }
+                ]
+
+             });
+        });
+
+
+
+    </script>
+
+
+}

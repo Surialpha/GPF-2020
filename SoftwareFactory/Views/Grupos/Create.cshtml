@@ -1,0 +1,66 @@
+﻿@model SoftwareFactory.Models.Grupos
+
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+@using (Html.BeginForm("Create", "Grupos", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <div class="col-auto" align="left">
+                <label class="font-weight-bold" for="inlineFormInputGroup">ID Lider:</label>
+                <div class="input-group ">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-chalkboard-teacher"></i></div>
+                    </div>
+                    @Html.DropDownList("id_lider", null, new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(model => model.id_lider, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <div class="col-auto" align="left">
+                <label class="font-weight-bold" for="inlineFormInputGroup">Descripción:</label>
+                <div class="input-group ">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text bg-gradient-info text-white"><i class="far fa-clipboard"></i></div>
+                    </div>
+                    @Html.TextAreaFor(model => model.descripcion, new { @class = "form-control", @rows = "4", @cols = "50" })
+                </div>
+                @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        <input type="submit" value="Crear" class="btn btn-primary"></input>
+    </div>
+
+}
+
+@section script{
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+    <script>
+
+
+        $(document).ready(function () {
+
+            $('#id_lider').chosen();
+
+        });
+
+
+
+    </script>
+
+}

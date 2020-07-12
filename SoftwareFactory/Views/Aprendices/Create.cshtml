@@ -1,0 +1,139 @@
+﻿@model SoftwareFactory.Models.Aprendices
+
+@{
+    ViewBag.Title = "Registrar Aprendiz";
+    Layout = "~/Views/Shared/_DashLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col" align="center">
+        <a href="~/Aprendices/Index" class="btn btn-primary btn-circle float-left" data-toggle="tooltip" data-placement="right" title="Atras"><i class="fas fa-reply"></i></a>
+        <h2>Registrar Aprendiz</h2>
+    </div>
+</div>
+
+<div class="container">
+
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <hr />
+        <div class="form-horizontal row">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInputGroup">Documento</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-crown"></i></div>
+                        </div>
+                        <select class="form-control" name="id_aprendiz" asp-for="id_aprendiz" id="aprendiz">
+                            @foreach (var data in ViewBag.aprendices)
+                            {
+                                <option tag="@data.email" value="@data.documento">@data.nombres @data.apellidos - @data.documento</option>
+                            }
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInputGroup">Inicio del Contrato</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-calendar-alt"></i></div>
+                        </div>
+                        @Html.EditorFor(model => model.inicio_contrato, new { htmlAttributes = new { @class = "form-control", @placegolder = "Inicio de contrato", @id = "ini", @autocomplete = "off", @readonly = true } })
+
+                    </div>
+                    @Html.ValidationMessageFor(model => model.inicio_contrato, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInputGroup">Fin del Contrato</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-calendar-alt"></i></div>
+                        </div>
+                        @Html.EditorFor(model => model.fin_contrato, new { htmlAttributes = new { @class = "form-control", @placegolder = "Fin del contrato", @id = "fin", @autocomplete = "off", @readonly = true } })
+
+                    </div>
+                    @Html.ValidationMessageFor(model => model.fin_contrato, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInputGroup">Tipo de contrato</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-file-contract"></i></div>
+                        </div>
+                        @Html.DropDownList("id_contrato", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+
+                    @Html.ValidationMessageFor(model => model.id_contrato, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                <div class="col-auto" align="left">
+                    <label class="font-weight-bold" for="inlineFormInputGroup">Descripción:</label>
+                    <div class="input-group ">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-clipboard"></i></div>
+                        </div>
+                        @Html.TextAreaFor(model => model.descripcion, new { @class = "form-control", @rows = "4", @cols = "50" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-sm-12 col-md-12 col-lg-12" align="center">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Registrar" class="btn bg-gradient-info text-white" />
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    }
+
+</div>
+
+@section script{
+
+
+    <script>
+
+    $(document).ready(function () {
+    $('#aprendiz').chosen();
+    $('#ini').datepicker({
+    dateFormat: 'yy/mm/dd',
+    changeMonth: true,
+    changeYear: true
+    });
+
+    $('#fin').datepicker({
+        dateFormat: 'yy/mm/dd',
+    changeMonth: true,
+        changeYear: true
+    });
+
+    });
+    </script>
+
+}

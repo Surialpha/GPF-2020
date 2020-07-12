@@ -1,0 +1,278 @@
+﻿@model SoftwareFactory.Models.Proyecto
+@{
+    ViewBag.Title = "Nuevo Proyecto";
+    Layout = "~/Views/Shared/_DashLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col" align="center">
+        <a href="~/Proyectos" class="btn btn-primary btn-circle float-left" data-toggle="tooltip" data-placement="right" title="Atras"><i class="fas fa-reply"></i></a>
+        <h2>Agregar Proyectos</h2>
+    </div>
+</div>
+
+<div class="container">
+
+    @using (Html.BeginForm("NuevoProyecto", "Proyectos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="card text-center">
+            <div class="card-header">
+
+            </div>
+            <div class="card-body">
+                <div class="form-horizontal row">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">ID Proyecto:</label>
+                            <div class="input-group ">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-crown"></i></div>
+                                </div>
+                                @Html.DropDownList("id_proyecto", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.id_proyecto, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">Anexe archivo:</label>
+                            <div class="input-group">
+
+
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-gradient-info text-white" id="activar" style="cursor:pointer;">Elegir</div>
+                                </div>
+                                <input type="text" id="labelFile" class="form-control" readonly />
+
+                                <input type="file" name="file" id="archivo" hidden />
+                            </div>
+                            @Html.ValidationMessageFor(model => model.archivo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">Grupo a cargo:</label>
+                            <div class="input-group ">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-users"></i></div>
+                                </div>
+                                @Html.DropDownList("id_grupo", null, htmlAttributes: new { @class = "form-control" })
+                                <a onclick="AbrirModal()" class="btn btn-facebook" title="Ver integrantes del grupo" data-toggle="modal" data-target="#renderModal"><i class="fas fa-info-circle"></i></a>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.id_proyecto, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">Bitacora de seguimiento:</label>
+                            <div class="input-group ">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-thumbtack"></i></div>
+                                </div>
+                                @Html.DropDownList("id_bitacora", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.id_proyecto, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">Alcance</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-gradient-info text-white"><i class="fab fa-buffer"></i></div>
+                                </div>
+                                <textarea rows="4" cols="50" class="form-control" name="alcance" asp-for="alcance" id="alcance">@Html.DisplayFor(model=>model.alcance)</textarea>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.alcance, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="form-group col-sm-12 col-md-12 col-lg-12" align="center">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Agregar" class="btn bg-gradient-info text-white" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                Formulario de Proyectos
+            </div>
+
+
+        </div>
+
+
+
+    }
+
+
+</div>
+
+<!-- Modal create -->
+<div class="modal fade" id="renderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-gradient-dark text-white" align="center">
+                <h5 class="modal-title" id="exampleModalLabel">Integrantes del grupo</h5>
+                <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="cuerpo"  align="center">
+                <table id="integrantes" class="table table-hover table-borderless" style="width: 100%;">
+                    <thead class="thead text-dark " style="background-color:white">
+                        <tr>
+                            <th>
+                                #ID Aprendiz
+                            </th>
+                            <th>
+                                Correo Aprendiz
+                            </th>
+                            <th>
+                                Nombre Aprendiz
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+               
+               
+
+            </div>
+            <div class="modal-footer" id="añadir" style="display:none">
+                <a onclick="integrantes()" class="btn btn-success text-white font-weight-bold">Añadir integrantes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section script{
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+    <script>
+
+        var id = null
+        var viejo = null
+        var first = false
+
+        $(document).on('change', '#id_grupo', function (evt, params) {
+            
+            viejo = id;
+            var table = $("#integrantes").DataTable()
+            table.destroy()
+            id = params.selected
+            first=false
+            
+        });
+
+        $(document).ready(function () {
+
+            var variable = $('#id_grupo').val()
+            if (variable != null) {
+                id = variable
+                viejo = id
+                first = true
+            }
+
+            $('#id_proyecto').chosen();
+            $('#id_grupo').chosen();
+            $('#id_bitacora').chosen();
+
+            $("#activar").on("click", function () {
+
+                $("#archivo").trigger("click");
+
+            });
+
+
+
+            $("#labelFile").on("click", function () {
+
+                $("#archivo").trigger("click");
+
+            });
+
+
+        });
+
+        $("#archivo").on("change", function () {
+
+            $("#labelFile").val($("#archivo").val());
+        });
+
+        function AbrirModal() {
+            if (id != null) {
+                $("#añadir").attr("style","display:list-item")
+            }
+            if (viejo != id) {
+                listar(id)
+                viejo = id
+            }
+            if (first == true) {
+                listar(id)
+                first = false
+            }
+        }
+
+        function listar(id) {
+            $("#integrantes").DataTable({
+
+                "ajax": {
+
+                    "url": "/Grupos/ListaAprendices/" + id,
+                    "type": "GET",
+                    "datatype": "json"
+                },
+
+
+                "language": { "url": '//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json' },
+
+                paging: false,
+                bFilter: false,
+                ordering: false,
+                searching: false,
+                info: false,
+
+                responsive: true,
+
+                "columns": [
+                    { "data": "id_aprendiz" },
+                    { "data": "correo" },
+                    { "data": "nombre" }
+
+                ]
+
+           });
+        }
+
+        function integrantes() {
+            if (id != null) {
+                $(location).attr('href', '/Grupos/Edit/'+id)
+            }
+        }
+
+
+    </script>
+
+}

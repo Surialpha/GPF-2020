@@ -1,0 +1,325 @@
+﻿
+@{
+    ViewBag.Title = "NotificacionAgenda";
+    Layout = null;
+
+}
+
+
+
+@if (ViewBag.rol == 1)
+{
+    <div class="bg-gray-400 text-dark row p-1">
+        <div class="col-8">
+            <h6 class="text-left small text-uppercase font-weight-bold" style="margin: 0;">
+                Notificaciones de solicitudes
+            </h6>
+        </div>
+        @if (ViewBag.Solicitudes != null)
+        {
+            <div class="col-4">
+                <a href="~/Solicitud/Index">
+                    <h6 class="text-right small text-dark text-uppercase" style=" margin: 0;">Ver más...</h6>
+                </a>
+            </div>
+        }
+    </div>
+    if (ViewBag.Solicitudes != null)
+    {
+        foreach (var item in ViewBag.Solicitudes)
+        {
+            <a class="dropdown-item d-flex align-items-center" href="~/Solicitud/DetallesSolicitudAdmin/@item.id" data-toggle="tooltip" data-placement="top" title="Ver más...">
+                <div class="mr-3">
+                    <div class="icon-circle bg-success">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                </div>
+                <div>
+                    <div class="small text-gray-500">@DateTime.Now</div>
+                    <span class="font-weight-bold">
+                        ¡Se ha registrado una nueva solicitud de proyecto! <br />
+                        <strong>Id: </strong> @item.id <br />
+                        <strong>Empresa: </strong> @item.nombreEmpresa <br />
+                        <strong>Fecha: </strong> @item.fecha <br />
+                    </span>
+                </div>
+            </a>
+        }
+    }
+    else
+    {
+<h4 class="dropdown-item d-flex align-items-center small">
+    <div class="mr-3">
+        <div class="icon-circle bg-danger">
+            <i class="fas fa-window-close"></i>
+        </div>
+    </div>
+    <div>
+        <div class="small text-gray-500">@DateTime.Now</div>
+        <span class="font-weight-bold">No tienes notificaciones</span>
+    </div>
+</h4>
+    }
+
+    <div class="bg-gray-400 text-dark row p-1">
+        <div class="col-8">
+            <h6 class="text-left small text-uppercase font-weight-bold" style="margin: 0;">
+                Notificaciones de clientes
+            </h6>
+        </div>
+        @if (ViewBag.Cliente != null)
+        {
+            <div class="col-4">
+                <a href="~/Usuarios/Index">
+                    <h6 class="text-right small text-dark text-uppercase" style=" margin: 0;">Ver más...</h6>
+                </a>
+            </div>
+        }
+    </div>
+
+    if (ViewBag.Cliente != null)
+    {
+        foreach (var item in ViewBag.Cliente)
+        {
+            <a class="dropdown-item d-flex align-items-center" href="~/Usuarios/Edit/@item.id" data-toggle="tooltip" data-placement="top" title="Ver más...">
+                <div class="mr-3">
+                    <div class="icon-circle bg-success">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                </div>
+                <div>
+                    <div class="small text-gray-500">@DateTime.Now</div>
+                    <span class="font-weight-bold">
+                        ¡Un cliente se ha registrado! <br />
+                        <strong>Id: </strong> @item.id <br />
+                        <strong>Email: </strong> @item.email <br />
+                        <strong>Fecha: </strong> @item.fecha <br />
+                    </span>
+                </div>
+            </a>
+        }
+    }
+    else
+    {
+
+<h4 class="dropdown-item d-flex align-items-center small">
+    <div class="mr-3">
+        <div class="icon-circle bg-danger">
+            <i class="fas fa-window-close"></i>
+        </div>
+    </div>
+    <div>
+        <div class="small text-gray-500">@DateTime.Now</div>
+        <span class="font-weight-bold">No tienes notificaciones</span>
+    </div>
+</h4>
+    }
+
+    <div class="bg-gray-400 text-dark row p-1">
+        <div class="col-8">
+            <h6 class="text-left small text-uppercase font-weight-bold" style="margin: 0;">
+                Notificaciones de PQRS
+            </h6>
+        </div>
+        @if (ViewBag.Pqrs != null)
+        {
+            <div class="col-4">
+                <a href="~/Usuarios/Index">
+                    <h6 class="text-right small text-dark text-uppercase" style=" margin: 0;">Ver más...</h6>
+                </a>
+            </div>
+        }
+    </div>
+    if (ViewBag.Pqrs != null)
+    {
+        foreach (var item in ViewBag.Pqrs)
+        {
+            <a class="dropdown-item d-flex align-items-center" href="~/Admin/Pqrs" data-toggle="tooltip" data-placement="top" title="Ver más...">
+                <div class="mr-3">
+                    <div class="icon-circle bg-success">
+                        <i class="fas fa-inbox"></i>
+                    </div>
+                </div>
+                <div>
+                    <div class="small text-gray-500">@DateTime.Now</div>
+                    <span class="font-weight-bold">
+                        ¡Han registrado una PQRS! <br />
+                        <strong>Id: </strong> @item.id,
+                        <strong>Nombre: </strong> @item.nombre <br />
+                    </span>
+                </div>
+            </a>
+        }
+    }
+    else
+    {
+<h4 class="dropdown-item d-flex align-items-center small">
+    <div class="mr-3">
+        <div class="icon-circle bg-danger">
+            <i class="fas fa-window-close"></i>
+        </div>
+    </div>
+    <div>
+        <div class="small text-gray-500">@DateTime.Now</div>
+        <span class="font-weight-bold">No tienes notificaciones</span>
+    </div>
+</h4>
+    }
+
+}
+else if (ViewBag.rol == 2)
+{
+
+    if (ViewBag.Agendas != null)
+    {
+        foreach (var item in ViewBag.Agendas)
+        {
+            if (item.estado == 1)
+            {
+                <a class="dropdown-item d-flex align-items-center" href="~/Agenda/Details/@item.id" data-toggle="tooltip" data-placement="top" title="Ver más...">
+                    <div class="mr-3">
+                        <div class="icon-circle bg-warning">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="small text-gray-500">@DateTime.Now</div>
+                        <span class="font-weight-bold">
+                            Usted fue asignado a un reunción para el @item.fecha <br /><br />
+                            <strong>Nombre proyecto o empresa:</strong> @item.empresa <br />
+                        </span>
+                    </div>
+                </a>
+            }
+            else if (item.estado == 2)
+            {
+                <a class="dropdown-item d-flex align-items-center" href="~/Agenda/Details/@item.id" data-toggle="tooltip" data-placement="top" title="Ver más...">
+                    <div class="mr-3">
+                        <div class="icon-circle bg-danger">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="small text-gray-500">@DateTime.Now</div>
+                        <span class="font-weight-bold">
+                            <strong>Nombre proyecto o empresa: </strong> @item.empresa <br />
+                            La reunión para el día @item.fecha está cancelada
+                        </span>
+                    </div>
+                </a>
+            }
+            else
+            {
+                <a class="dropdown-item d-flex align-items-center" href="~/Agenda/Details/@item.id" data-toggle="tooltip" data-placement="top" title="Ver más...">
+                    <div class="mr-3">
+                        <div class="icon-circle bg-success">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="small text-gray-500">@DateTime.Now</div>
+                        <span class="font-weight-bold">
+                            <strong>Nombre proyecto o empresa: </strong> @item.empresa <br /><br />
+                            La agenda para el día @item.fecha, fue completada
+                        </span>
+                    </div>
+                </a>
+            }
+        }
+    }
+    else
+    {
+<h4 class="dropdown-item d-flex align-items-center small">
+    <div class="mr-3">
+        <div class="icon-circle bg-danger">
+            <i class="fas fa-window-close"></i>
+        </div>
+    </div>
+    <div>
+        <div class="small text-gray-500">@DateTime.Now</div>
+        <span class="font-weight-bold">No tienes notificaciones</span>
+    </div>
+</h4>
+    }
+
+
+
+
+}
+else if (ViewBag.rol == 4)
+{
+    if (ViewBag.Agendas != null)
+    {
+        foreach (var item in ViewBag.Agendas)
+        {
+            if (item.estado == 1)
+            {
+                <a class="dropdown-item d-flex align-items-center" href="~/Agenda/Details/@item.id" data-toggle="tooltip" data-placement="top" title="Ver más...">
+                    <div class="mr-3">
+                        <div class="icon-circle bg-warning">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="small text-gray-500">@DateTime.Now</div>
+                        <span class="font-weight-bold">
+                            Usted fue asignado a un reunción para el @item.fecha <br /><br />
+                            <strong>Nombre proyecto o empresa:</strong> @item.empresa <br />
+                        </span>
+                    </div>
+                </a>
+            }
+            else if (item.estado == 2)
+            {
+                <a class="dropdown-item d-flex align-items-center" href="~/Agenda/Details/@item.id" data-toggle="tooltip" data-placement="top" title="Ver más...">
+                    <div class="mr-3">
+                        <div class="icon-circle bg-danger">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="small text-gray-500">@DateTime.Now</div>
+                        <span class="font-weight-bold">
+                            <strong>Nombre proyecto o empresa: </strong> @item.empresa <br />
+                            La reunión para el día @item.fecha está cancelada
+                        </span>
+                    </div>
+                </a>
+            }
+            else
+            {
+                <a class="dropdown-item d-flex align-items-center" href="~/Agenda/Details/@item.id" data-toggle="tooltip" data-placement="top" title="Ver más...">
+                    <div class="mr-3">
+                        <div class="icon-circle bg-success">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="small text-gray-500">@DateTime.Now</div>
+                        <span class="font-weight-bold">
+                            <strong>Nombre proyecto o empresa: </strong> @item.empresa <br /><br />
+                            La agenda para el día @item.fecha, fue completada
+                        </span>
+                    </div>
+                </a>
+            }
+        }
+    }
+    else
+    {
+<h4 class="dropdown-item d-flex align-items-center small">
+    <div class="mr-3">
+        <div class="icon-circle bg-danger">
+            <i class="fas fa-window-close"></i>
+        </div>
+    </div>
+    <div>
+        <div class="small text-gray-500">@DateTime.Now</div>
+        <span class="font-weight-bold">No tienes notificaciones</span>
+    </div>
+</h4>
+
+    }
+}
+
+

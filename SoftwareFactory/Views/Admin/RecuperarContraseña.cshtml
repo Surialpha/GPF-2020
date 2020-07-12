@@ -1,0 +1,142 @@
+﻿@model SoftwareFactory.Models.pqrs
+@{
+    Layout = null;
+}
+
+    <html lang="es-co">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <title>Recuperar contraseña - Fabrica de Software</title>
+        <link rel="shortcut icon" href="~/vendor/img/logosena.png" type="image/x-icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="~/Content/CSS/Login/main.css" rel="stylesheet" />
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <link href="~/Content/toastr.min.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <style>
+            body {
+                background-image: url(../../Vendor/img/intro.gif);
+                background-size: cover;
+            }
+
+            #title {
+                background-color: #7fafc8;
+            }
+
+            #container-login {
+                background-color: #1d1f20bf;
+                position: relative;
+            }
+
+            input[type=submit] {
+                background: #7fafc8;
+                transition: .5s;
+                color: #383838;
+            }
+
+                input[type=submit]:hover {
+                    background: #608294;
+                    transition: 0.5s;
+                    color: #ffffff;
+                }
+        </style>
+    </head>
+
+    <body>
+        <div id="container-register" style="height:550px !important;">
+            <div id="title">
+                <i class="material-icons lock">lock</i> Recuperar contraseña
+            </div>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal row">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <br />
+                    <p>
+                        Por favor diligencia el formulario para recuperar la contraseña.<br /><br />
+                        El administrador de Fábrica de Software,  <br />se comunicará con usted en las próximas <br /> 48 horas hábiles para recuperar su contraseña. <br /><br />
+                        Ingrese el correo electrónico:
+                    </p>
+
+                    <div class="input">
+                        <div class="input-addon">
+                            <i class="material-icons">email</i>
+                        </div>
+                        @Html.EditorFor(model => model.correo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Correo electronico", @type = "email", @required = true } })
+
+                    </div>
+                    @Html.ValidationMessageFor(model => model.correo, "", new { @class = "text-danger" })
+
+
+                    <br />
+                    <div id="enviarH">
+                        <input type="submit" id="enviar" value="Enviar" />
+                    </div>
+
+                </div>
+            }
+
+            <div class="register">
+                <a href="~/Home/Index"><button id="register-link">Regresar página principal</button></a>
+            </div>
+        </div>
+
+        <script src="~/Scripts/toastr.min.js"></script>
+        <script>
+            var error = "@ViewBag.Error";
+            if (error.length > 0) {
+                Command: toastr["error"](error)
+
+                toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": false,
+                  "progressBar": false,
+                  "positionClass": "toast-bottom-right",
+                  "preventDuplicates": true,
+                  "onclick": null,
+                  "showDuration": "300",
+                  "hideDuration": "1000",
+                  "timeOut": "5000",
+                  "extendedTimeOut": "1000",
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+                }
+                    }
+
+                                var success = "@ViewBag.Success";
+            if (success.length > 0) {
+                Command: toastr["success"](success)
+
+                toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": false,
+                  "progressBar": false,
+                  "positionClass": "toast-top-right",
+                  "preventDuplicates": true,
+                  "onclick": null,
+                  "showDuration": "300",
+                  "hideDuration": "15000",
+                  "timeOut": "15000",
+                  "extendedTimeOut": "15000",
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+                }
+            }
+        </script>
+
+    </body>
+    </html>

@@ -1,0 +1,249 @@
+﻿
+@{
+    ViewBag.Title = "GruposAprendices";
+    Layout = "~/Views/Shared/_DashLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col" align="center">
+        <h2>Listado de integrantes en grupos</h2>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+
+
+    <div class="col-12">
+        <table id="listado" class="table table-striped display" style="width:100%">
+            <thead class="thead bg-gray-900 text-white">
+                <tr>
+                    <th>
+                        Grupo
+                    </th>
+                    <th>
+                        #ID Aprendiz
+                    </th>
+                    <th>
+                        Correo Aprendiz
+                    </th>
+                    <th>
+                        Nombre Aprendiz
+                    </th>
+                    <th>
+                        Tipo contrato
+                    </th>
+                    <th>
+                        Asesor a cargo
+
+
+                        <a data-toggle="modal" onclick="InactiveUsers()" data-target="#Historial" class="btn-circle btn-sm bg-gradient-success text-white btn-circle ml-5" data-placement="right" title="Historial grupos usuarios inactivos">
+                            <i class="fas fa-history"></i>
+                        </a>
+                    </th>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+
+@section script{
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+    <script src="~/Scripts/DatatablesCDN/dataTables.select.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/jszip.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/pdfmake.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/vfs_fonts.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.html5.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.print.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.colVis.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/dataTables.jqueryui.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.jqueryui.min.js"></script>
+
+    <script>
+
+        var consulta = true;
+
+
+        $(document).ready(function () {
+
+
+            $("#listado").DataTable({
+
+                "ajax": {
+
+                    "url": '@Url.Action("ListaAprendicesGruposActivos","Grupos")',
+                    "type": "GET",
+                    "datatype": "json"
+                },
+
+
+                "language": { "url": '//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json' },
+
+
+                responsive: true,
+
+                "columns": [
+                    { "data": "id_tabla" },
+                    { "data": "id_aprendiz" },
+                    { "data": "correo" },
+                    { "data": "nombre" },
+                    { "data": "tipo" },
+                    { "data": "asesor_acargo" }
+
+                ],
+
+                    dom: 'Bfrtip',
+                    buttons: [{
+                        extend: 'print',
+                        className: 'btn btn-info',
+                        text: '<i class="fas fa-print"></i> Imprimir',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'excel',
+                        className: 'btn btn-success',
+                            text: '<i class="fas fa-file-excel"></i> Excel',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'pdf',
+                        className: 'btn btn-danger',
+                            text: '<i class="fas fa-file-pdf"></i> pdf',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                        },
+                    {
+                        extend: 'colvis',
+                        className: 'btn btn-dark',
+                        text: '<i class="fas fa-chevron-circle-down"></i>'
+                    }
+                ]
+
+            });
+
+
+        });
+
+        function InactiveUsers() {
+
+
+            if (consulta) {
+                
+               $("#listadoInactive").DataTable({
+
+                "ajax": {
+
+                    "url": '@Url.Action("ListaAprendicesGruposInactivos","Grupos")',
+                    "type": "GET",
+                    "datatype": "json"
+                },
+
+
+                "language": { "url": '//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json' },
+
+
+                responsive: true,
+
+                "columns": [
+                    { "data": "id_tabla" },
+                    { "data": "id_aprendiz" },
+                    { "data": "correo" },
+                    { "data": "nombre" },
+                    { "data": "tipo" },
+                    { "data": "asesor_acargo" }
+
+                ],
+
+                    dom: 'Bfrtip',
+                    buttons: [{
+                        extend: 'print',
+                        className: 'btn btn-info',
+                        text: '<i class="fas fa-print"></i> Imprimir',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'excel',
+                        className: 'btn btn-success',
+                            text: '<i class="fas fa-file-excel"></i> Excel',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'pdf',
+                        className: 'btn btn-danger',
+                            text: '<i class="fas fa-file-pdf"></i> pdf',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                        },
+                    {
+                        extend: 'colvis',
+                        className: 'btn btn-dark',
+                        text: '<i class="fas fa-chevron-circle-down"></i>'
+                    }
+                ]
+
+            });
+
+            consulta=false
+            }
+
+        }
+
+
+    </script>
+
+
+}
+
+
+<!-- Modal create -->
+<div class="modal fade" id="Historial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-gradient-dark text-white" align="center">
+                <h5 class="modal-title" id="exampleModalLabel">Aprendices inactivos por grupo</h5>
+                <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="listadoInactive" class="table table-striped display" style="width:100%">
+                    <thead class="thead bg-gray-900 text-white">
+                        <tr>
+                            <th>
+                                Grupo
+                            </th>
+                            <th>
+                                #ID Aprendiz
+                            </th>
+                            <th>
+                                Correo Aprendiz
+                            </th>
+                            <th>
+                                Nombre Aprendiz
+                            </th>
+                            <th>
+                                Tipo contrato
+                            </th>
+                            <th>
+                                Asesor a cargo
+                            </th>
+                    </thead>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

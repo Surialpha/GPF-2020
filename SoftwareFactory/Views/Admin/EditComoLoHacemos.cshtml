@@ -1,0 +1,20 @@
+﻿
+
+@model SoftwareFactory.Models.Como_Lo_Hacemos
+
+@using (Html.BeginForm("EditComoLoHacemos", "Admin", FormMethod.Post))
+{
+
+
+    <div class="modal-body">
+
+
+        @Html.TextAreaFor(m => m.descripcion, new { @class = "form-control", @style = "margin-top: 0px; margin-bottom: 0px; height: 177px;" })
+
+    </div>
+    
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+}

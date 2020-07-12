@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f91974ef99b048cb922b1878db7effd9" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Aprendices" Width="1.5" PointX="4" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Asesores" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Asignar_Fase" Width="1.5" PointX="6.25" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Bitacora_Aprendiz" Width="1.5" PointX="7.5" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Bitacora_Asesor" Width="1.5" PointX="7.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Ciclos" Width="1.5" PointX="1.75" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Cliente" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Como_Lo_Hacemos" Width="1.5" PointX="11.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Documento" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Estado_asignacion" Width="1.5" PointX="4" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Estado_Proyecto" Width="1.5" PointX="5.25" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Estado_Solicitud" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Estado_Viabilidad" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.EstadoAgenda" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Estados" Width="1.5" PointX="9.75" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Estados_Ciclos" Width="1.5" PointX="1.75" PointY="30.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Estados_Fases" Width="1.5" PointX="1.75" PointY="33.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Fases" Width="1.5" PointX="1.75" PointY="35.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Fases_de_Ciclos" Width="1.5" PointX="4" PointY="29.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Grupo_Aprendices" Width="1.5" PointX="8.5" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Modulos" Width="1.5" PointX="7.5" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Nuestros_Servicios" Width="1.5" PointX="15.875" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Operaciones" Width="1.5" PointX="9.75" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Personas" Width="1.5" PointX="0.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Proyecto" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Quienes_Somos" Width="1.5" PointX="15.375" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Rol_Operaciones" Width="1.5" PointX="12" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Roles" Width="1.5" PointX="9.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Sexo" Width="1.5" PointX="1.5" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Tipo_Cliente" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Tipo_Contrato" Width="1.5" PointX="1.75" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Tipo_Documento" Width="1.5" PointX="1.5" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Tipo_Solicitante" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Usuarios" Width="1.5" PointX="12" PointY="6.875" IsExpanded="true" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_asignarfase_aprendiz" ManuallyRouted="false" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_bitapren_aprendiz" ManuallyRouted="false" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_gruap_aprendices" ManuallyRouted="false" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_personas_aprendiz" ManuallyRouted="false" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_tpcontrato_aprendices" ManuallyRouted="false" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_bitapren_asesor" ManuallyRouted="false" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_personas_asesores" ManuallyRouted="false" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_asignarfase_estado" ManuallyRouted="false" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_asignarfase_faseciclo" ManuallyRouted="false" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_ciclos_estados" ManuallyRouted="false" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_fasesdeciclos_ciclos" ManuallyRouted="false" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_tipoci_cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_tipodo_cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_estadopro_proyectofa" ManuallyRouted="false" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_estados_usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_fasesdeciclo_estadosfases" ManuallyRouted="false" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_fasesdeciclo_fases" ManuallyRouted="false" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_modulos_operaciones" ManuallyRouted="false" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_operaciones_rolop" ManuallyRouted="false" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_sexo_personas" ManuallyRouted="false" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_tipodo_personas" ManuallyRouted="false" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_rol_rolop" ManuallyRouted="false" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_roles_usuarios" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Adquirir_Servicios" Width="1.5" PointX="12.375" PointY="4.5" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_tipodo_cliente1" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Imagenes" Width="1.5" PointX="16.875" PointY="6.375" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Tipo_Imagen" Width="1.5" PointX="14.875" PointY="6.375" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_tipo" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.pqrs" Width="1.5" PointX="13.875" PointY="13.75" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Bitacoras" Width="1.5" PointX="5.25" PointY="9" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Grupos" Width="1.5" PointX="5.25" PointY="15.375" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Solicitud" Width="1.5" PointX="5.25" PointY="1.75" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_asesores_grupos" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_bitapren_bitacoras" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_bitapas_bitacoras" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_bitacoras_proyectofa" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_cliente_solicitud" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_estadosoli_solicitud" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_estadovia_solicitud" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_gruap_grupos" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_grupos_proyectofa" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_proyectocli_proyectofa" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_tipocli_solicitud" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.historialGrupos" Width="1.5" PointX="10.375" PointY="13.75" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.Agenda" Width="1.5" PointX="9.75" PointY="5.625" />
+        <EntityTypeShape EntityType="FabricaSoftwareModel.LogAgenda" Width="1.5" PointX="16.375" PointY="9.75" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_Estado_Agenda" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_Proyecto_Agenda" />
+        <AssociationConnector Association="FabricaSoftwareModel.fk_Responsable" />
+      </Diagram>
+      <Diagram DiagramId="9e122f5511464c179acc95f4636a3d45" Name="Diagram2" />
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

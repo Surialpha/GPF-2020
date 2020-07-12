@@ -1,0 +1,72 @@
+﻿@model SoftwareFactory.Models.pqrs
+@{
+    ViewBag.Title = "DetailsPqrs";
+    Layout = null;
+}
+
+
+<div class="form-horizontal row">
+
+    <div class="form-group col-sm-3 col-md-3 col-lg-3">
+        <div class="col-auto" align="left">
+            <label class="font-weight-bold" for="inlineFormInputGroup">Id:</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text bg-dark text-white"><i class="fas fa-crown"></i></div>
+                </div>
+                @Html.EditorFor(model => model.id, new { htmlAttributes = new { @class = "form-control", @readonly = true, @id = "idPqrs" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.id, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-sm-5 col-md-5 col-lg-5">
+        <div class="col-auto" align="left">
+            <label class="font-weight-bold" for="inlineFormInputGroup">Correo: </label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text bg-dark text-white"><i class="fas fa-calendar-day"></i></div>
+                </div>
+                @Html.EditorFor(model => model.correo, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+            </div>
+            @Html.ValidationMessageFor(model => model.correo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-sm-4 col-md-4 col-lg-4">
+        <div class="col-auto" align="left">
+            <label class="font-weight-bold" for="inlineFormInputGroup">Nombre: </label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text bg-dark text-white"><i class="fas fa-clock"></i></div>
+                </div>
+                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+            </div>
+            @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group col-sm-12 col-md-12 col-lg-12">
+        <div class="col-auto" align="left">
+            <label class="font-weight-bold" for="inlineFormInputGroup">Descripción:</label>
+            <div class="input-group ">
+                <div class="input-group-prepend">
+                    <div class="input-group-text bg-dark text-white"><i class="fas fa-clock"></i></div>
+                </div>
+                @Html.TextAreaFor(model => model.descripcion, new { @class = "form-control", @rows = "4", @cols = "50", @readonly = true })
+            </div>
+            @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />
+
+</div>
+<div class="row" align="center">
+
+    <div class="col-12"><h4>¿Desea eliminar este registro?</h4> </div>
+    <div class="col-12"><a class='btn bg-gradient-danger text-white btn-circle' data-toggle='tooltip' data-placement='right' id="es" title='Eliminar registro' onclick='Eliminar()'><i class='fas fa-trash'></i></a></div>
+
+
+</div>
+
+

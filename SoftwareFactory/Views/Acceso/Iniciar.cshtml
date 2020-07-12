@@ -1,0 +1,139 @@
+﻿
+
+@{
+    Layout = null;
+}
+
+<html lang="es-co">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio de Sesión Usuarios - Fabrica de Software</title>
+    <link rel="shortcut icon" href="~/vendor/img/logosena.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/CSS/Login/main.css" rel="stylesheet" />
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            background-image: url(../../Vendor/img/intro.gif);
+            background-size: cover;
+        }
+
+        #title {
+            background-color: #7fafc8;
+        }
+
+        #container-login {
+            background-color: #1d1f20bf;
+            position: relative;
+        }
+
+        input[type=submit] {
+            background: #7fafc8;
+            transition: .5s;
+            color: #383838;
+        }
+
+            input[type=submit]:hover {
+                background: #608294;
+                transition: 0.5s;
+                color: #ffffff;
+            }
+    </style>
+</head>
+
+<body>
+    <div id="container-login">
+        <div id="title">
+            <i class="material-icons lock">lock</i> Inicio de sesión Usuarios
+        </div>
+
+
+
+        <form action="@Url.Content("~/Acceso/Iniciar")" method="post">
+            <div class="input">
+
+                <div class="input-addon">
+                    <i class="material-icons">face</i>
+                </div>
+                <input id="Email" name="Email" placeholder="Correo Electronico" type="text" class="validate" autocomplete="off">
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="input">
+                <div class="input-addon">
+                    <i class="material-icons">vpn_key</i>
+                </div>
+                <input id="Password" name="Password" placeholder="Contraseña" type="password" class="validate" autocomplete="off">
+            </div>
+
+
+
+            <input type="submit" value="iniciar" style="margin-top:1rem;" />
+        </form>
+
+        @if (ViewBag.Error != null)
+        {
+            <div style="color:#ff0000">
+                <p>@ViewBag.Error <i class="material-icons">error</i></p>
+            </div>
+        }
+
+        <div class="forgot-password">
+            <a href="~/Admin/RecuperarContraseña">Olvidaste la contraseña?</a>
+        </div>
+
+    </div>
+    <script src="~/Scripts/toastr.min.js"></script>
+    <script>
+            var error = "@ViewBag.Error";
+            if (error.length > 0) {
+                Command: toastr["error"](error)
+
+                toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": false,
+                  "progressBar": false,
+                  "positionClass": "toast-bottom-right",
+                  "preventDuplicates": true,
+                  "onclick": null,
+                  "showDuration": "300",
+                  "hideDuration": "1000",
+                  "timeOut": "5000",
+                  "extendedTimeOut": "1000",
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+                }
+                    }
+
+                                var success = "@ViewBag.Success";
+            if (success.length > 0) {
+                Command: toastr["success"](success)
+
+                toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": false,
+                  "progressBar": false,
+                  "positionClass": "toast-top-right",
+                  "preventDuplicates": true,
+                  "onclick": null,
+                  "showDuration": "300",
+                  "hideDuration": "15000",
+                  "timeOut": "15000",
+                  "extendedTimeOut": "15000",
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+                }
+            }
+    </script>
+</body>
+
+</html>

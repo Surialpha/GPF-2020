@@ -1,0 +1,61 @@
+﻿@using (Html.BeginForm("AgregarImagenes", "Admin", FormMethod.Post,new {enctype="multipart/form-data" }))
+{
+
+
+    <div class="modal-body">
+
+
+
+        <div class="form-group col-sm-12">
+            <div class="col-auto" align="left">
+                <label class="font-weight-bold" for="inlineFormInputGroup">Seleccione El rol que cumple el usuario</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-file-archive"></i></div>
+                    </div>
+                    @Html.DropDownList("idTipo", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="form-group col-sm-12">
+            <div class="col-auto" align="left">
+                <label class="font-weight-bold" for="inlineFormInputGroup">Anexe foto ( jpg ó npg ):</label>
+                <div class="input-group">
+
+
+                    <div class="input-group-prepend">
+                        <div class="input-group-text bg-gradient-info text-white" id="activar" style="cursor:pointer;">Elegir</div>
+                    </div>
+                    <input type="text" id="labelFile" class="form-control" readonly />
+
+                    <input type="file" name="file" id="archivo" hidden />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-sm-12">
+            <div class="col-auto" align="left">
+                <label class="font-weight-bold" for="inlineFormInputGroup">Nombre del Usuario:</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-users"></i></div>
+                    </div>
+                    <input type="text" name="nombreUsuario" id="nombreUsuario" class="form-control" />
+                </div>
+            </div>
+        </div>
+
+    
+
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+}
+
+

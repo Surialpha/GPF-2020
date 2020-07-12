@@ -1,0 +1,478 @@
+﻿
+
+@{
+    ViewBag.Title = "DashboardCliente";
+    Layout = "~/Views/Shared/_DashLayoutCliente.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-6">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">N° de proyectos por estado</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-6">
+
+            <div class="card text-center">
+                <div class="card-header bg-info text-white font-weight-bold">Agendas</div>
+                <div class="card-body">
+                    <table id="agenda" class="table table-sm table-striped display">
+                        <thead class="thead">
+                            <tr>
+                                <th>
+                                    Agenda
+                                </th>
+                                <th>
+                                    Fecha
+                                </th>
+                                <th>
+                                    Responsable
+                                </th>
+                                <th>
+                                    Asunto
+                                </th>
+                                <th>
+                                    Estado
+                                </th>
+                        </thead>
+                    </table>
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="row">
+    <div class="col-12">
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">Proyectos Solicitados</a></li>
+                <li><a href="#tabs-2">Proyectos en Desarrollo</a></li>
+            </ul>
+            <div id="tabs-1">
+
+                <table id="usuarios" class="table table-striped display">
+                    <thead class="thead bg-gray-900 text-white" >
+                        <tr>
+                            <th>
+                                #ID Proyecto
+                            </th>
+                            <th>
+                                Fecha de Solicitud
+                            </th>
+                            <th>
+                                Estado de Solicitud
+                            </th>
+                            <th>
+                                Estado de Viabilidad
+                            </th>
+                            <th>
+                                Acciones
+                            </th>
+                    </thead>
+                </table>
+
+
+            </div>
+            <div id="tabs-2">
+
+                <table id="Proyectos" class="table table-striped display">
+                    <thead class="thead bg-gray-900 text-white">
+                        <tr>
+                            <th>
+                                #ID Proyecto
+                            </th>
+                            <th>
+                                Empresa
+                            </th>
+                            <th>
+                                Estado proyecto
+                            </th>
+                            <th>
+                                Grupo
+                            </th>
+                            <th>
+                                Bitacora
+                            </th>
+                            <th>
+                                Archivo
+                            </th>
+                            <th>
+                                Acciones
+                            </th>
+                    </thead>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+
+@section script{
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+    <script src="~/Scripts/DatatablesCDN/dataTables.select.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/jszip.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/pdfmake.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/vfs_fonts.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.html5.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.print.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.colVis.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/dataTables.jqueryui.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.jqueryui.min.js"></script>
+
+
+
+
+
+
+    <script>
+
+        var acumulador = true;
+
+
+        $(document).ready(function () {
+
+
+
+            $("#tabs").tabs({
+                classes: {
+                    "ui-tabs-active": "bg-dark   border-left-primary",
+                },
+                beforeActivate: function (event, ui) {
+
+                    var tab = ui['newPanel']
+                    var texto = tab['0'].outerHTML
+                    if (texto.substring(9,15)==="tabs-2") {
+
+                        ProyectosEnDesarrollo();
+                    }
+                }
+            });
+
+          $("#usuarios").DataTable({
+
+                "ajax": {
+
+                    "url": '@Url.Action("ListaCliente","Solicitud")',
+                    "type": "GET",
+                    "datatype":"json"
+                },
+
+
+              "language": { "url": '//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json'},
+
+
+                responsive: true,
+
+                "columns": [
+                    { "data":"idSolicitud"},
+                    { "data":"fechaSolicitud"},
+                    { "data": "EstadoSolicitud"},
+                    { "data": "EstadoViabi" },
+                    { "data": "idSolicitud", "render": function (data) {
+                        return "<a href='/Solicitud/EditarProyectoCl/" + data + "' class='btn  bg-gradient-primary text-white btn-circle' data-toggle='tooltip' data-placement='right' title='Editar'><i class='fas fa-edit'></i> "
+                            + "<a href='/Solicitud/DetallesProyectoCl/" + data + "' class='btn  bg-gradient-warning text-white btn-circle' data-toggle='tooltip' data-placement='right' title='Detalles'><i class='fas fa-info-circle'></i> "
+                        +"<a class='btn  bg-gradient-danger text-white btn-circle' data-toggle='tooltip' data-placement='right' title='Eliminar'><i class='fas fa-trash' onclick='Eliminar(" + data + ")'></i> ";
+                    }, "oderable": false
+                    }
+
+              ],
+
+                    dom: 'Bfrtip',
+                    buttons: [{
+                        extend: 'print',
+                        className: 'btn btn-info',
+                        text: '<i class="fas fa-print"></i> Imprimir',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'excel',
+                        className: 'btn btn-success',
+                            text: '<i class="fas fa-file-excel"></i> Excel',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'pdf',
+                        className: 'btn btn-danger',
+                            text: '<i class="fas fa-file-pdf"></i> pdf',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                        },
+                    {
+                        extend: 'colvis',
+                        className: 'btn btn-dark',
+                        text: '<i class="fas fa-chevron-circle-down"></i>'
+                    }
+                ]
+
+          });
+
+            $("#agenda").DataTable({
+
+                "ajax": {
+
+                    "url": '@Url.Action("AgendaCliente","Agenda")',
+                    "type": "GET",
+                    "datatype":"json"
+                },
+
+
+                "language": {"url":'//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json'},
+
+                paging: false,
+                bFilter: false,
+                ordering: false,
+                searching: false,
+                info:false,
+
+
+                "columns": [
+                    { "data":"idAgenda"},
+                    {
+                        "data": "fecha", "render": function (data) {
+
+                            var fechadata = data.split('-');
+                            var horaI = fechadata[3].split(':');
+                            var horaF = fechadata[4].split(':');
+                            return fechadata[2].trim()+"/"+fechadata[1]+"/"+fechadata[0]+" - "+horaI[0]+":00 - "+horaF[0]+":00";
+                    }, "oderable": false },
+                    { "data": "responsable"},
+                    { "data": "asunto" },
+                    {
+                        "data": "estado", "render": function (data) {
+                            if (data == 3) {
+                                return '<i class="fas fa-traffic-light text-success" data-toggle="tooltip" data-placement="right" title="Completada"></i>';
+                            }
+
+                            if (data == 1) {
+                                return '<i class="fas fa-traffic-light text-warning" data-toggle="tooltip" data-placement="right" title="Programada"></i>';
+                            }
+
+                            if (data == 2 ) {
+                                return '<i class="fas fa-traffic-light text-danger" data-toggle="tooltip" data-placement="right" title="Cancelada"></i>';
+                            }
+
+                        }, "orderable": false
+                    }
+                ]
+
+            });
+
+            var table = $('#agenda').DataTable();
+
+            $('#agenda tbody').on('click', 'tr', function () {
+                var data = table.row(this).data();
+                $(location).attr('href', '/Agenda/Details/' + data['idAgenda']);
+            });
+
+            Solicitud()
+
+        });
+
+
+
+                function Eliminar(id) {
+            Command: toastr["error"]("Esta información no podrá ser recuperada!<a href='../Solicitud/Delete/"+id+"' class='btn btn-sm btn-danger'><i class='fas fa-trash'></i></a> ", "Desea Eliminar?")
+
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": true,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": 0,
+  "extendedTimeOut": 0,
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut",
+  "tapToDismiss": false
+}
+        }
+
+
+        function ProyectosEnDesarrollo() {
+
+
+
+            if (acumulador) {
+                $("#Proyectos").DataTable({
+
+                    "ajax": {
+
+                        "url": '@Url.Action("ListaCliente","Proyectos")',
+                        "type": "GET",
+                        "datatype": "json"
+                    },
+
+
+                    "language": { "url": '//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json' },
+
+
+                    responsive: true,
+
+                    "columns": [
+                        { "data": "id_proyecto" },
+                        { "data": "empresa" },
+                        { "data": "estado" },
+                        { "data": "grupo" },
+                        { "data": "bitacora" },
+
+                        {
+                            "data": "archivo", "render": function (data) {
+                                if (data)
+                                    return '<form action="/Proyectos/DescargarCliente" method="get"><button type="submit" class="btn btn-sm btn-success" name="ArchivoName" id="ArchivoName" asp-for="ArchivoName" value="' + data + '" data-toggle="tooltip" data-placement="top" title="' + data + '">  <i class="fas fa-download"></i></button></form>'
+
+                                else return '<button class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="No hay archivos"><i class="fas fa-file-excel"></i></button>'
+
+                            }, "oderable": false
+                        },
+
+
+                        {
+                            "data": "id_proyecto", "render": function (data) {
+                                return "<a  href='/Proyectos/DetallesProyectoLog/" + data + "' class='btn  bg-gradient-warning text-white btn-circle' data-toggle='tooltip' data-placement='right' title='Detalles'><i class='fas fa-search'></i>";
+                            }, "oderable": false
+                        }
+
+                    ],
+
+
+                    dom: 'Bfrtip',
+                    buttons: [{
+                        extend: 'print',
+                        className: 'btn btn-info',
+                        text: '<i class="fas fa-print"></i> Imprimir',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'excel',
+                        className: 'btn btn-success',
+                            text: '<i class="fas fa-file-excel"></i> Excel',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'pdf',
+                        className: 'btn btn-danger',
+                            text: '<i class="fas fa-file-pdf"></i> pdf',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                        },
+                    {
+                        extend: 'colvis',
+                        className: 'btn btn-dark',
+                        text: '<i class="fas fa-chevron-circle-down"></i>'
+                    }
+                ]
+
+                });
+
+
+                acumulador = false;
+                }
+        }
+
+
+                   async function Solicitud() {
+                var url = "/Clientes/ProyectosCliente/"
+
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    cache: false,
+                    dataType: 'json',
+                    success: function (result) {
+                        var datos = JSON.parse(result)
+
+                        var coloR = [];
+
+                        var dynamicColors = function () {
+                            var r = Math.floor(Math.random() * 255);
+                            var g = Math.floor(Math.random() * 255);
+                            var b = Math.floor(Math.random() * 255);
+                            return "rgb(" + r + "," + g + "," + b + ",0.43)";
+                        }
+
+                        for (var i in datos) {
+                            coloR.push(dynamicColors());
+                        }
+
+
+
+                        var ctx = document.getElementById('myChart');
+                        var myChart = new Chart(ctx, {
+
+                            type: 'bar',
+                            data: {
+                                labels: ['Enviados', 'Recibidos', 'Revisión', 'Modificar', 'En desarrollo', 'Descartados'],
+                                datasets: [{
+                                    label: 'N° de proyectos',
+                                    data: datos,
+                                    backgroundColor: coloR,
+                                    borderColor: coloR,
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                legend: {
+                                    display: false
+                                },
+                                tooltips: {
+                                    callbacks: {
+                                        beforeTitle: function (tooltipItem) {
+                                            return tooltipItem.yLabel;
+                                        }
+                                    }
+                                }
+                            }
+                        });
+
+                    }
+                });
+            }
+
+    </script>
+
+
+}

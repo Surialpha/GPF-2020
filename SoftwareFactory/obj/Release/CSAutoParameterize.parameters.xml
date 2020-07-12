@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="FabricaSoftwareEntities-Web.config Connection String" description="FabricaSoftwareEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.FSEntities.csdl|res://*/Models.FSEntities.ssdl|res://*/Models.FSEntities.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=DESKTOP-3EM95SK\SURIALPHASERVER;initial catalog=FabricaSoftware;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Surialpha\\Documents\\GPF\\FsManagment\\SoftwareFactory\\SoftwareFactory\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='FabricaSoftwareEntities']/@connectionString" />
+  </parameter>
+</parameters>

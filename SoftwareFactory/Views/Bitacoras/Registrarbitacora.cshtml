@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Registrarbitacora";
+    Layout = null;
+}
+<div class="container">
+
+    @using (Html.BeginForm("Registrarbitacora", "Bitacoras", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+                <div class="form-horizontal row">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <input hidden type="number" name="id_bitacora" asp-for="id_bitacora" value="@ViewBag.idBitacora" />
+
+                    <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">Descripción:</label>
+                            <div class="input-group ">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-clipboard"></i></div>
+                                </div>
+                                <textarea id="descripcion" name="descripcion" asp-for="descripcion" rows="4" cols="50" class="form-control" >Escriba tarea realizada...</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">Anexe archivo:</label>
+                            <div class="input-group">
+
+
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-gradient-info text-white" id="activar" style="cursor:pointer;">Elegir</div>
+                                </div>
+                                <input type="text" id="labelFile" placeholder="Agregar documento con formato PDF menor a 12MB" class="form-control" readonly />
+
+                                <input type="file" name="file" id="archivo" hidden />
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group col-sm-12 col-md-12 col-lg-12" align="center">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Registrar" class="btn bg-gradient-info text-white" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            
+
+
+
+    }
+
+
+</div>
+
+
+@section script{
+
+
+    <script>
+        $(document).ready(function () {
+
+            $("#activar").on("click", function () {
+
+                $("#archivo").trigger("click");
+
+            });
+
+            $("#labelFile").on("click", function () {
+
+                $("#archivo").trigger("click");
+
+            });
+
+
+        });
+
+        $("#archivo").on("change", function () {
+
+            $("#labelFile").val($("#archivo").val());
+        });
+
+
+    </script>
+
+}

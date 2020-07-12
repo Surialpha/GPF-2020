@@ -1,0 +1,542 @@
+﻿
+@{
+    Layout = null;
+
+    var session = Session["Logged"];
+
+    if (@Session["Nombres"] != null)
+    {
+        ViewBag.SessionName = Session["Nombres"].ToString();
+    }
+    else
+    {
+        ViewBag.SessionName = "Desconocido";
+    }
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - Fábrica de Software </title>
+    <link rel="shortcut icon" href="~/vendor/img/logosena.png" type="image/x-icon">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/CSS/DashBoard/all.min.css" rel="stylesheet" />
+    <link href="~/Content/CSS/DashBoard/sb-admin-2.min.css" rel="stylesheet" />
+    <link href="~/css/DatatableCssCDN/dataTables.jqueryui.min.css" rel="stylesheet" />
+    <link href="~/Content/component-chosen.min.css" rel="stylesheet" />
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+    <link href="~/Content/CSS/DashBoard/personalStyle.css" rel="stylesheet" />
+    <link href="~/Content/Chart.min.css" rel="stylesheet" />
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script src="~/Scripts/FontAwesomeCDN/d502923bed.js"></script>
+</head>
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion toggled" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="~/Dashboard/Dashboard">
+                <div class="sidebar-brand-icon">
+                    <img src="~/Vendor/img/logosena.png" alt="Logo" style="height: 3.4rem; width:auto;">
+                </div>
+                <div class="sidebar-brand-text mx-3" style="color: #fc7323;">Fábrica de software</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/Dashboard/Dashboard">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+
+            @if (session != null)
+            {
+
+                if (Session["Rol"].ToString().Equals("1"))
+                {
+
+
+                    <!-- Divider -->
+                    <hr class="sidebar-divider">
+
+                    <!-- Heading -->
+                    <div class="sidebar-heading">
+                        Admin
+                    </div>
+
+                    <!-- Nav Item - Pages Collapse Menu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios" aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-users"></i>
+                            <span>Gestión Usuarios</span>
+                        </a>
+                        <div id="collapseUsuarios" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-light py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Administrar Usuarios:</h6>
+                                <a class="collapse-item" href="~/Usuarios/Index">Gestión Usuarios</a>
+                                <a class="collapse-item" href="~/Personas/Index">Gestión Personas</a>
+                                <a class="collapse-item" href="~/Asesores/Index">Gestión Asesores</a>
+                                <a class="collapse-item" href="~/Aprendices/Index">Gestión Aprendices</a>
+                                <a class="collapse-item" href="~/Clientes/Index">Gestión Clientes</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Nav Item - Pages Collapse Menu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-cog"></i>
+                            <span>Gestión Proyectos</span>
+                        </a>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Gestion de proyectos:</h6>
+                                <a class="collapse-item" href="~/Solicitud">Proyectos Solicitados</a>
+                                <a class="collapse-item" href="~/Proyectos">Proyectos en Producción</a>
+                                <h6 class="collapse-header">Utilidades:</h6>
+                                <a class="collapse-item" href="~/Agenda/Index">Agendas</a>
+                                <a class="collapse-item" href="~/Bitacoras">Bitacoras</a>
+                                <a class="collapse-item" href="~/Grupos">Grupos</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Nav Item - Utilities Collapse Menu -->
+
+
+                    <!-- Nav Item - Utilities Collapse Menu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                            <i class="fas fa-fw fa-wrench"></i>
+                            <span>Utilidades</span>
+                        </a>
+                        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Utilidades del Software:</h6>
+                                <a class="collapse-item" href="~/Bitacoras/IndexBitacorasRealizadas">Bitacoras Registradas</a>
+                                <a class="collapse-item" href="~/Grupos/GruposAprendices">Integrantes de grupos</a>
+                                <a class="collapse-item" href="~/Admin/SolicitudRecuperacion">Solicitudes de recuperación</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Divider -->
+                    <hr class="sidebar-divider d-none d-md-block">
+
+                    <!-- Nav Item - Tables -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#adminPag" aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-cog"></i>
+                            <span>Administrar página</span>
+                        </a>
+                        <div id="adminPag" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-light py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Administrar página</h6>
+                                <a class="collapse-item" href="~/Admin/Index">Modificar información</a>
+                                <a class="collapse-item" href="~/Admin/Pqrs">PQRS</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Divider -->
+                    <hr class="sidebar-divider d-none d-md-block">
+
+
+                }
+                else
+                {
+                    <!-- Divider -->
+                    <hr class="sidebar-divider">
+
+                    if (Session["Rol"].ToString().Equals("4"))
+                    {
+                        <!-- Heading -->
+                        <div class="sidebar-heading">
+                            Asesor
+                        </div>
+
+                        <!-- Nav Item - Pages Collapse Menu -->
+                        <li class="nav-item">
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapseTwo">
+                                <i class="fas fa-fw fa-cog"></i>
+                                <span>Gestionar Cuenta</span>
+                            </a>
+                            <div id="collapse1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                <div class="bg-white py-2 collapse-inner rounded">
+                                    <h6 class="collapse-header">Gestion Cuenta:</h6>
+                                    <a class="collapse-item" href="/Personas/EditPersonal">Perfil</a>
+                                    <a class="collapse-item" href="/Usuarios/CambiarContraseñaUsers">Cambio de contraseña</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Pages Collapse Menu -->
+                        <li class="nav-item">
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                <i class="fas fa-fw fa-cog"></i>
+                                <span>Gestión Proyectos Asignados</span>
+                            </a>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                <div class="bg-white py-2 collapse-inner rounded">
+                                    <h6 class="collapse-header">Gestion de proyectos:</h6>
+                                    <a class="collapse-item" href="~/Proyectos/IndexAsesor">Proyectos Asignados</a>
+                                    <a class="collapse-item" href="~/Bitacoras/IndexAP">Lista de Bitacoras</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <hr class="sidebar-divider d-none d-md-block">
+
+
+                    }
+                    else
+                    {
+
+                        <!-- Heading -->
+                        <div class="sidebar-heading">
+                            Aprendiz
+                        </div>
+
+
+                        <!-- Nav Item - Pages Collapse Menu -->
+                        <li class="nav-item">
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapseTwo">
+                                <i class="fas fa-fw fa-cog"></i>
+                                <span>Gestionar Cuenta</span>
+                            </a>
+                            <div id="collapse1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                <div class="bg-white py-2 collapse-inner rounded">
+                                    <h6 class="collapse-header">Gestion Cuenta:</h6>
+                                    <a class="collapse-item" href="/Personas/EditPersonal">Perfil</a>
+                                    <a class="collapse-item" href="/Usuarios/CambiarContraseñaUsers">Cambio de contraseña</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Pages Collapse Menu -->
+                        <li class="nav-item">
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                <i class="fas fa-fw fa-cog"></i>
+                                <span>Gestión Proyectos Asignados</span>
+                            </a>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                <div class="bg-white py-2 collapse-inner rounded">
+                                    <h6 class="collapse-header">Gestion de proyectos:</h6>
+                                    <a class="collapse-item" href="~/Proyectos/IndexAprendiz">Proyectos Asignados</a>
+                                    <a class="collapse-item" href="~/Bitacoras/IndexAP">Lista de Bitacoras</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <hr class="sidebar-divider d-none d-md-block">
+
+                    }
+
+                }
+
+
+
+            }
+
+
+
+            <br />
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-dark bg-dark topbar mb-4 static-top shadow border-bottom-warning">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+
+
+                        <!-- Nav Item - Alerts -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a onclick="notificacion()" class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell fa-fw"></i>
+                                <!-- Counter - Alerts -->
+                                <div id="num">
+                                    <span class="badge badge-danger badge-counter">1</span>
+                                </div>
+
+
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <dxiv class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown" id="noti">
+                                <h6 class="dropdown-header bg-dark">
+                                    Notificaciones
+                                </h6>
+                                <div id="notificacion">
+
+                                </div>
+
+                            </dxiv>
+                        </li>
+
+
+
+                        <div class="d-none d-sm-block border-left-warning"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-white"> Bienvenido @ViewBag.SessionName  <i class="fas fa-user"></i> </span>
+
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="/Personas/EditPersonal">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Editar Perfil
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Editar Usuario
+                                </a>
+                                <a class="dropdown-item" href="/Usuarios/CambiarContraseñaUsers">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Cambiar Contraseña
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Cerrar sesión
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    @RenderBody()
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-gray-900">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Fábrica de software - CESGE</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-gradient-danger text-white">
+                    <h5 class="modal-title" id="exampleModalLabel">Estas seguro que desea cerrar sesión?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn bg-gradient-danger text-white" href="~/Acceso/Cerrar">Cerrar sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="~/Scripts/JS/DashBoard/jquery.easing.min.js"></script>
+
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/Scripts/JS/DashBoard/sb-admin-2.min.js"></script>
+
+    <!-- Datatables-->
+    <link href="~/css/DatatableCssCDN/jquery-ui.css" rel="stylesheet" />
+    <link href="~/css/DatatableCssCDN/buttons.jqueryui.min.css" rel="stylesheet" />
+
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/Scripts/chosen.jquery.min.js"></script>
+    <script src="~/Scripts/toastr.min.js"></script>
+    <script src="~/Scripts/funciones.js"></script>
+    @RenderSection("script", required: false)
+
+    <script src="~/Scripts/SweetAlertCDN/sweetalert.js"></script>
+    <script>
+
+        function notificacion() {
+            var url = "/Agenda/NotificacionAgenda";
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+
+
+                    var result2 = $(result)
+
+                    if (result2['length'] < 20) {
+                        $('#notificacion').html(result);
+                        $('#num').prop("hidden", true);
+                    }
+                    else {
+                        $("#noti").removeClass("show");
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Su sesión ha vencido',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        var intervalo = setInterval(function () {
+                            $(location).attr('href', '/');
+                            clearInterval(intervalo);
+                        }, 1500);
+
+
+                    }
+
+                }
+            });
+        }
+
+    </script>
+
+
+    <script tag="Toast.js">
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+
+
+    $(document).ready(function () {
+
+        var session2 = "@session";
+
+        if (session2 == "") {
+            $(location).attr('href', '/Dashboard/Dashboard')
+        }
+
+
+
+            var error = "@ViewBag.Error";
+            if (error.length > 0) {
+                Command: toastr["error"](error)
+
+                toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": false,
+                  "progressBar": false,
+                  "positionClass": "toast-bottom-right",
+                  "preventDuplicates": true,
+                  "onclick": null,
+                  "showDuration": "300",
+                  "hideDuration": "1000",
+                  "timeOut": "5000",
+                  "extendedTimeOut": "1000",
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+                }
+                    }
+
+                                var success = "@ViewBag.Success";
+            if (success.length > 0) {
+                Command: toastr["success"](success)
+
+                toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": false,
+                  "progressBar": false,
+                  "positionClass": "toast-top-right",
+                  "preventDuplicates": true,
+                  "onclick": null,
+                  "showDuration": "300",
+                  "hideDuration": "15000",
+                  "timeOut": "15000",
+                  "extendedTimeOut": "15000",
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+                }
+            }
+
+
+        });
+    </script>
+</body>
+</html>

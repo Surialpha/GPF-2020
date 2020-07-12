@@ -1,0 +1,15 @@
+﻿.bg-gradient-dark {
+    background-image: linear-gradient(180deg,#212121 10%,#000000 100%) !important ;
+}
+
+.bg-gray-900 {
+    background: linear-gradient(180deg,#212121 10%,#000000 100%) !important;
+}
+
+footer.sticky-footer {
+    padding: .5rem 0 !important;
+}
+
+.bg-dark {
+    background-color: #212121 !important;
+}

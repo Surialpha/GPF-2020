@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "Detalles de bitacora";
+    Layout = null;
+    var Bitacoras = ViewBag.Bitacora;
+    var archivos = "";
+    var descargar = "";
+    if (Bitacoras.archivo == null){
+        archivos = "No hay archivo";
+
+    }
+    else
+    {
+        archivos = Bitacoras.archivo;
+    }
+
+    }
+
+
+    <div class="form-horizontal row">
+
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <div class="col-auto" align="left">
+                <label class="font-weight-bold" for="inlineFormInputGroup">Proyecto:</label>
+                <div class="input-group ">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text bg-dark text-white"><i class="fas fa-crown"></i></div>
+                    </div>
+                    <input type="text" value="@Bitacoras.proyecto" readonly class="form-control" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <div class="col-auto" align="left">
+                <label class="font-weight-bold" for="inlineFormInputGroup">ID Bitacora:</label>
+                <div class="input-group ">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text bg-dark text-white"><i class="fas fa-thumbtack"></i></div>
+                    </div>
+                    <input type="number" value="@Bitacoras.id_bitacora" readonly class="form-control" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <div class="col-auto" align="left">
+                <label class="font-weight-bold" for="inlineFormInputGroup">Usuario:</label>
+                <div class="input-group ">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text bg-dark text-white"><i class="fas fa-user"></i></div>
+                    </div>
+                    <input type="text" value="@Bitacoras.encargado" readonly class="form-control" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <div class="col-auto" align="left">
+                <label class="font-weight-bold" for="inlineFormInputGroup">Anexe archivo:</label>
+                <div class="input-group">
+
+
+                    <div class="input-group-prepend">
+                        <div class="input-group-text bg-dark text-white" style="cursor:pointer;"><i class="fas fa-download"></i></div>
+                    </div>
+                    <input type="text" class="form-control" value="@archivos" readonly />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <div class="col-auto" align="left">
+                <label class="font-weight-bold" for="inlineFormInputGroup">Descripción:</label>
+                <div class="input-group ">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text bg-dark text-white"><i class="fas fa-clipboard"></i></div>
+                    </div>
+                    <textarea readonly rows="4" cols="50" class="form-control">@Bitacoras.descripcion</textarea>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+

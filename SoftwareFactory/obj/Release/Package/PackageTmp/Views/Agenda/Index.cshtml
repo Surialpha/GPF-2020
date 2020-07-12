@@ -1,0 +1,421 @@
+﻿@{
+    ViewBag.Title = "Listado de agendas";
+    Layout = "~/Views/Shared/_DashLayout.cshtml";
+    SoftwareFactory.Models.Agenda agendas = new SoftwareFactory.Models.Agenda();
+
+
+
+}
+
+<div class="row">
+    <div class="col" align="center">
+        <h2>Listado de Agendas</h2>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <table id="agenda" class="table table-striped display" style="width:100%">
+            <thead class="thead bg-gray-900 text-white">
+                <tr>
+                    <th>
+                        #ID Agenda
+                    </th>
+                    <th>
+                        Proyecto
+                    </th>
+                    <th>
+                        Asesor
+                    </th>
+                    <th>
+                        Fecha de Agenda
+                    </th>
+                    <th>
+                        Hora de Agenda
+                    </th>
+                    <th>
+                        Estado de Agenda
+                    </th>
+                    <th>
+                        Acciones
+
+                        <a data-toggle="modal" data-target="#renderModal" onclick="Create()" id="nuevo" class="btn-circle btn-sm bg-gradient-success text-white btn-circle ml-5" data-placement="right" title="Nuevo">
+                            <i class="fas fa-calendar-plus"></i>
+                        </a>
+
+                        <a data-toggle="modal" data-target="#Historial" class="btn-circle btn-sm bg-gradient-success text-white btn-circle ml-5" data-placement="right" title="Historial de agendas">
+                            <i class="fas fa-history"></i>
+                        </a>
+                    </th>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<!-- Modal create -->
+<div class="modal fade" id="renderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-gradient-dark text-white" align="center">
+                <h5 class="modal-title" id="exampleModalLabel">Nuevo Agenda</h5>
+                <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="cuerpo">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal create -->
+<div class="modal fade" id="Historial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-gradient-dark text-white" align="center">
+                <h5 class="modal-title" id="exampleModalLabel">Historial de agendas</h5>
+                <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <table id="historial" class="table table-striped display" style="width:100%">
+                            <thead class="thead bg-gray-900 text-white">
+                                <tr>
+                                    <th>
+                                        Id
+                                    </th>
+                                    <th>
+                                        Proyecto
+                                    </th>
+                                    <th>
+                                        Asesor
+                                    </th>
+                                    <th>
+                                        Fecha
+                                    </th>
+                                    <th>
+                                        Hora
+                                    </th>
+                                    <th>
+                                        Estado
+                                    </th>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #eli {
+        cursor: pointer;
+    }
+</style>
+
+
+@section script{
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+    <script src="~/Scripts/DatatablesCDN/dataTables.select.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/jszip.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/pdfmake.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/vfs_fonts.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.html5.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.print.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.colVis.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/dataTables.jqueryui.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.jqueryui.min.js"></script>
+
+    <script>
+
+
+        $(document).ready(function () {
+
+
+
+
+
+          $('#idAgenga').chosen();
+
+          $("#agenda").DataTable({
+
+                "ajax": {
+
+                    "url": '@Url.Action("ListaAgenda","Agenda")',
+                    "type": "GET",
+                    "datatype":"json"
+                },
+
+
+                "language": {"url":'//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json'},
+
+
+                responsive: true,
+
+              "columns": [
+                { "data": "idAgenga" },
+                  { "data": "Proyecto" },
+                {"data": "responsableAgenda" },
+                { "data": "fechaAgenda" },
+                {
+                    "data": "Hora", "render": function (data) {
+                        var horas = data.split(':')
+
+                        return horas[0] + ":00" + "-" + horas[3] + ":00"
+                    }, "oderable": false
+                },
+                { "data": "estadoAgenda" },
+                { "data": "idAgenga", "render": function (data) {
+                    return "<a href='/Agenda/Edit/" + data + "' class='btn  bg-gradient-primary text-white btn-circle' data-toggle='tooltip' data-placement='right' title='Editar'><i class='fas fa-edit'></i> " +" "
+                        + "<a href='/Agenda/Details/" + data + "' class='btn  bg-gradient-warning text-white btn-circle' data-toggle='tooltip' data-placement='right' title='Detalles'><i class='fas fa-flag'></i> " + " "
+                        +"<a class='btn bg-gradient-danger text-white btn-circle' data-toggle='tooltip' data-placement='right' id='eli' title='Cancelar agenda' onclick='Eliminar(" + data + ")'><i class='fas fa-ban'></i> "
+
+                }, "oderable": false
+                }
+
+                ],
+                                
+                    dom: 'Bfrtip',
+                    buttons: [{
+                        extend: 'print',
+                        className: 'btn btn-info',
+                        text: '<i class="fas fa-print"></i> Imprimir',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'excel',
+                        className: 'btn btn-success',
+                            text: '<i class="fas fa-file-excel"></i> Excel',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'pdf',
+                        className: 'btn btn-danger',
+                            text: '<i class="fas fa-file-pdf"></i> pdf',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                        },
+                    {
+                        extend: 'colvis',
+                        className: 'btn btn-dark',
+                        text: '<i class="fas fa-chevron-circle-down"></i>'
+                    }
+                ]
+
+
+          });
+
+        });
+
+        $("#historial").DataTable({
+
+                "ajax": {
+
+                    "url": '@Url.Action("HistorialAgendasJSON","Agenda")',
+                    "type": "GET",
+                    "datatype":"json"
+                },
+
+
+                "language": {"url":'//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json'},
+
+
+                responsive: true,
+
+                "columns": [
+                    { "data": "idAgenga" },
+                  { "data": "Proyecto" },
+                {"data": "responsableAgenda" },
+                { "data": "fechaAgenda" },
+                {
+                    "data": "Hora", "render": function (data) {
+                        var horas = data.split(':')
+
+                        return horas[0] + ":00" + "-" + horas[3] + ":00"
+                    }, "oderable": false
+                },
+                { "data": "estadoAgenda" }
+
+
+                ],
+                                
+                    dom: 'Bfrtip',
+                    buttons: [{
+                        extend: 'print',
+                        className: 'btn btn-info',
+                        text: '<i class="fas fa-print"></i> Imprimir',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'excel',
+                        className: 'btn btn-success',
+                            text: '<i class="fas fa-file-excel"></i> Excel',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'pdf',
+                        className: 'btn btn-danger',
+                            text: '<i class="fas fa-file-pdf"></i> pdf',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                        },
+                    {
+                        extend: 'colvis',
+                        className: 'btn btn-dark',
+                        text: '<i class="fas fa-chevron-circle-down"></i>'
+                    }
+                ]
+
+
+        });
+
+        var table = $('#historial').DataTable();
+
+        $('#historial tbody').on('click', 'tr', function () {
+            var data = table.row(this).data();
+            $(location).attr('href', '/Agenda/Details/' + data['idAgenga']);
+        });
+
+
+        function Create() {
+
+                var url = "/Agenda/Create";
+
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    cache: false,
+                    success: function (result) {
+                        var result2 = $(result)
+                        if (result2['length'] < 6) {
+
+                            $('#cuerpo').html(result);
+                            $("#horaF").prop('disabled', true);
+                            $('#ResponsableAgenda').chosen();
+                            $('#ProyectoAgenda').chosen();
+                            $("#horaI").change(function () {
+
+
+                                for (var i = 7; i < 17; i++) {
+
+                                    $("#horaF option[value='" + i + ":00:00']").prop('disabled', false);
+                                }
+
+                                var val = $("#horaI").val();
+                                var valor1 = 0;
+                                if (val == 0) {
+                                    $("#horaF").prop('disabled', true);
+                                    $("#horaF").val(0);
+
+                                }
+                                else {
+                                    $("#horaF").prop('disabled', false);
+                                    $("#horaF option[value='0']").prop('disabled', true);
+                                    $("#horaF option[value='" + val + "']").prop('disabled', true);
+                                    for (var i = 7; i < 17; i++) {
+
+                                        if (val == i + ":00:00") {
+                                            var valor = (i + 1) + ":00:00"
+                                            valor2 = i + 1;
+                                            $("#horaF").val(valor);
+                                        }
+                                    }
+
+                                    for (var i = (valor2 - 1); i >= 0; i--) {
+
+                                        $("#horaF option[value='" + i + ":00:00']").prop('disabled', true);
+                                    }
+
+                                    for (var i = (valor2 + 3); i <= 17; i++) {
+
+                                        $("#horaF option[value='" + i + ":00:00']").prop('disabled', true);
+                                    }
+                                }
+
+                            });
+                        }
+                        else {
+
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'error',
+                                title: 'Su sesión ha vencido',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            var intervalo = setInterval(function () {
+                                $(location).attr('href', '/Agenda/Index')
+                                clearInterval(intervalo);
+                            }, 1500);
+
+                        }
+                    }
+                });
+        }
+
+
+
+
+        function Historial() {
+                var url = "/Agenda/HistorialAgendas";
+
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    cache: false,
+                    success: function (result) {
+                        $('#cuerpo').html(result);
+
+                    }
+                });
+        }
+
+
+
+        function Eliminar(id) {
+            Command: toastr["error"]("<form action='/Agenda/CancelarAgenda' method='get'> <button type='submit' class='btn btn-sm btn-danger'>Cancelar Agenda <i class='fas fa-ban'></i></button><input type='number' name='idAgenda' asp-for='idAgenda' value='"+id+"' hidden /></form> ", "Desea cancelar la agenda?")
+
+            toastr.options = {
+              "closeButton": false,
+              "debug": false,
+              "newestOnTop": false,
+              "progressBar": false,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": true,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": 0,
+              "extendedTimeOut": 0,
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut",
+              "tapToDismiss": false
+            }
+        }
+
+    </script>
+
+
+}
+

@@ -1,0 +1,107 @@
+﻿@model SoftwareFactory.Models.Usuarios
+
+@{
+    ViewBag.Title = "Eliminar Usuario";
+     Layout = "~/Views/Shared/_DashLayout.cshtml";
+}
+<div class="row">
+    <div class="col" align="center">
+        <a href="~/Usuarios/Index" class="btn btn-primary btn-circle float-left mr-1" data-toggle="tooltip" data-placement="right" title="Atras"><i class="fas fa-reply"></i></a>
+        <a href="~/Usuarios/Edit/@Model.id_usuario" class="btn bg-gradient-warning text-white btn-circle float-left ml-1" data-toggle="tooltip" data-placement="right" title="Editar">
+            <i class="fas fa-edit"></i>
+        </a>
+        <h2>Eliminar Usuario</h2>
+        <hr />
+    </div>
+</div>
+<div>
+    <div class="container">
+        <div class="form-horizontal row">
+
+
+            <div class="form-horizontal row">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInputGroup">ID Usuario</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-id-card"></i></div>
+                            </div>
+                            @Html.EditorFor(model => model.id_usuario, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInputGroup">Email</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-at"></i></div>
+                            </div>
+                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInputGroup">Contraseña</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-calendar-alt"></i></div>
+                            </div>
+                            @Html.EditorFor(model => model.fecha_creacion, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInputGroup">Rol</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-user-cog"></i></div>
+                            </div>
+                            @Html.EditorFor(model => model.Roles.descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInputGroup">Estado</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-gradient-info text-white">@if (Model.id_estado == 1)
+                                {<i class="fas fa-toggle-on"></i> }
+                                else
+                                {<i class="fas fa-toggle-off"></i>}</div>
+                            </div>
+                            @Html.EditorFor(model => model.Estados.descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <br />
+    <div align="center">
+        <h4 class="text-danger">Estas seguro que deseas eliminar?</h4>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <button class="btn btn-danger text-white ml-3" type="submit" data-toggle="tooltip" data-placement="right" title="Eliminar">
+                <i class="fas fa-trash"></i> Eliminar
+            </button>
+        }
+    </div>
+
+</div>

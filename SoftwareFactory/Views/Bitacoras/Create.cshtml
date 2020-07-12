@@ -1,0 +1,46 @@
+﻿@model SoftwareFactory.Models.Bitacoras
+
+@{
+    ViewBag.Title = "Creación de nueva Bitacora";
+    Layout = null;
+}
+
+
+@using (Html.BeginForm("Create", "Bitacoras", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <div class="col-auto" align="left">
+                <label class="font-weight-bold" for="inlineFormInputGroup">Descripción:</label>
+                <div class="input-group ">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-clipboard"></i></div>
+                    </div>
+                    @Html.TextAreaFor(model => model.descripcion, new { @class = "form-control", @rows = "4", @cols = "50" })
+                </div>
+                @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Crear</button>
+    </div>
+
+}
+
+@section script{
+  
+
+    <script>
+
+
+    </script>
+
+}

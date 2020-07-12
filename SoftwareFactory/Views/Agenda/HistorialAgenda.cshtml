@@ -1,0 +1,258 @@
+﻿@model SoftwareFactory.Models.Agenda
+@{
+    ViewBag.Title = "HistorialAgenda";
+    Layout = "~/Views/Shared/_DashLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col" align="center">
+        <a href="/Agenda/Details/@Html.DisplayTextFor(model => model.idAgenda)" class="btn btn-primary btn-circle float-left mr-1" data-toggle="tooltip" data-placement="right" title="Atras"><i class="fas fa-reply" aria-hidden="true"></i></a>
+        <h2> Historial de agenda</h2>
+        <hr />
+    </div>
+</div>
+
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header bg-dark text-center text-white font-weight-bold">
+            <h6 class="m-0 font-weight-bold text-white" id="ia">Detalle agenda</h6>
+            <h6 align="right" id="es" title="Estado de la agenda"><i class="fas fa-calendar-day"></i> @ViewBag.estado</h6>
+        </div>
+        <div class="card-body">
+            <div class="form-horizontal row">
+
+                <div class="form-group col-sm-2 col-md-2 col-lg-2">
+                    <div class="col-auto" align="left">
+                        <label class="font-weight-bold" for="inlineFormInputGroup">Id:</label>
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark text-white"><i class="fas fa-crown"></i></div>
+                            </div>
+                            @Html.EditorFor(model => model.idAgenda, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-4 col-md-4 col-lg-4">
+                    <div class="col-auto" align="left">
+                        <label class="font-weight-bold" for="inlineFormInputGroup">Fecha:</label>
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark text-white"><i class="fas fa-calendar-day"></i></div>
+                            </div>
+                            <input type="text" name="FechaAgenda" asp-for="FechaAgenda" id="fecha" value="" class="form-control" readonly />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-3 col-md-3 col-lg-3">
+                    <div class="col-auto" align="left">
+                        <label class="font-weight-bold" for="inlineFormInputGroup">Hora inicio:</label>
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark text-white"><i class="fas fa-clock"></i></div>
+                            </div>
+                            @Html.EditorFor(model => model.HoraInicio, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-3 col-md-3 col-lg-3">
+                    <div class="col-auto" align="left">
+                        <label class="font-weight-bold" for="inlineFormInputGroup">Hora final:</label>
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark text-white"><i class="fas fa-clock"></i></div>
+                            </div>
+                            @Html.EditorFor(model => model.HoraFinal, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-6 col-md-6 col-lg-6">
+                    <div class="col-auto" align="left">
+                        <label class="font-weight-bold" for="inlineFormInputGroup">Cliente:</label>
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark text-white"><i class="fas fa-user-tie"></i></div>
+                            </div>
+                            <input type="text" name="respon" id="respon" asp-for="respon" value="@ViewBag.cliente" class="form-control" readonly />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-6 col-md-6 col-lg-6">
+                    <div class="col-auto" align="left">
+                        <label class="font-weight-bold" for="inlineFormInputGroup">Proyecto:</label>
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark text-white"><i class="fas fa-project-diagram"></i></div>
+                            </div>
+                            <input type="text" name="respon" id="respon" asp-for="respon" value="@ViewBag.proyecto" class="form-control" readonly />
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <br />
+
+            </div>
+        </div>
+        <div class="card-footer text-white bg-dark">
+        </div>
+
+
+    </div>
+
+</div>
+
+<br />
+<div class="container-fluid">
+    <div class="card text-center">
+        <div class="card-header bg-gray-300 text-center font-weight-bold">
+            <h6 class="m-0 font-weight-bold text-gray-800" id="ia">Historial de cambios</h6>
+            <h6 align="right" id="g" title="Grupo de desarrollo"><i class="fas fa-users text-dark"></i> Grupo #@ViewBag.grupo</h6>
+        </div>
+        <div class="card-body">
+            <table id="historia" class="table table-sm table-striped display" style="width:100%">
+                <thead class="thead">
+                    <tr>
+                        <th>
+                            Asistentes
+                        </th>
+                        <th>
+                            Responsable
+                        </th>
+                        <th>
+                            Asunto
+                        </th>
+                        <th>
+                            Estado
+                        </th>
+                        <th>
+                            Usuario
+                        </th>
+                        <th>
+                            Descripción
+                        </th>
+                        <th>
+                            Fecha
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="card-footer text-white bg-gray-300">
+        </div>
+    </div>
+</div>
+
+<style>
+    #ia {
+        float: left;
+        padding: 0.3rem;
+    }
+
+    #es {
+        cursor: pointer;
+        color: white;
+        float: right;
+        border: solid;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    #g {
+        cursor: pointer;
+        color: black;
+        float: right;
+        border: solid;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+    }
+</style>
+
+
+@section script
+{
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+    <script src="~/Scripts/DatatablesCDN/dataTables.select.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/jszip.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/pdfmake.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/vfs_fonts.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.html5.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.print.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.colVis.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/dataTables.jqueryui.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.jqueryui.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            var url = "/Agenda/AgendasLog/@Html.DisplayTextFor(model => model.idAgenda)";
+            $("#historia").DataTable({
+
+
+                "ajax": {
+                    "url": url,
+                    "type": "GET",
+                    "datatype": "json"
+                },
+
+
+                "language": { "url": '//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json' },
+
+                paging: false,
+                bFilter: false,
+                ordering: false,
+                searching: false,
+                info: false,
+                responsive: true,
+
+                "columns": [
+                    { "data": "Asistentes" },
+                    { "data": "Responsable" },
+                    { "data": "Asunto" },
+                    { "data": "Estado" },
+                    { "data": "Usuario" },
+                    { "data": "Descripcion" },
+                    { "data": "Fecha" }
+
+                ],
+                                
+                    dom: 'Bfrtip',
+                    buttons: [{
+                        extend: 'print',
+                        className: 'btn btn-info',
+                        text:'<i class="fas fa-print"></i> Imprimir'
+                    },
+                        {
+                        extend: 'excel',
+                        className: 'btn btn-success',
+                        text:'<i class="fas fa-file-excel"></i> Excel'
+                    },
+                        {
+                        extend: 'pdf',
+                        className: 'btn btn-danger',
+                        text:'<i class="fas fa-file-pdf"></i> pdf'
+                        },
+                    {
+                        extend: 'colvis',
+                        className: 'btn btn-dark',
+                        text: '<i class="fas fa-chevron-circle-down"></i>'
+                    }
+                ]
+
+            });
+
+        });
+
+
+        //Fecha
+        var fecha = '@Html.DisplayTextFor(model => model.FechaAgenda)';
+        var fe = fecha.split(" ");
+        $("#fecha").val(fe[0]);
+    </script>
+}

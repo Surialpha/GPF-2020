@@ -1,0 +1,357 @@
+﻿
+@{
+    ViewBag.Title = "IndexBitacorasRealizadas";
+    Layout = "~/Views/Shared/_DashLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col" align="center">
+        <h2>Listado de Bitacoras Asesores y Aprendices</h2>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+
+
+    <div class="col-12">
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">Bitacoras Asesores</a></li>
+                <li><a href="#tabs-2">Bitacoras Aprendices</a></li>
+            </ul>
+            <div id="tabs-1">
+
+
+                <table id="BitacorasAsesores" class="table table-striped display" style="width:100%">
+                    <thead class="thead bg-gray-900 text-white">
+                        <tr>
+                            <th>
+                                #ID
+                            </th>
+                            <th>
+                                #ID Bitacora
+                            </th>
+                            <th>
+                                Proyecto
+                            </th>
+                            <th>
+                                Fecha Creación
+                            </th>
+                            <th>
+                                Asesor
+                            </th>
+                            <th>
+                                Archivo
+                            </th>
+                            <th>
+                                Acciones
+                            </th>
+                    </thead>
+                </table>
+
+
+            </div>
+            <div id="tabs-2">
+
+
+                <table id="BitacorasAprendices" class="table table-striped display" style="width:100%">
+                    <thead class="thead bg-gray-900 text-white">
+                        <tr>
+                            <th>
+                                #ID
+                            </th>
+                            <th>
+                                #ID Bitacora
+                            </th>
+                            <th>
+                                Proyecto
+                            </th>
+                            <th>
+                                Fecha Creación
+                            </th>
+                            <th>
+                                Aprendiz
+                            </th>
+                            <th>
+                                Archivo
+                            </th>
+                            <th>
+                                Acciones
+                            </th>
+                    </thead>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section script{
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+    <script src="~/Scripts/DatatablesCDN/dataTables.select.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/jszip.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/pdfmake.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/vfs_fonts.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.html5.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.print.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.colVis.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/dataTables.jqueryui.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.jqueryui.min.js"></script>
+
+    <script>
+
+
+        $(document).ready(function () {
+
+            $("#tabs").tabs({
+                classes: {
+                    "ui-tabs-active": "bg-dark   border-left-primary",
+                },
+                beforeActivate: function (event, ui) {
+
+                    var tab = ui['newPanel']
+                    var texto = tab['0'].outerHTML
+                    if (texto.substring(9,15)==="tabs-2") {
+
+                        BusquedaAprendiz();
+                    }
+                }
+            });
+
+            $("#BitacorasAsesores").DataTable({
+
+                "ajax": {
+
+                    "url": '@Url.Action("BitacorasAsesores","Bitacoras")',
+                    "type": "GET",
+                    "datatype": "json"
+                },
+
+
+                "language": { "url": '//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json' },
+
+
+                responsive: true,
+
+                "columns": [
+                    { "data": "id" },
+                    { "data": "id_bitacora" },
+                    { "data": "proyecto" },
+                    { "data": "fecha_creacion" },
+                    { "data": "asesor" },
+                    { "data": "archivo", "render": function (data) {
+                                                        if (data)
+                                return '<form action="/Bitacoras/DescargarBitacorasAsesor" method="get"><button type="submit" class="btn btn-sm btn-success" name="ArchivoName" id="ArchivoName" asp-for="ArchivoName" value="' + data + '" data-toggle="tooltip" data-placement="top" title="' + data + '">  <i class="fas fa-download"></i></button></form>'
+
+                            else return '<button class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="No hay archivos"><i class="fas fa-file-excel"></i></button>'
+                        }, "oderable": false
+                    },
+                    {
+                        "data": "id", "render": function (data) {
+                            return "<a onclick='DetallesAsesor(" + data + ")' data-toggle='modal' data-target='#renderModal' class='btn  bg-gradient-warning text-white btn-circle' data-toggle='tooltip' data-placement='right' title='Editar'><i class='fas fa-search'></i> "
+                        }, "oderable": false
+                    }
+
+                ],
+
+                    dom: 'Bfrtip',
+                    buttons: [{
+                        extend: 'print',
+                        className: 'btn btn-info',
+                        text: '<i class="fas fa-print"></i> Imprimir',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'excel',
+                        className: 'btn btn-success',
+                            text: '<i class="fas fa-file-excel"></i> Excel',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'pdf',
+                        className: 'btn btn-danger',
+                            text: '<i class="fas fa-file-pdf"></i> pdf',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                        },
+                    {
+                        extend: 'colvis',
+                        className: 'btn btn-dark',
+                        text: '<i class="fas fa-chevron-circle-down"></i>'
+                    }
+                ]
+
+            });
+
+
+        });
+        var contador = true;
+
+        function BusquedaAprendiz() {
+            if (contador) {
+
+
+            $("#BitacorasAprendices").DataTable({
+
+                "ajax": {
+
+                    "url": '@Url.Action("BitacorasAprendices","Bitacoras")',
+                    "type": "GET",
+                    "datatype": "json"
+                },
+
+
+                "language": { "url": '//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json' },
+
+
+                responsive: true,
+
+                "columns": [
+                    { "data": "id" },
+                    { "data": "id_bitacora" },
+                    { "data": "proyecto" },
+                    { "data": "fecha_creacion" },
+                    { "data": "aprendiz" },
+                    { "data": "archivo", "render": function (data) {
+                                                        if (data)
+                                return '<form action="/Bitacoras/DescargarBitacorasAprendiz" method="get"><button type="submit" class="btn btn-sm btn-success" name="ArchivoName" id="ArchivoName" asp-for="ArchivoName" value="' + data + '" data-toggle="tooltip" data-placement="top" title="' + data + '">  <i class="fas fa-download"></i></button></form>'
+
+                            else return '<button class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="No hay archivos"><i class="fas fa-file-excel"></i></button>'
+                        }, "oderable": false
+                    },
+                    {
+                        "data": "id", "render": function (data) {
+                            return "<a onclick='DetallesAprendiz(" + data + ")' data-toggle='modal' data-target='#renderModal' class='btn  bg-gradient-warning text-white btn-circle' data-toggle='tooltip' data-placement='right' title='Editar'><i class='fas fa-search'></i> "
+                        }, "oderable": false
+                    }
+
+                ],
+
+                    dom: 'Bfrtip',
+                    buttons: [{
+                        extend: 'print',
+                        className: 'btn btn-info',
+                        text: '<i class="fas fa-print"></i> Imprimir',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'excel',
+                        className: 'btn btn-success',
+                            text: '<i class="fas fa-file-excel"></i> Excel',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'pdf',
+                        className: 'btn btn-danger',
+                            text: '<i class="fas fa-file-pdf"></i> pdf',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                        },
+                    {
+                        extend: 'colvis',
+                        className: 'btn btn-dark',
+                        text: '<i class="fas fa-chevron-circle-down"></i>'
+                    }
+                ]
+
+            });
+                contador = false;
+            }
+
+        }
+
+        function DetallesAprendiz(id) {
+
+            var url = "/Bitacoras/DetallesAprendiz/" + id;
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+
+                    var result2 = $(result)
+
+                    if (result2['length'] <5) {
+
+                         $('#cuerpo').html(result);
+                    }
+
+                    else {
+
+                    }
+
+
+
+                }
+            });
+
+        }
+
+
+        function DetallesAsesor(data) {
+            var url = "/Bitacoras/DetallesAsesor/" + data;
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+
+                    var result2 = $(result)
+
+                    if (result2['length'] <5) {
+
+                         $('#cuerpo').html(result);
+                    }
+
+                    else {
+
+                    }
+
+
+
+                }
+            });
+
+        }
+    </script>
+
+
+}
+
+
+
+<!-- Modal Create -->
+<div class="modal fade" id="renderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-gradient-dark text-white">
+                <h5 class="modal-title" id="exampleModalLabel">Detalles de Bitacora</h5>
+                <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="cuerpo">
+
+            </div>
+        </div>
+    </div>
+</div>

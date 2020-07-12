@@ -1,0 +1,223 @@
+﻿@model SoftwareFactory.Models.Grupos
+
+@{
+    ViewBag.Title = "Detalles de Grupos";
+    Layout = "~/Views/Shared/_DashLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col" align="center">
+        <a href="~/Grupos" class="btn btn-primary btn-circle float-left" data-toggle="tooltip" data-placement="right" title="Atras"><i class="fas fa-reply"></i></a>
+        <h2>Información Grupos</h2>
+    </div>
+</div>
+<hr />
+<br />
+
+<div class="container">
+
+    <div class="card text-center">
+        <div class="card-header bg-dark text-center text-white font-weight-bold">
+            Información Grupo
+        </div>
+        <div class="card-body">
+            <div class="form-horizontal row">
+
+                <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                    <div class="col-auto" align="left">
+                        <label class="font-weight-bold" for="inlineFormInputGroup">ID Grupo:</label>
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark text-white"><i class="fas fa-crown"></i></div>
+                            </div>
+                            @Html.EditorFor(model => model.id_grupo, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.id_grupo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                    <div class="col-auto" align="left">
+                        <label class="font-weight-bold" for="inlineFormInputGroup">ID Lider:</label>
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark text-white"><i class="fas fa-chalkboard-teacher"></i></div>
+                            </div>
+                            <input type="text" value="@ViewBag.id_lider" class="form-control" readonly />
+                        </div>
+                        @Html.ValidationMessageFor(model => model.id_lider, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                    <div class="col-auto" align="left">
+                        <label class="font-weight-bold" for="inlineFormInputGroup">Descripción:</label>
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark text-white"><i class="far fa-clipboard"></i></div>
+                            </div>
+                            @Html.TextAreaFor(model => model.descripcion, new { @class = "form-control", @rows = "4", @cols = "50", @readonly = true })
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+
+
+            </div>
+        </div>
+        <div class="card-footer text-white bg-dark">
+        </div>
+
+
+    </div>
+
+
+    <hr />
+
+    <div class="card text-center">
+        <div class="card-header bg-dark text-white font-weight-bold">
+            Integrantes Grupo
+        </div>
+        <div class="card-body">
+            <table id="integrantes" class="table table-hover table-borderless">
+                <thead class="thead text-dark " style="background-color:white">
+                    <tr>
+                        <th>
+                            #ID Aprendiz
+                        </th>
+                        <th>
+                            Correo Aprendiz
+                        </th>
+                        <th>
+                            Nombre Aprendiz
+                        </th>
+                </thead>
+            </table>
+        </div>
+        <div class="card-footer text-muted bg-dark">
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="card text-center">
+        <div class="card-header bg-dark text-white font-weight-bold">
+            Histórico Integrantes
+        </div>
+        <div class="card-body">
+
+            <table id="historial" class="table table-hover table-borderless">
+                <thead class="thead text-dark " style="background-color:white">
+                    <tr>
+                        <th>
+                            #ID Usuario
+                        </th>
+                        <th>
+                            Nombre Usuario
+                        </th>
+                        <th>
+                            Correo Usuario
+                        </th>
+                        <th>
+                            Rol Usuario
+                        </th>
+                        <th>
+                            Acción
+                        </th>
+                        <th>
+                            Fecha Acción
+                        </th>
+                </thead>
+            </table>
+
+        </div>
+        <div class="card-footer text-muted bg-dark">
+        </div>
+    </div>
+
+
+
+</div>
+
+    <br />
+
+    @section script{
+        <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+        <script>
+
+
+        $(document).ready(function () {
+
+          $("#integrantes").DataTable({
+
+
+                "ajax": {
+
+                    "url": "/Grupos/ListaAprendices/@Html.DisplayFor(n=>n.id_grupo)" ,
+                    "type": "GET",
+                    "datatype":"json"
+                },
+
+
+                "language": {"url":'//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json'},
+
+                paging: false,
+                bFilter: false,
+                ordering: false,
+              searching: false,
+              info:false,
+
+                responsive: true,
+
+                "columns": [
+                    { "data":"id_aprendiz"},
+                    { "data":"correo"},
+                    { "data": "nombre"}
+
+                ]
+
+          });
+
+                  $("#historial").DataTable({
+
+
+                "ajax": {
+
+                    "url": "/Grupos/HistorialGrupo/@Html.DisplayFor(n=>n.id_grupo)" ,
+                    "type": "GET",
+                    "datatype":"json"
+                },
+
+
+                "language": {"url":'//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json'},
+
+                paging: false,
+                bFilter: false,
+                ordering: false,
+              searching: false,
+              info:false,
+
+                responsive: true,
+
+                "columns": [
+                    { "data":"idUsuario"},
+                    { "data": "nombreUsuario"},
+                    { "data": "CorreoUsuario"},
+                    { "data": "rolUsuario"},
+                    { "data": "accion"},
+                    { "data": "fechaAccion"}
+
+                ]
+
+             });
+
+        });
+
+
+
+        </script>
+
+
+    }

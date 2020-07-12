@@ -1,0 +1,265 @@
+﻿
+@{
+    ViewBag.Title = "Solicitud de Proyectos";
+    Layout = "~/Views/Shared/_DashLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col" align="center">
+        <h2>Listado de Solicitud de proyectos</h2>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <table id="proyectos" class="table table-striped display" style="width:100%">
+            <thead class="thead bg-gray-900 text-white">
+                <tr>
+                    <th>
+                        #ID Solicitud
+                    </th>
+                    <th>
+                        ID Cliente
+                    </th>
+                    <th>
+                        Tipo Cliente
+                    </th>
+                    <th>
+                        Fecha Solicitud
+                    </th>
+                    <th>
+                        Tiempo Estimado
+                    </th>
+                    <th>
+                        Estado Solicitud
+                    </th>
+                    <th>
+                        Estado Viabilidad
+                    </th>
+                    <th>
+                        Acciones
+
+                        <a data-toggle="modal" data-target="#Historial" class="btn-circle btn-sm bg-gradient-success text-white btn-circle ml-5" data-placement="right" title="Historial de solicitudes">
+                            <i class="fas fa-history"></i>
+                        </a>
+                    </th>
+                    <th>
+                        Descargar
+                    </th>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+<!-- Modal create -->
+<div class="modal fade" id="Historial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-gradient-dark text-white" align="center">
+                <h5 class="modal-title" id="exampleModalLabel">Historial de solicitudes de proyecto</h5>
+                <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <table id="historial" class="table table-striped display" style="width:100%">
+                            <thead class="thead bg-gray-900 text-white">
+                                <tr>
+                                    <th>
+                                        #ID Solicitud
+                                    </th>
+                                    <th>
+                                        ID Cliente
+                                    </th>
+                                    <th>
+                                        Tipo Cliente
+                                    </th>
+                                    <th>
+                                        Fecha Solicitud
+                                    </th>
+                                    <th>
+                                        Estado Solicitud
+                                    </th>
+                                    <th>
+                                        Estado Viabilidad
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section script{
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+    <script src="~/Scripts/DatatablesCDN/dataTables.select.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/jszip.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/pdfmake.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/vfs_fonts.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.html5.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.print.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.colVis.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/dataTables.jqueryui.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.jqueryui.min.js"></script>
+
+    <script>
+
+
+        $(document).ready(function () {
+
+
+            $("#proyectos").DataTable({
+
+                "ajax": {
+
+                    "url": '@Url.Action("ListaAdmin","Solicitud")',
+                    "type": "GET",
+                    "datatype":"json"
+                },
+
+
+                "language": {"url":'//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json'},
+
+
+                responsive: true,
+
+                "columns": [
+                    { "data":"idSolicitud"},
+                    { "data":"idCliente"},
+                    { "data": "tipoCliente"},
+                    { "data": "fechaSolicitud" },
+                    { "data": "tiempoEstimado" },
+                    { "data": "EstadoSolicitud" },
+                    { "data": "EstadoViabi" },
+                    { "data": "idSolicitud", "render": function (data) {
+                        return "<a href='/Solicitud/EditarAdmin/" + data + "' class='btn  bg-gradient-primary text-white btn-circle' data-toggle='tooltip' data-placement='right' title='Editar'><i class='fas fa-edit'></i> "
+                            + "<a href='/Solicitud/DetallesSolicitudAdmin/" + data + "' class='btn  bg-gradient-warning text-white btn-circle' data-toggle='tooltip' data-placement='right' title='Detalles'><i class='fas fa-info-circle'></i> "
+                    }, "oderable": false
+                    },
+                    {
+                        "data": "nombreArchivo", "render": function (data) {
+                            if (data)
+                                return '<form action="Solicitud/Descargar" method="get"><button type="submit" class="btn btn-sm btn-success" name="ArchivoName" id="ArchivoName" asp-for="ArchivoName" value="' + data + '" data-toggle="tooltip" data-placement="top" title="' + data + '">  <i class="fas fa-download"></i></button></form>'
+
+                            else return '<button class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="No hay archivos"><i class="fas fa-file-excel"></i></button>'
+
+                    }, "oderable": false
+                    }
+                ],
+                                
+                    dom: 'Bfrtip',
+                    buttons: [{
+                        extend: 'print',
+                        className: 'btn btn-info',
+                        text: '<i class="fas fa-print"></i> Imprimir',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'excel',
+                        className: 'btn btn-success',
+                            text: '<i class="fas fa-file-excel"></i> Excel',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'pdf',
+                        className: 'btn btn-danger',
+                            text: '<i class="fas fa-file-pdf"></i> pdf',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                        },
+                    {
+                        extend: 'colvis',
+                        className: 'btn btn-dark',
+                        text: '<i class="fas fa-chevron-circle-down"></i>'
+                    }
+                ]
+          });
+
+            $("#historial").DataTable({
+
+                "ajax": {
+
+                    "url": '@Url.Action("SolicitudLog", "Solicitud")',
+                    "type": "GET",
+                    "datatype": "json"
+                },
+
+
+                "language": { "url": '//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json' },
+
+
+                responsive: true,
+
+                "columns": [
+                    { "data":"idSolicitud"},
+                    { "data":"idCliente"},
+                    { "data":"tipoCliente"},
+                    { "data":"fechaSolicitud"},
+                    { "data":"EstadoSolicitud"},
+                    { "data":"EstadoViabi"}
+
+                ],
+                                
+                    dom: 'Bfrtip',
+                    buttons: [{
+                        extend: 'print',
+                        className: 'btn btn-info',
+                        text: '<i class="fas fa-print"></i> Imprimir',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'excel',
+                        className: 'btn btn-success',
+                            text: '<i class="fas fa-file-excel"></i> Excel',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'pdf',
+                        className: 'btn btn-danger',
+                            text: '<i class="fas fa-file-pdf"></i> pdf',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                        },
+                    {
+                        extend: 'colvis',
+                        className: 'btn btn-dark',
+                        text: '<i class="fas fa-chevron-circle-down"></i>'
+                    }
+                ]
+
+            });
+
+            var table = $('#historial').DataTable();
+
+            $('#historial tbody').on('click', 'tr', function () {
+                var data = table.row(this).data();
+                $(location).attr('href', '/Solicitud/DetallesSolicitudAdmin/' + data['idSolicitud']);
+            });
+
+        });
+
+    </script>
+
+}
+

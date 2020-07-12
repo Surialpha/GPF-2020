@@ -1,0 +1,279 @@
+﻿@model SoftwareFactory.Models.Agenda
+@{
+    ViewBag.Title = "Detalle de agenda";
+    Layout = ViewBag.TemplateLayout;
+
+}
+
+        <div class="row">
+            <div class="col" align="center">
+                <a href="~/Agenda/Index" class="btn btn-primary btn-circle float-left" data-toggle="tooltip" data-placement="right" title="Atras"><i class="fas fa-reply"></i></a>
+                <h2>
+                    Información de la agenda
+
+                    @if (Session["Rol"].ToString().Equals("1"))
+                    {
+                        <a href="/Agenda/HistorialAgenda/@Html.DisplayTextFor(model => model.idAgenda)" class="btn btn-primary btn-circle float-right mr-1" data-toggle="tooltip" data-placement="right" title="Historial de agenda"><i class="fas fa-history"></i></a>
+                    }
+                </h2>
+
+            </div>
+        </div>
+        <hr />
+        <br />
+
+<div class="container">
+
+    <div class="card text-center">
+        <div class="card-header bg-dark text-center text-white font-weight-bold">
+            <h6 class="m-0 font-weight-bold text-white" id="ia">Detalle agenda</h6>
+            <h6 align="right" id="es" title="Estado de la agenda"><i class="fas fa-calendar-day"></i> @ViewBag.estado</h6>
+        </div>
+        <div class="card-body">
+            <div class="form-horizontal row">
+
+                <div class="form-group col-sm-2 col-md-2 col-lg-2">
+                    <div class="col-auto" align="left">
+                        <label class="font-weight-bold" for="inlineFormInputGroup">Id Agenda:</label>
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark text-white"><i class="fas fa-crown"></i></div>
+                            </div>
+                            @Html.EditorFor(model => model.idAgenda, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.idAgenda, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-4 col-md-4 col-lg-4">
+                    <div class="col-auto" align="left">
+                        <label class="font-weight-bold" for="inlineFormInputGroup">Fecha de la Agenda:</label>
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark text-white"><i class="fas fa-calendar-day"></i></div>
+                            </div>
+                            <input type="text" name="FechaAgenda" asp-for="FechaAgenda" id="fecha" value="" class="form-control" readonly />
+                        </div>
+                        @Html.ValidationMessageFor(model => model.FechaAgenda, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-3 col-md-3 col-lg-3">
+                    <div class="col-auto" align="left">
+                        <label class="font-weight-bold" for="inlineFormInputGroup">Hora inicio de la Agenda:</label>
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark text-white"><i class="fas fa-clock"></i></div>
+                            </div>
+                            @Html.EditorFor(model => model.HoraInicio, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.HoraInicio, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group col-sm-3 col-md-3 col-lg-3">
+                    <div class="col-auto" align="left">
+                        <label class="font-weight-bold" for="inlineFormInputGroup">Hora final de la Agenda:</label>
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark text-white"><i class="fas fa-clock"></i></div>
+                            </div>
+                            @Html.EditorFor(model => model.HoraFinal, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.HoraFinal, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                    <div class="col-auto" align="left">
+                        <label class="font-weight-bold" for="inlineFormInputGroup">Descripción:</label>
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark text-white"><i class="fas fa-file-alt"></i></div>
+                            </div>
+                            @Html.TextAreaFor(model => model.Asunto, new { @class = "form-control", @rows = "4", @cols = "50", @readonly = true })
+                        </div>
+                    </div>
+                </div>
+
+               
+                <br />
+
+            </div>
+        </div>
+        <div class="card-footer text-white bg-dark">
+        </div>
+
+
+    </div>
+
+    <br />
+    <br />
+
+    <div class="card text-center">
+        <div class="card-header bg-secondary text-center text-white font-weight-bold">
+            <h6 class="m-0 font-weight-bold text-white" id="ia">Información adicional</h6>
+
+
+
+
+
+        </div>
+
+        <div class="card-body">
+            <div class="form-horizontal row">
+
+
+                <div class="form-group col-sm-6 col-md-6 col-lg-6">
+                    <div class="col-auto" align="left">
+                        <label class="font-weight-bold" for="inlineFormInputGroup">Responsable de la agenda:</label>
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-secondary text-white"><i class="fas fa-crown"></i></div>
+                            </div>
+                            <input type="text" name="respon" id="respon" asp-for="respon" value="@ViewBag.responsable" class="form-control" readonly />
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-6 col-md-6 col-lg-6">
+                    <div class="col-auto" align="left">
+                        <label class="font-weight-bold" for="inlineFormInputGroup">Proyecto de la agenda:</label>
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-secondary text-white"><i class="fas fa-project-diagram"></i></div>
+                            </div>
+                            <input type="text" name="respon" id="respon" asp-for="respon" value="@ViewBag.proyecto" class="form-control" readonly />
+
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+            </div>
+        </div>
+        <div class="card-footer text-white  bg-gradient-secondary">
+
+        </div>
+
+
+    </div>
+
+    <br /><br />
+
+    <div class="card text-center">
+        <div class="card-header bg-gray-300 text-center font-weight-bold">
+            <h6 class="m-0 font-weight-bold text-gray-800" id="ia">Asistentes</h6>
+            <h6 align="right" id="g" title="Estado de la agenda"><i class="fas fa-users text-dark"></i> Grupo #@ViewBag.grupo</h6>
+        </div>
+        <div class="card-body">
+            <table id="asistentes" class="table table-dark text-dark">
+                <thead class="thead text-dark " style="background-color:white">
+                    <tr>
+                        <th>
+                            Documento
+                        </th>
+                        <th>
+                            Nombre completo
+                        </th>
+                        <th>
+                            Correo electrónico
+                        </th>
+                        <th>
+                            Telefono de contacto
+                        </th>
+                        <th>
+                            Rol
+                        </th>
+                </thead>
+            </table>
+        </div>
+        <div class="card-footer text-white  bg-gray-300">
+
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<style>
+    #ia {
+        float: left;
+        padding: 0.3rem;
+    }
+
+    #es {
+        cursor: pointer;
+        color: white;
+        float: right;
+        border: solid;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+    }
+    #g {
+        cursor: pointer;
+        color: black;
+        float: right;
+        border: solid;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+    }
+</style>
+
+@section script{
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+
+            var url = "/Agenda/ListarAsistentes/@Html.DisplayTextFor(model => model.ProyectoAgenda)";
+
+                 $("#asistentes").DataTable({
+
+
+                     "ajax": {
+                         "url": url,
+                        "type": "GET",
+                        "datatype":"json"
+                    },
+
+
+                    "language": {"url":'//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json'},
+
+                    paging: false,
+                    bFilter: false,
+                    ordering: false,
+                    searching: false,
+                    info:false,
+
+                    responsive: true,
+
+                    "columns": [
+                        { "data":"identificador"},
+                        { "data":"nombreCompleto"},
+                        { "data": "correo" },
+                        { "data": "telefono" },
+                        { "data": "rol" },
+
+                    ]
+
+            });
+
+
+            //Fecha
+            var fecha = '@Html.DisplayTextFor(model => model.FechaAgenda)';
+            var fe = fecha.split(" ");
+            $("#fecha").val(fe[0]);
+
+        });
+
+
+
+
+
+    </script>
+}

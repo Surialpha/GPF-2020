@@ -1,0 +1,109 @@
+﻿@model SoftwareFactory.Models.Cliente
+
+@{
+    ViewBag.Title = "Editar Cliente";
+    Layout = "~/Views/Shared/_DashLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col" align="center">
+        <a href="~/Clientes/Index" class="btn btn-primary btn-circle float-left" data-toggle="tooltip" data-placement="right" title="Atras"><i class="fas fa-reply"></i></a>
+        <h2>Editar Cliente</h2>
+    </div>
+</div>
+
+        <div class="container">
+
+
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <hr />
+                <div class="form-horizontal row">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-auto">
+                            <label class="sr-only" for="inlineFormInputGroup">ID Clientes</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-crown"></i></div>
+                                </div>
+                                @Html.EditorFor(model => model.id_cliente, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.id_cliente, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-auto">
+                            <label class="sr-only" for="inlineFormInputGroup">Tipo de documento</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-address-card"></i></div>
+                                </div>
+                                @Html.DropDownList("id_documento", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.id_documento, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-auto">
+                            <label class="sr-only" for="inlineFormInputGroup">Nombre</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-address-card"></i></div>
+                                </div>
+                                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nombre u Organización" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-auto">
+                            <label class="sr-only" for="inlineFormInputGroup">Numero de contacto</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-phone-square-alt"></i></div>
+                                </div>
+                                @Html.EditorFor(model => model.numero_contacto, new { htmlAttributes = new { @class = "form-control", @placeholder = "Numero contacto" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.numero_contacto, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-auto">
+                            <label class="sr-only" for="inlineFormInputGroup">Tipo cliente</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-sitemap"></i></div>
+                                </div>
+                                @Html.DropDownList("tipo_cliente", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.tipo_cliente, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-sm-12 col-md-12 col-lg-12" align="center">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Editar" class="btn bg-gradient-info text-white" />
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            }
+
+        </div>

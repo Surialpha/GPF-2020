@@ -1,0 +1,718 @@
+﻿
+@{
+    ViewBag.Title = "DetallesProyectoAdmin";
+    Layout = "~/Views/Shared/_DashLayout.cshtml";
+    var proyecto = ViewBag.proyecto;
+    var solicitud = ViewBag.solicitud;
+    var grupos = ViewBag.grupos;
+
+}
+    <div class="row">
+        <div class="col" align="center">
+            <a href="~/Proyectos" class="btn btn-primary btn-circle float-left" data-toggle="tooltip" data-placement="right" title="Atras"><i class="fas fa-reply"></i></a>
+        </div>
+    </div>
+
+<div class="container">
+
+    <div class="accordion text-center" id="accordionExample">
+        <div class="card border-bottom-light">
+            <div class="card-header text-right bg-gradient-dark row mr-0" id="headingOne">
+                <h2 class="mb-0 col-6" style="margin-left: 110px">
+                    <a class="btn btn-link font-weight-bold text-light" data-toggle="collapse" data-target="#collapseproyecto" aria-expanded="true" aria-controls="collapseOne">
+                        Información Proyecto
+                    </a>
+                </h2>
+
+                <h6 class="col-4" align="right" title="Estado de la agenda" style="margin-left: 65px; padding: 0;"> <a onclick="Detalle()" data-toggle="modal" data-target="#renderModal" class="font-weight-bold text-light btn btn-link">Ver información cliente</a></h6>
+            </div>
+
+            <div id="collapseproyecto" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <!-- Start-->
+                    <div class="row">
+
+                        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                            <div class="col-auto" align="left">
+                                <label class="font-weight-bold" for="inlineFormInputGroup">ID Proyecto:</label>
+                                <div class="input-group ">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-crown"></i></div>
+                                    </div>
+                                    <input name="name" value="@ViewBag.id_proyecto" class="form-control" readonly />
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                            <form action="~/Proyectos/Descargar" method="get">
+                                <div class="col-auto" align="left">
+                                    <label class="font-weight-bold" for="inlineFormInputGroup">Anexe archivo:</label>
+                                    <div class="input-group">
+
+
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text bg-gradient-info text-white" style="cursor:pointer;"><i class="fas fa-download"></i></div>
+                                        </div>
+                                        <input type="submit" class=" form-control" readonly name="ArchivoName" id="descargasProyecto" asp-for="ArchivoName" value="" />
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+
+                        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                            <div class="col-auto" align="left">
+                                <label class="font-weight-bold" for="inlineFormInputGroup">Grupo a cargo:</label>
+                                <div class="input-group ">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-users"></i></div>
+                                    </div>
+                                    <input type="text" class="form-control" readonly value="@ViewBag.id_grupo" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                            <div class="col-auto" align="left">
+                                <label class="font-weight-bold" for="inlineFormInputGroup">Bitacora de seguimiento:</label>
+                                <div class="input-group ">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-thumbtack"></i></div>
+                                    </div>
+                                    <input type="text" class="form-control" readonly value="@ViewBag.id_bitacora" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                            <div class="col-auto" align="left">
+                                <label class="font-weight-bold" for="inlineFormInputGroup">Fecha inicio:</label>
+                                <div class="input-group ">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-gradient-info text-white"><i class="far fa-calendar"></i></div>
+                                    </div>
+                                    <input type="text" class="form-control" readonly value="@proyecto.fecha_inicio" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                            <div class="col-auto" align="left">
+                                <label class="font-weight-bold" for="inlineFormInputGroup">Fecha final:</label>
+                                <div class="input-group ">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-calendar"></i></div>
+                                    </div>
+                                    <input type="text" class="form-control" readonly value="@proyecto.fecha_terminación" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                            <div class="col-auto" align="left">
+                                <label class="font-weight-bold" for="inlineFormInputGroup">Estado Proyecto:</label>
+                                <div class="input-group ">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-toggle-on"></i></div>
+                                    </div>
+                                    @Html.DropDownList("id_estadop", null, htmlAttributes: new { @class = "form-control", @disabled = true })
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                            <div class="col-auto" align="left">
+                                <label class="font-weight-bold" for="inlineFormInputGroup">Alcance</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-gradient-info text-white"><i class="fab fa-buffer"></i></div>
+                                    </div>
+                                    <textarea rows="4" cols="50" class="form-control" readonly>@proyecto.alcance</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End-->
+                </div>
+            </div>
+        </div>
+        <div class="card border-bottom-light">
+            <div class="card-header text-center text-center bg-gradient-dark" id="headingTwo">
+                <h2 class="mb-0">
+                    <a class="btn btn-link collapsed font-weight-bold text-light" data-toggle="collapse" data-target="#collapsesolicitud" aria-expanded="false" aria-controls="collapseTwo">
+                        Información Solicitud
+                    </a>
+                </h2>
+            </div>
+            <div id="collapsesolicitud" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+
+                    <!-- Start-->
+                    <div class="container">
+
+                        <div class="card text-center">
+                            <div class="card-header bg-gradient-info">
+
+                            </div>
+                            <div class="card-body">
+                                <div class="form-horizontal row">
+
+                                    @if (ViewBag.Cliente != 1)
+                                    {
+
+                                        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                                            <div class="col-auto" align="left">
+                                                <label class="font-weight-bold" for="inlineFormInputGroup">Area o Regional:</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text bg-gradient-info text-white"><i class="fab fa-audible"></i></div>
+                                                    </div>
+                                                    <input type="text" class="form-control" readonly value="@solicitud.area" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                                            <div class="col-auto" align="left">
+                                                <label class="font-weight-bold" for="inlineFormInputGroup">Tipo de Solicitante:</label>
+                                                <div class="input-group ">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-crown"></i></div>
+                                                    </div>
+                                                    @Html.DropDownList("id_tipoCliente", null, htmlAttributes: new { @class = "form-control", @readonly = true, @disabled = true })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+
+
+
+                                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                                        <div class="col-auto" align="left">
+                                            <label class="font-weight-bold" for="inlineFormInputGroup">Nombre Solicitante:</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-user"></i></div>
+                                                </div>
+                                                <input type="text" class="form-control" readonly value="@solicitud.nombre_solicitante" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                                        <div class="col-auto" align="left">
+                                            <label class="font-weight-bold" for="inlineFormInputGroup">Nombre Empresa:</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-industry"></i></div>
+                                                </div>
+                                                <input type="text" class="form-control" readonly value="@solicitud.nombre_empresa" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                                        <div class="col-auto" align="left">
+                                            <label class="font-weight-bold" for="inlineFormInputGroup">Tiempo proyectado para la entrega del proyecto:</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-calendar-plus"></i></div>
+                                                </div>
+                                                <input type="text" name="name" class="form-control" value="@solicitud.tiempo_estimado Meses" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                                        <div class="col-auto" align="left">
+                                            <label class="font-weight-bold" for="inlineFormInputGroup">Tiene algún avance?</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-file-archive"></i></div>
+                                                </div>
+                                                <input type="text" name="name" class="form-control" value="@solicitud.tipo_avance" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                                        <form action="~/Solicitud/Descargar" method="get">
+                                            <div class="col-auto" align="left">
+                                                <label class="font-weight-bold" for="inlineFormInputGroup">Archivo Anexo:</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text bg-gradient-info text-white" style="cursor:pointer;"><i class="fas fa-download"></i></div>
+                                                    </div>
+
+                                                    <input type="submit" class=" form-control" readonly name="ArchivoName" id="descargas" asp-for="ArchivoName" value="" />
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    </div>
+
+
+                                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                                        <div class="col-auto" align="left">
+                                            <label class="font-weight-bold" for="inlineFormInputGroup">Numero de personas beneficiadas (Usuarios finales):</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-users"></i></div>
+                                                </div>
+                                                <input type="text" name="name" class="form-control" value="@solicitud.grupo_afectado" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                                        <div class="col-auto" align="left">
+                                            <label class="font-weight-bold" for="inlineFormInputGroup">Contra-prestación (Material, Formación, Aprendices..):</label>
+
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-handshake"></i></div>
+                                                </div>
+                                                <input type="text" name="name" class="form-control" value="@solicitud.contraprestacion" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                                        <div class="col-auto" align="left">
+                                            <label class="font-weight-bold" for="inlineFormInputGroup">Tema del proyecto:</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-star"></i></div>
+                                                </div>
+                                                <textarea rows="4" cols="50" class="form-control" readonly>@solicitud.tema_proyecto</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                                        <div class="col-auto" align="left">
+                                            <label class="font-weight-bold" for="inlineFormInputGroup">Descripción del problema a resolver:</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-edit"></i></div>
+                                                </div>
+                                                <textarea rows="4" cols="50" class="form-control" readonly>@solicitud.descripcion</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="card-footer text-white bg-gradient-info">
+                                Formulario de Cliente
+                            </div>
+
+
+                        </div>
+                        <br />
+
+                        <div class="card shadow mb-4 ">
+                            <div class="card-header py-3 bg-gradient-warning">
+                                <h6 class="m-0 font-weight-bold text-white">Estado Solicitud y Viabilidad</h6>
+                            </div>
+                            <div class="card-body">
+
+                                <div class="row">
+
+                                    <div class="form-group col-sm-6 col-md-6 col-lg-6">
+                                        <div class="col-auto" align="left">
+                                            <label class="font-weight-bold" for="inlineFormInputGroup">Estado Solicitud:</label>
+                                            <div class="input-group ">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text bg-gradient-warning text-white"><i class="fas fa-check-circle"></i></div>
+                                                </div>
+                                                @Html.DropDownList("id_estado", null, htmlAttributes: new { @class = "form-control", @readonly = true, @disabled = true })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-6 col-md-6 col-lg-6">
+                                        <div class="col-auto" align="left">
+                                            <label class="font-weight-bold" for="inlineFormInputGroup">Estado Viabilidad:</label>
+                                            <div class="input-group ">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text bg-gradient-warning text-white"><i class="far fa-check-circle"></i></div>
+                                                </div>
+                                                @Html.DropDownList("id_viabilidad", null, htmlAttributes: new { @class = "form-control", @readonly = true, @disabled = true })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                                        <div class="col-auto" align="left">
+                                            <label class="font-weight-bold" for="inlineFormInputGroup">Observaciones:</label>
+                                            <div class="input-group ">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text bg-gradient-warning text-white"><i class="fas fa-comments"></i></div>
+                                                </div>
+                                                <textarea rows="4" cols="50" class="form-control" readonly>@solicitud.com_admin</textarea>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="card-footer text-white  bg-gradient-warning">
+                                Estados
+                            </div>
+                        </div>
+
+                        <div class="card shadow mb-4 ">
+                            <div class="card-header py-3 bg-gradient-success">
+                                <h6 class="m-0 font-weight-bold text-white">Costo y descripción</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                                        <div class="col-auto" align="left">
+                                            <label class="font-weight-bold" for="inlineFormInputGroup">Costo real:</label>
+                                            <div class="input-group ">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text bg-gradient-success text-white"><i class="fas fa-funnel-dollar"></i></div>
+                                                </div>
+                                                <input type="text" name="name" class="form-control" value="@solicitud.costo_real" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                                        <div class="col-auto" align="left">
+                                            <label class="font-weight-bold" for="inlineFormInputGroup">Descripción costo:</label>
+                                            <div class="input-group ">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text bg-gradient-success text-white"><i class="fas fa-comment-dollar"></i></div>
+                                                </div>
+                                                <textarea rows="4" cols="50" class="form-control" readonly>@solicitud.descripcion_costo</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer text-white  bg-gradient-success">
+                                costo vs realidad
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- End-->
+
+                </div>
+            </div>
+        </div>
+        <div class="card border-bottom-light">
+            <div class="card-header text-center bg-gradient-dark" id="headingThree">
+                <h2 class="mb-0">
+                    <a class="btn btn-link collapsed font-weight-bold text-light" data-toggle="collapse" data-target="#collapsegrupo" aria-expanded="false" aria-controls="collapseThree" onclick="ClickIntegrantes()">
+                        Información Grupo
+                    </a>
+                </h2>
+            </div>
+            <div id="collapsegrupo" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    <!--Start-->
+
+
+                    <div class="container">
+
+                        <div class="form-horizontal row">
+
+                            <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                                <div class="col-auto" align="left">
+                                    <label class="font-weight-bold" for="inlineFormInputGroup">ID Grupo:</label>
+                                    <div class="input-group ">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text bg-dark text-white"><i class="fas fa-crown"></i></div>
+                                        </div>
+                                        <input name="name" value="@grupos.id_grupo" class="form-control" readonly />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                                <div class="col-auto" align="left">
+                                    <label class="font-weight-bold" for="inlineFormInputGroup">ID Lider:</label>
+                                    <div class="input-group ">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text bg-dark text-white"><i class="fas fa-chalkboard-teacher"></i></div>
+                                        </div>
+                                        <input type="text" value="@ViewBag.LiderGrupo" class="form-control" readonly />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                                <div class="col-auto" align="left">
+                                    <label class="font-weight-bold" for="inlineFormInputGroup">Descripción:</label>
+                                    <div class="input-group ">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text bg-dark text-white"><i class="fas fa-clipboard"></i></div>
+                                        </div>
+                                        <textarea rows="4" cols="50" class="form-control" readonly>@grupos.descripcion</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+
+                        <hr />
+
+                        <div class="card text-center">
+                            <div class="card-header bg-dark text-white font-weight-bold">
+                                Integrantes Grupo
+                            </div>
+                            <div class="card-body">
+                                <table id="integrantes" class="table table-hover table-borderless">
+                                    <thead class="thead text-dark " style="background-color:white">
+                                        <tr>
+                                            <th>
+                                                #ID Aprendiz
+                                            </th>
+                                            <th>
+                                                Correo Aprendiz
+                                            </th>
+                                            <th>
+                                                Nombre Aprendiz
+                                            </th>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="card-footer text-muted bg-dark">
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <div class="card text-center">
+                            <div class="card-header bg-dark text-white font-weight-bold">
+                                Histórico Integrantes
+                            </div>
+                            <div class="card-body">
+
+                                <table id="historial" class="table table-hover table-borderless">
+                                    <thead class="thead text-dark " style="background-color:white">
+                                        <tr>
+                                            <th>
+                                                #ID Usuario
+                                            </th>
+                                            <th>
+                                                Nombre Usuario
+                                            </th>
+                                            <th>
+                                                Correo Usuario
+                                            </th>
+                                            <th>
+                                                Rol Usuario
+                                            </th>
+                                            <th>
+                                                Acción
+                                            </th>
+                                            <th>
+                                                Fecha Acción
+                                            </th>
+                                    </thead>
+                                </table>
+
+                            </div>
+                            <div class="card-footer text-muted bg-dark">
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--End-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Modal create -->
+<div class="modal fade" id="renderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-gradient-dark text-white" align="center">
+                <h5 class="modal-title" id="exampleModalLabel">Detalle cliente</h5>
+                <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="cuerpo">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section script{
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+    <script>
+
+
+        var acumulador = 0;
+
+        //descargar archivo de solicitud
+        var n = "@solicitud.archivo_adjunto";
+        if (n.length > 0) {
+            $("#descargas").val(n);
+        }
+        else {
+            $("#descargas").val("No hay archivos");
+            $("#descargas").removeAttr("type");
+        }
+
+
+        //Descargar archivo de proyecto
+        var n = "@proyecto.archivo";
+        if (n.length > 0) {
+            $("#descargasProyecto").val(n);
+        }
+        else {
+            $("#descargasProyecto").val("No hay archivos");
+            $("#descargasProyecto").removeAttr("type");
+        }
+
+
+
+        function ClickIntegrantes() {
+            if (acumulador === 0) {
+
+
+
+                  $("#historial").DataTable({
+
+
+                "ajax": {
+
+                    "url": "/Grupos/HistorialGrupo/@grupos.id_grupo" ,
+                    "type": "GET",
+                    "datatype":"json"
+                },
+
+
+                "language": {"url":'//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json'},
+
+                paging: false,
+                bFilter: false,
+                ordering: false,
+              searching: false,
+              info:false,
+
+                responsive: true,
+
+                "columns": [
+                    { "data":"idUsuario"},
+                    { "data": "nombreUsuario"},
+                    { "data": "CorreoUsuario"},
+                    { "data": "rolUsuario"},
+                    { "data": "accion"},
+                    { "data": "fechaAccion"}
+
+                ]
+
+             });
+
+
+                $("#integrantes").DataTable({
+
+
+
+                "ajax": {
+
+                    "url": "/Grupos/ListaAprendices/@grupos.id_grupo" ,
+                    "type": "GET",
+                    "datatype":"json"
+                },
+
+
+                "language": {"url":'//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json'},
+
+                paging: false,
+                bFilter: false,
+                ordering: false,
+              searching: false,
+              info:false,
+
+                responsive: true,
+
+                "columns": [
+                    { "data":"id_aprendiz"},
+                    { "data":"correo"},
+                    { "data": "nombre"}
+
+                ]
+
+                 });
+                acumulador++;
+            }
+
+        }
+
+        $(document).ready(function () {
+
+
+
+        });
+
+        function Detalle() {
+
+            var url = "/Clientes/DetalleCliente/@solicitud.id_cliente";
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+                    var result2 = $(result)
+                    if (result2['length'] < 6) {
+                        $('#cuerpo').html(result);
+                    }
+                    else {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Su sesión ha vencido',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        var intervalo = setInterval(function () {
+                            $(location).attr('href', '/Solicitud/Index')
+                            clearInterval(intervalo);
+                        }, 1500);
+
+                    }
+                }
+            });
+        }
+
+    </script>
+
+
+}

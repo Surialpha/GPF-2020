@@ -1,0 +1,180 @@
+﻿@model SoftwareFactory.Models.Agenda
+
+@{
+    ViewBag.Title = "Editar Agenda";
+    Layout = "~/Views/Shared/_DashLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col" align="center">
+        <a href="~/Agenda/Index" class="btn btn-primary btn-circle float-left" data-toggle="tooltip" data-placement="right" title="Atras"><i class="fas fa-reply"></i></a>
+        <h2>Editar agenda</h2>
+
+    </div>
+</div>
+<hr />
+<br />
+
+
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+
+
+    <div class="container">
+        <div class="card text-center">
+            <div class="card-header bg-dark text-center text-white font-weight-bold">
+                <h6 class="m-0 font-weight-bold text-white" id="ia">Detalle agenda</h6>
+                <h6 align="right" id="es" title="Estado de la agenda"><i class="fas fa-calendar-day"></i></h6>
+            </div>
+            <div class="card-body">
+                <div class="form-horizontal row">
+
+                    <div class="form-group col-sm-2 col-md-2 col-lg-2">
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">Id Agenda:</label>
+                            <div class="input-group ">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-dark text-white"><i class="fas fa-crown"></i></div>
+                                </div>
+                                @Html.EditorFor(model => model.idAgenda, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.idAgenda, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-4 col-md-4 col-lg-4">
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">Fecha de la Agenda:</label>
+                            <div class="input-group ">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-dark text-white"><i class="fas fa-calendar-day"></i></div>
+                                </div>
+                                <input type="text" name="FechaAgenda" asp-for="FechaAgenda" id="fecha" value="" class="form-control" readonly />
+                            </div>
+                            @Html.ValidationMessageFor(model => model.FechaAgenda, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">Hora inicio de la Agenda:</label>
+                            <div class="input-group ">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-dark text-white"><i class="fas fa-clock"></i></div>
+                                </div>
+                                @Html.EditorFor(model => model.HoraInicio, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.HoraInicio, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">Hora final de la Agenda:</label>
+                            <div class="input-group ">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-dark text-white"><i class="fas fa-clock"></i></div>
+                                </div>
+                                @Html.EditorFor(model => model.HoraFinal, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.HoraFinal, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">Descripción:</label>
+                            <div class="input-group ">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-dark text-white"><i class="fas fa-file-alt"></i></div>
+                                </div>
+                                @Html.TextAreaFor(model => model.Asunto, new { @class = "form-control", @rows = "4", @cols = "50" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">Estado de la agenda:</label>
+                            <div class="input-group ">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-dark text-white"><i class="fas fa-file-alt"></i></div>
+                                </div>
+                                @Html.DropDownList("estadoAgenda", null, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">Proyecto para Agendar:</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-gradient-dark text-white"><i class="fas fa-project-diagram"></i></div>
+                                </div>
+                                @Html.HiddenFor(model => model.ProyectoAgenda)
+                                <input class="form-control" readonly value="@ViewBag.ProyectoAgenda" />
+
+                            </div>
+                            @Html.ValidationMessageFor(model => model.ProyectoAgenda, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-auto" align="left">
+                            <label class="font-weight-bold" for="inlineFormInputGroup">Responsable de la Agenda:</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-gradient-dark text-white"><i class="fas fa-user"></i></div>
+                                </div>
+                                @Html.DropDownList("ResponsableAgenda", null, new { @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.ResponsableAgenda, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <br />
+
+                </div>
+            </div>
+            <div class="card-footer text-white bg-dark">
+            </div>
+
+
+        </div>
+        <br />
+        <div class="form-group col-sm-12 col-md-12 col-lg-12" align="center">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+
+
+                    <input type="submit" value="Editar" class="btn bg-gradient-dark text-white" />
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+}
+
+
+
+@section script{
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script>
+
+
+
+        $(document).ready(function () {
+
+             //Fecha
+            var fecha = '@Html.DisplayTextFor(model => model.FechaAgenda)';
+            var fe = fecha.split(" ");
+            $("#fecha").val(fe[0]);
+
+        });
+
+    </script>
+}

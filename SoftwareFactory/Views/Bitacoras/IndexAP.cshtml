@@ -1,0 +1,209 @@
+﻿
+@{
+    ViewBag.Title = "IndexAP";
+    Layout = "~/Views/Shared/_DashLayout.cshtml";
+    var TpLista = ViewBag.bitacora;
+    var descarga = ViewBag.descarga;
+}
+
+<div class="row">
+    <div class="col" align="center">
+        <h2>Listado de Bitacoras</h2>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <table id="Bitacoras" class="table table-striped display" style="width:100%">
+            <thead class="thead bg-gray-900 text-white">
+                <tr>
+                    <th>
+                        #ID
+                    </th>
+                    <th>
+                        #ID Bitacora
+                    </th>
+                    <th>
+                        Proyecto
+                    </th>
+                    <th>
+                        Fecha Creación
+                    </th>
+                    <th>
+                        Descripción
+                    </th>
+                    <th>
+                        archivo
+                    </th>
+                    <th>
+                        Acciones
+                    </th>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+
+@section script{
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+    <script src="~/Scripts/DatatablesCDN/dataTables.select.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/jszip.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/pdfmake.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/vfs_fonts.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.html5.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.print.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.colVis.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/dataTables.jqueryui.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.jqueryui.min.js"></script>
+
+    <script>
+
+        var descarga="@descarga"
+
+        $(document).ready(function () {
+
+            $("#Bitacoras").DataTable({
+
+                "ajax": {
+
+                    "url": '@Url.Action(TpLista,"Bitacoras")',
+                    "type": "GET",
+                    "datatype": "json"
+                },
+
+
+                "language": { "url": '//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json' },
+
+
+                responsive: true,
+
+                "columns": [
+                    { "data": "id" },
+                    { "data": "id_bitacora" },
+                    { "data": "proy" },
+                    { "data": "fecha_creacion" },
+                    { "data": "descripcion" },
+                    { "data": "documento", "render": function (data) {
+                                                        if (data)
+                                return '<form action="/Bitacoras/DescargarBitacoras'+descarga+'" method="get"><button type="submit" class="btn btn-sm btn-success" name="ArchivoName" id="ArchivoName" asp-for="ArchivoName" value="' + data + '" data-toggle="tooltip" data-placement="top" title="' + data + '">  <i class="fas fa-download"></i></button></form>'
+
+                            else return '<button class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="No hay archivos"><i class="fas fa-file-excel"></i></button>'
+                        }, "oderable": false
+                    },
+                    {
+                        "data": "id", "render": function (data) {
+                            return "<a onclick='EditarFunction(" + data + ")' data-toggle='modal' data-target='#renderModal' class='btn  bg-gradient-primary text-white btn-circle' data-toggle='tooltip' data-placement='right' title='Editar'><i class='fas fa-edit'></i> "
+                        }, "oderable": false
+                    }
+
+                ],
+                                
+                    dom: 'Bfrtip',
+                    buttons: [{
+                        extend: 'print',
+                        className: 'btn btn-info',
+                        text: '<i class="fas fa-print"></i> Imprimir',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'excel',
+                        className: 'btn btn-success',
+                            text: '<i class="fas fa-file-excel"></i> Excel',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                    },
+                        {
+                        extend: 'pdf',
+                        className: 'btn btn-danger',
+                            text: '<i class="fas fa-file-pdf"></i> pdf',
+                        exportOptions: {
+                    columns: ':visible'
+                }
+                        },
+                    {
+                        extend: 'colvis',
+                        className: 'btn btn-dark',
+                        text: '<i class="fas fa-chevron-circle-down"></i>'
+                    }
+                ]
+
+            });
+
+
+        });
+
+
+
+        function EditarFunction(data) {
+            var url = "/Bitacoras/EditarBitacora/" + data;
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+
+                    var result2 = $(result)
+
+                    if (result2['length'] <5) {
+
+                        $('#cuerpo').html(result);
+
+                        $("#activar").on("click", function () {
+
+                            $("#archivo").trigger("click");
+
+                        });
+
+                        $("#labelFile").on("click", function () {
+
+                            $("#archivo").trigger("click");
+
+                        });
+
+                        $("#archivo").on("change", function () {
+
+                            $("#labelFile").val($("#archivo").val());
+                        });
+
+                    }
+                    else {
+                        $(location).attr('href', '/Bitacoras/EditarBitacora/'+data+'' )
+                    }
+
+
+
+                }
+            });
+
+        }
+    </script>
+
+
+}
+
+
+
+<!-- Modal Create -->
+<div class="modal fade" id="renderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-gradient-dark text-white">
+                <h5 class="modal-title" id="exampleModalLabel">Editar Bitacora</h5>
+                <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="cuerpo">
+
+            </div>
+        </div>
+    </div>
+</div>

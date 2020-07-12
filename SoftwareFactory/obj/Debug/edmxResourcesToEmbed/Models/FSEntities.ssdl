@@ -1,0 +1,1092 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FabricaSoftwareModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Adquirir_Servicios">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="800" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Agenda">
+    <Key>
+      <PropertyRef Name="idAgenda" />
+    </Key>
+    <Property Name="idAgenda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FechaAgenda" Type="date" Nullable="false" />
+    <Property Name="ResponsableAgenda" Type="int" Nullable="false" />
+    <Property Name="ProyectoAgenda" Type="int" Nullable="false" />
+    <Property Name="estadoAgenda" Type="int" Nullable="false" />
+    <Property Name="HoraFinal" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Asunto" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="HoraInicio" Type="time" Precision="7" />
+    <Property Name="ActionUser" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Aprendices">
+    <Key>
+      <PropertyRef Name="id_aprendiz" />
+    </Key>
+    <Property Name="id_aprendiz" Type="int" Nullable="false" />
+    <Property Name="inicio_contrato" Type="date" />
+    <Property Name="fin_contrato" Type="date" />
+    <Property Name="id_contrato" Type="int" />
+    <Property Name="descripcion" Type="varchar" MaxLength="400" />
+  </EntityType>
+  <EntityType Name="Asesores">
+    <Key>
+      <PropertyRef Name="id_asesor" />
+    </Key>
+    <Property Name="id_asesor" Type="int" Nullable="false" />
+    <Property Name="inicio_contrato" Type="date" />
+    <Property Name="fin_contrato" Type="date" />
+  </EntityType>
+  <EntityType Name="Asignar_Fase">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id_aprendiz" Type="int" />
+    <Property Name="id_fase_ciclo" Type="int" />
+    <Property Name="id_estado" Type="int" />
+    <Property Name="fecha_asignacion" Type="date" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Bitacora_Aprendiz">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_aprendiz" Type="int" />
+    <Property Name="id_bitacora" Type="int" />
+    <Property Name="fecha_creacion" Type="date" />
+    <Property Name="archivo" Type="varchar" MaxLength="250" />
+    <Property Name="descripcion" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Bitacora_Asesor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_asesor" Type="int" />
+    <Property Name="id_bitacora" Type="int" />
+    <Property Name="fecha_creacion" Type="date" />
+    <Property Name="archivo" Type="varchar" MaxLength="250" />
+    <Property Name="descripcion" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Bitacoras">
+    <Key>
+      <PropertyRef Name="id_bitacora" />
+    </Key>
+    <Property Name="id_bitacora" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fecha_creacion" Type="date" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Ciclos">
+    <Key>
+      <PropertyRef Name="id_ciclo" />
+    </Key>
+    <Property Name="id_ciclo" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+    <Property Name="id_estado" Type="int" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="id_cliente" />
+    </Key>
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="100" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="numero_contacto" Type="varchar" MaxLength="50" />
+    <Property Name="id_documento" Type="int" />
+    <Property Name="tipo_cliente" Type="int" />
+  </EntityType>
+  <EntityType Name="Como_Lo_Hacemos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="800" />
+  </EntityType>
+  <EntityType Name="Documento">
+    <Key>
+      <PropertyRef Name="id_documento" />
+    </Key>
+    <Property Name="id_documento" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Estado_asignacion">
+    <Key>
+      <PropertyRef Name="id_estado" />
+    </Key>
+    <Property Name="id_estado" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Estado_Proyecto">
+    <Key>
+      <PropertyRef Name="id_estado" />
+    </Key>
+    <Property Name="id_estado" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Estado_Solicitud">
+    <Key>
+      <PropertyRef Name="id_estado" />
+    </Key>
+    <Property Name="id_estado" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Estado_Viabilidad">
+    <Key>
+      <PropertyRef Name="id_viabilidad" />
+    </Key>
+    <Property Name="id_viabilidad" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="EstadoAgenda">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Estados">
+    <Key>
+      <PropertyRef Name="id_estado" />
+    </Key>
+    <Property Name="id_estado" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Estados_Ciclos">
+    <Key>
+      <PropertyRef Name="id_estado" />
+    </Key>
+    <Property Name="id_estado" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Estados_Fases">
+    <Key>
+      <PropertyRef Name="id_estado" />
+    </Key>
+    <Property Name="id_estado" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Fases">
+    <Key>
+      <PropertyRef Name="id_fase" />
+    </Key>
+    <Property Name="id_fase" Type="int" Nullable="false" />
+    <Property Name="fecha_creacion" Type="date" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+    <Property Name="porcentaje" Type="int" />
+  </EntityType>
+  <EntityType Name="Fases_de_Ciclos">
+    <Key>
+      <PropertyRef Name="id_fase_ciclo" />
+    </Key>
+    <Property Name="id_fase_ciclo" Type="int" Nullable="false" />
+    <Property Name="id_ciclo" Type="int" />
+    <Property Name="id_fase" Type="int" />
+    <Property Name="id_estado" Type="int" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+    <Property Name="fecha_creacion" Type="date" />
+    <Property Name="tiempo_estimado" Type="int" />
+  </EntityType>
+  <EntityType Name="Grupo_Aprendices">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_aprendiz" Type="int" />
+    <Property Name="id_grupo" Type="int" />
+  </EntityType>
+  <EntityType Name="Grupos">
+    <Key>
+      <PropertyRef Name="id_grupo" />
+    </Key>
+    <Property Name="id_grupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_lider" Type="int" />
+    <Property Name="descripcion" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="historialGrupos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rolUsuario" Type="varchar" MaxLength="20" />
+    <Property Name="nombreUsuario" Type="varchar" MaxLength="50" />
+    <Property Name="CorreoUsuario" Type="varchar" MaxLength="50" />
+    <Property Name="idUsuario" Type="int" />
+    <Property Name="accion" Type="varchar" MaxLength="20" />
+    <Property Name="idResponsable" Type="int" />
+    <Property Name="fechaAccion" Type="datetime" />
+    <Property Name="idGrupo" Type="int" />
+  </EntityType>
+  <EntityType Name="Imagenes">
+    <Key>
+      <PropertyRef Name="idImage" />
+    </Key>
+    <Property Name="idImage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idTipo" Type="int" />
+    <Property Name="imageUrl" Type="varchar" MaxLength="250" />
+    <Property Name="nombreUsuario" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FabricaSoftware.dbo.LogAgenda' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="LogAgenda">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="idAgenda" />
+      <PropertyRef Name="fechaAgenda" />
+      <PropertyRef Name="Horario" />
+      <PropertyRef Name="descripcion" />
+      <PropertyRef Name="ResponsableAgenda" />
+      <PropertyRef Name="ProyectoAgenda" />
+      <PropertyRef Name="clienteAgenda" />
+      <PropertyRef Name="asistentes" />
+      <PropertyRef Name="estadoAgenda" />
+      <PropertyRef Name="grupoAgenda" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idAgenda" Type="int" Nullable="false" />
+    <Property Name="fechaAgenda" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Horario" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="ResponsableAgenda" Type="int" Nullable="false" />
+    <Property Name="ProyectoAgenda" Type="int" Nullable="false" />
+    <Property Name="clienteAgenda" Type="int" Nullable="false" />
+    <Property Name="asistentes" Type="varchar" MaxLength="400" Nullable="false" />
+    <Property Name="estadoAgenda" Type="int" Nullable="false" />
+    <Property Name="grupoAgenda" Type="int" Nullable="false" />
+    <Property Name="idResponsable" Type="varchar" MaxLength="200" />
+    <Property Name="fechaLog" Type="datetime" />
+    <Property Name="Asunto" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Modulos">
+    <Key>
+      <PropertyRef Name="id_modulo" />
+    </Key>
+    <Property Name="id_modulo" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Nuestros_Servicios">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="800" />
+    <Property Name="nombre" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Operaciones">
+    <Key>
+      <PropertyRef Name="id_operacion" />
+    </Key>
+    <Property Name="id_operacion" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+    <Property Name="id_modulo" Type="int" />
+  </EntityType>
+  <EntityType Name="Personas">
+    <Key>
+      <PropertyRef Name="documento" />
+    </Key>
+    <Property Name="documento" Type="int" Nullable="false" />
+    <Property Name="nombres" Type="varchar" MaxLength="50" />
+    <Property Name="apellidos" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="fecha_nacimiento" Type="date" />
+    <Property Name="numero_contacto" Type="varchar" MaxLength="50" />
+    <Property Name="id_documento" Type="int" />
+    <Property Name="id_sexo" Type="int" />
+  </EntityType>
+  <EntityType Name="pqrs">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="correo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="450" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Proyecto">
+    <Key>
+      <PropertyRef Name="id_proyecto" />
+    </Key>
+    <Property Name="id_proyecto" Type="int" Nullable="false" />
+    <Property Name="fecha_inicio" Type="date" />
+    <Property Name="fecha_terminación" Type="date" />
+    <Property Name="alcance" Type="varchar" MaxLength="500" />
+    <Property Name="archivo" Type="varchar" MaxLength="500" />
+    <Property Name="id_estado" Type="int" />
+    <Property Name="id_bitacora" Type="int" />
+    <Property Name="id_grupo" Type="int" />
+  </EntityType>
+  <EntityType Name="Quienes_Somos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="800" />
+  </EntityType>
+  <EntityType Name="Rol_Operaciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id_rol" Type="int" />
+    <Property Name="id_operacion" Type="int" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="id_rol" />
+    </Key>
+    <Property Name="id_rol" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Sexo">
+    <Key>
+      <PropertyRef Name="id_sexo" />
+    </Key>
+    <Property Name="id_sexo" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Solicitud">
+    <Key>
+      <PropertyRef Name="id_solicitud" />
+    </Key>
+    <Property Name="id_solicitud" Type="int" Nullable="false" />
+    <Property Name="id_cliente" Type="int" />
+    <Property Name="id_tipoCliente" Type="int" />
+    <Property Name="tipo_avance" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="archivo_adjunto" Type="varchar" MaxLength="250" />
+    <Property Name="nombre_solicitante" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="nombre_empresa" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="contraprestacion" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="fecha_solicitud" Type="date" />
+    <Property Name="tiempo_estimado" Type="int" Nullable="false" />
+    <Property Name="tema_proyecto" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="grupo_afectado" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar(max)" Nullable="false" />
+    <Property Name="area" Type="varchar" MaxLength="250" />
+    <Property Name="id_viabilidad" Type="int" />
+    <Property Name="costo_real" Type="int" />
+    <Property Name="descripcion_costo" Type="varchar" MaxLength="500" />
+    <Property Name="id_estado_solicitud" Type="int" />
+    <Property Name="com_admin" Type="varchar" MaxLength="350" />
+  </EntityType>
+  <EntityType Name="Tipo_Cliente">
+    <Key>
+      <PropertyRef Name="id_TipoCliente" />
+    </Key>
+    <Property Name="id_TipoCliente" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Tipo_Contrato">
+    <Key>
+      <PropertyRef Name="id_tipo_contrato" />
+    </Key>
+    <Property Name="id_tipo_contrato" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Tipo_Documento">
+    <Key>
+      <PropertyRef Name="id_documento" />
+    </Key>
+    <Property Name="id_documento" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Tipo_Imagen">
+    <Key>
+      <PropertyRef Name="idTipo" />
+    </Key>
+    <Property Name="idTipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Tipo_Solicitante">
+    <Key>
+      <PropertyRef Name="tipo_solicitante" />
+    </Key>
+    <Property Name="tipo_solicitante" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Name="id_usuario" Type="int" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="hash_password" Type="varchar" MaxLength="250" />
+    <Property Name="fecha_creacion" Type="date" />
+    <Property Name="id_rol" Type="int" />
+    <Property Name="id_estado" Type="int" />
+  </EntityType>
+  <Association Name="fk_asesores_grupos">
+    <End Role="Asesores" Type="Self.Asesores" Multiplicity="0..1" />
+    <End Role="Grupos" Type="Self.Grupos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Asesores">
+        <PropertyRef Name="id_asesor" />
+      </Principal>
+      <Dependent Role="Grupos">
+        <PropertyRef Name="id_lider" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_asignarfase_aprendiz">
+    <End Role="Aprendices" Type="Self.Aprendices" Multiplicity="0..1" />
+    <End Role="Asignar_Fase" Type="Self.Asignar_Fase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aprendices">
+        <PropertyRef Name="id_aprendiz" />
+      </Principal>
+      <Dependent Role="Asignar_Fase">
+        <PropertyRef Name="id_aprendiz" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_asignarfase_estado">
+    <End Role="Estado_asignacion" Type="Self.Estado_asignacion" Multiplicity="0..1" />
+    <End Role="Asignar_Fase" Type="Self.Asignar_Fase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado_asignacion">
+        <PropertyRef Name="id_estado" />
+      </Principal>
+      <Dependent Role="Asignar_Fase">
+        <PropertyRef Name="id_estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_asignarfase_faseciclo">
+    <End Role="Fases_de_Ciclos" Type="Self.Fases_de_Ciclos" Multiplicity="0..1" />
+    <End Role="Asignar_Fase" Type="Self.Asignar_Fase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fases_de_Ciclos">
+        <PropertyRef Name="id_fase_ciclo" />
+      </Principal>
+      <Dependent Role="Asignar_Fase">
+        <PropertyRef Name="id_fase_ciclo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_bitacoras_proyectofa">
+    <End Role="Bitacoras" Type="Self.Bitacoras" Multiplicity="0..1" />
+    <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bitacoras">
+        <PropertyRef Name="id_bitacora" />
+      </Principal>
+      <Dependent Role="Proyecto">
+        <PropertyRef Name="id_bitacora" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_bitapas_bitacoras">
+    <End Role="Bitacoras" Type="Self.Bitacoras" Multiplicity="0..1" />
+    <End Role="Bitacora_Asesor" Type="Self.Bitacora_Asesor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bitacoras">
+        <PropertyRef Name="id_bitacora" />
+      </Principal>
+      <Dependent Role="Bitacora_Asesor">
+        <PropertyRef Name="id_bitacora" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_bitapren_aprendiz">
+    <End Role="Aprendices" Type="Self.Aprendices" Multiplicity="0..1" />
+    <End Role="Bitacora_Aprendiz" Type="Self.Bitacora_Aprendiz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aprendices">
+        <PropertyRef Name="id_aprendiz" />
+      </Principal>
+      <Dependent Role="Bitacora_Aprendiz">
+        <PropertyRef Name="id_aprendiz" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_bitapren_asesor">
+    <End Role="Asesores" Type="Self.Asesores" Multiplicity="0..1" />
+    <End Role="Bitacora_Asesor" Type="Self.Bitacora_Asesor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Asesores">
+        <PropertyRef Name="id_asesor" />
+      </Principal>
+      <Dependent Role="Bitacora_Asesor">
+        <PropertyRef Name="id_asesor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_bitapren_bitacoras">
+    <End Role="Bitacoras" Type="Self.Bitacoras" Multiplicity="0..1" />
+    <End Role="Bitacora_Aprendiz" Type="Self.Bitacora_Aprendiz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bitacoras">
+        <PropertyRef Name="id_bitacora" />
+      </Principal>
+      <Dependent Role="Bitacora_Aprendiz">
+        <PropertyRef Name="id_bitacora" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ciclos_estados">
+    <End Role="Estados_Ciclos" Type="Self.Estados_Ciclos" Multiplicity="0..1" />
+    <End Role="Ciclos" Type="Self.Ciclos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estados_Ciclos">
+        <PropertyRef Name="id_estado" />
+      </Principal>
+      <Dependent Role="Ciclos">
+        <PropertyRef Name="id_estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_cliente_solicitud">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+    <End Role="Solicitud" Type="Self.Solicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="id_cliente" />
+      </Principal>
+      <Dependent Role="Solicitud">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Estado_Agenda">
+    <End Role="EstadoAgenda" Type="Self.EstadoAgenda" Multiplicity="1" />
+    <End Role="Agenda" Type="Self.Agenda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EstadoAgenda">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Agenda">
+        <PropertyRef Name="estadoAgenda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_estadopro_proyectofa">
+    <End Role="Estado_Proyecto" Type="Self.Estado_Proyecto" Multiplicity="0..1" />
+    <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado_Proyecto">
+        <PropertyRef Name="id_estado" />
+      </Principal>
+      <Dependent Role="Proyecto">
+        <PropertyRef Name="id_estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_estados_usuarios">
+    <End Role="Estados" Type="Self.Estados" Multiplicity="0..1" />
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estados">
+        <PropertyRef Name="id_estado" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="id_estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_estadosoli_solicitud">
+    <End Role="Estado_Solicitud" Type="Self.Estado_Solicitud" Multiplicity="0..1" />
+    <End Role="Solicitud" Type="Self.Solicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado_Solicitud">
+        <PropertyRef Name="id_estado" />
+      </Principal>
+      <Dependent Role="Solicitud">
+        <PropertyRef Name="id_estado_solicitud" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_estadovia_solicitud">
+    <End Role="Estado_Viabilidad" Type="Self.Estado_Viabilidad" Multiplicity="0..1" />
+    <End Role="Solicitud" Type="Self.Solicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado_Viabilidad">
+        <PropertyRef Name="id_viabilidad" />
+      </Principal>
+      <Dependent Role="Solicitud">
+        <PropertyRef Name="id_viabilidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_fasesdeciclo_estadosfases">
+    <End Role="Estados_Fases" Type="Self.Estados_Fases" Multiplicity="0..1" />
+    <End Role="Fases_de_Ciclos" Type="Self.Fases_de_Ciclos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estados_Fases">
+        <PropertyRef Name="id_estado" />
+      </Principal>
+      <Dependent Role="Fases_de_Ciclos">
+        <PropertyRef Name="id_estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_fasesdeciclo_fases">
+    <End Role="Fases" Type="Self.Fases" Multiplicity="0..1" />
+    <End Role="Fases_de_Ciclos" Type="Self.Fases_de_Ciclos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fases">
+        <PropertyRef Name="id_fase" />
+      </Principal>
+      <Dependent Role="Fases_de_Ciclos">
+        <PropertyRef Name="id_fase" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_fasesdeciclos_ciclos">
+    <End Role="Ciclos" Type="Self.Ciclos" Multiplicity="0..1" />
+    <End Role="Fases_de_Ciclos" Type="Self.Fases_de_Ciclos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ciclos">
+        <PropertyRef Name="id_ciclo" />
+      </Principal>
+      <Dependent Role="Fases_de_Ciclos">
+        <PropertyRef Name="id_fase" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_gruap_aprendices">
+    <End Role="Aprendices" Type="Self.Aprendices" Multiplicity="0..1" />
+    <End Role="Grupo_Aprendices" Type="Self.Grupo_Aprendices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aprendices">
+        <PropertyRef Name="id_aprendiz" />
+      </Principal>
+      <Dependent Role="Grupo_Aprendices">
+        <PropertyRef Name="id_aprendiz" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_gruap_grupos">
+    <End Role="Grupos" Type="Self.Grupos" Multiplicity="0..1" />
+    <End Role="Grupo_Aprendices" Type="Self.Grupo_Aprendices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grupos">
+        <PropertyRef Name="id_grupo" />
+      </Principal>
+      <Dependent Role="Grupo_Aprendices">
+        <PropertyRef Name="id_grupo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_grupos_proyectofa">
+    <End Role="Grupos" Type="Self.Grupos" Multiplicity="0..1" />
+    <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grupos">
+        <PropertyRef Name="id_grupo" />
+      </Principal>
+      <Dependent Role="Proyecto">
+        <PropertyRef Name="id_grupo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_modulos_operaciones">
+    <End Role="Modulos" Type="Self.Modulos" Multiplicity="0..1" />
+    <End Role="Operaciones" Type="Self.Operaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modulos">
+        <PropertyRef Name="id_modulo" />
+      </Principal>
+      <Dependent Role="Operaciones">
+        <PropertyRef Name="id_modulo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_operaciones_rolop">
+    <End Role="Operaciones" Type="Self.Operaciones" Multiplicity="0..1" />
+    <End Role="Rol_Operaciones" Type="Self.Rol_Operaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operaciones">
+        <PropertyRef Name="id_operacion" />
+      </Principal>
+      <Dependent Role="Rol_Operaciones">
+        <PropertyRef Name="id_operacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_personas_aprendiz">
+    <End Role="Personas" Type="Self.Personas" Multiplicity="1" />
+    <End Role="Aprendices" Type="Self.Aprendices" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Personas">
+        <PropertyRef Name="documento" />
+      </Principal>
+      <Dependent Role="Aprendices">
+        <PropertyRef Name="id_aprendiz" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_personas_asesores">
+    <End Role="Personas" Type="Self.Personas" Multiplicity="1" />
+    <End Role="Asesores" Type="Self.Asesores" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Personas">
+        <PropertyRef Name="documento" />
+      </Principal>
+      <Dependent Role="Asesores">
+        <PropertyRef Name="id_asesor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Proyecto_Agenda">
+    <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="1" />
+    <End Role="Agenda" Type="Self.Agenda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proyecto">
+        <PropertyRef Name="id_proyecto" />
+      </Principal>
+      <Dependent Role="Agenda">
+        <PropertyRef Name="ProyectoAgenda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_proyectocli_proyectofa">
+    <End Role="Solicitud" Type="Self.Solicitud" Multiplicity="1" />
+    <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Solicitud">
+        <PropertyRef Name="id_solicitud" />
+      </Principal>
+      <Dependent Role="Proyecto">
+        <PropertyRef Name="id_proyecto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Responsable">
+    <End Role="Asesores" Type="Self.Asesores" Multiplicity="1" />
+    <End Role="Agenda" Type="Self.Agenda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Asesores">
+        <PropertyRef Name="id_asesor" />
+      </Principal>
+      <Dependent Role="Agenda">
+        <PropertyRef Name="ResponsableAgenda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_rol_rolop">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+    <End Role="Rol_Operaciones" Type="Self.Rol_Operaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="id_rol" />
+      </Principal>
+      <Dependent Role="Rol_Operaciones">
+        <PropertyRef Name="id_rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_roles_usuarios">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="id_rol" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="id_rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_sexo_personas">
+    <End Role="Sexo" Type="Self.Sexo" Multiplicity="0..1" />
+    <End Role="Personas" Type="Self.Personas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sexo">
+        <PropertyRef Name="id_sexo" />
+      </Principal>
+      <Dependent Role="Personas">
+        <PropertyRef Name="id_sexo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tipo">
+    <End Role="Tipo_Imagen" Type="Self.Tipo_Imagen" Multiplicity="0..1" />
+    <End Role="Imagenes" Type="Self.Imagenes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipo_Imagen">
+        <PropertyRef Name="idTipo" />
+      </Principal>
+      <Dependent Role="Imagenes">
+        <PropertyRef Name="idTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tipoci_cliente">
+    <End Role="Tipo_Cliente" Type="Self.Tipo_Cliente" Multiplicity="0..1" />
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipo_Cliente">
+        <PropertyRef Name="id_TipoCliente" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="tipo_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tipocli_solicitud">
+    <End Role="Tipo_Solicitante" Type="Self.Tipo_Solicitante" Multiplicity="0..1" />
+    <End Role="Solicitud" Type="Self.Solicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipo_Solicitante">
+        <PropertyRef Name="tipo_solicitante" />
+      </Principal>
+      <Dependent Role="Solicitud">
+        <PropertyRef Name="id_tipoCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tipodo_cliente">
+    <End Role="Documento" Type="Self.Documento" Multiplicity="0..1" />
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Documento">
+        <PropertyRef Name="id_documento" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="id_documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tipodo_personas">
+    <End Role="Tipo_Documento" Type="Self.Tipo_Documento" Multiplicity="0..1" />
+    <End Role="Personas" Type="Self.Personas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipo_Documento">
+        <PropertyRef Name="id_documento" />
+      </Principal>
+      <Dependent Role="Personas">
+        <PropertyRef Name="id_documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tpcontrato_aprendices">
+    <End Role="Tipo_Contrato" Type="Self.Tipo_Contrato" Multiplicity="0..1" />
+    <End Role="Aprendices" Type="Self.Aprendices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipo_Contrato">
+        <PropertyRef Name="id_tipo_contrato" />
+      </Principal>
+      <Dependent Role="Aprendices">
+        <PropertyRef Name="id_contrato" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FabricaSoftwareModelStoreContainer">
+    <EntitySet Name="Adquirir_Servicios" EntityType="Self.Adquirir_Servicios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Agenda" EntityType="Self.Agenda" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Aprendices" EntityType="Self.Aprendices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Asesores" EntityType="Self.Asesores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Asignar_Fase" EntityType="Self.Asignar_Fase" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bitacora_Aprendiz" EntityType="Self.Bitacora_Aprendiz" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bitacora_Asesor" EntityType="Self.Bitacora_Asesor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bitacoras" EntityType="Self.Bitacoras" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ciclos" EntityType="Self.Ciclos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Como_Lo_Hacemos" EntityType="Self.Como_Lo_Hacemos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Documento" EntityType="Self.Documento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Estado_asignacion" EntityType="Self.Estado_asignacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Estado_Proyecto" EntityType="Self.Estado_Proyecto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Estado_Solicitud" EntityType="Self.Estado_Solicitud" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Estado_Viabilidad" EntityType="Self.Estado_Viabilidad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EstadoAgenda" EntityType="Self.EstadoAgenda" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Estados_Ciclos" EntityType="Self.Estados_Ciclos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Estados_Fases" EntityType="Self.Estados_Fases" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Fases" EntityType="Self.Fases" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Fases_de_Ciclos" EntityType="Self.Fases_de_Ciclos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Grupo_Aprendices" EntityType="Self.Grupo_Aprendices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Grupos" EntityType="Self.Grupos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="historialGrupos" EntityType="Self.historialGrupos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Imagenes" EntityType="Self.Imagenes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Modulos" EntityType="Self.Modulos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Nuestros_Servicios" EntityType="Self.Nuestros_Servicios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Operaciones" EntityType="Self.Operaciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Personas" EntityType="Self.Personas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="pqrs" EntityType="Self.pqrs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Proyecto" EntityType="Self.Proyecto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quienes_Somos" EntityType="Self.Quienes_Somos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rol_Operaciones" EntityType="Self.Rol_Operaciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sexo" EntityType="Self.Sexo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Solicitud" EntityType="Self.Solicitud" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tipo_Cliente" EntityType="Self.Tipo_Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tipo_Contrato" EntityType="Self.Tipo_Contrato" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tipo_Documento" EntityType="Self.Tipo_Documento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tipo_Imagen" EntityType="Self.Tipo_Imagen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tipo_Solicitante" EntityType="Self.Tipo_Solicitante" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LogAgenda" EntityType="Self.LogAgenda" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [LogAgenda].[id] AS [id], 
+    [LogAgenda].[idAgenda] AS [idAgenda], 
+    [LogAgenda].[fechaAgenda] AS [fechaAgenda], 
+    [LogAgenda].[Horario] AS [Horario], 
+    [LogAgenda].[descripcion] AS [descripcion], 
+    [LogAgenda].[ResponsableAgenda] AS [ResponsableAgenda], 
+    [LogAgenda].[ProyectoAgenda] AS [ProyectoAgenda], 
+    [LogAgenda].[clienteAgenda] AS [clienteAgenda], 
+    [LogAgenda].[asistentes] AS [asistentes], 
+    [LogAgenda].[estadoAgenda] AS [estadoAgenda], 
+    [LogAgenda].[grupoAgenda] AS [grupoAgenda], 
+    [LogAgenda].[idResponsable] AS [idResponsable], 
+    [LogAgenda].[fechaLog] AS [fechaLog], 
+    [LogAgenda].[Asunto] AS [Asunto]
+    FROM [dbo].[LogAgenda] AS [LogAgenda]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="fk_asesores_grupos" Association="Self.fk_asesores_grupos">
+      <End Role="Asesores" EntitySet="Asesores" />
+      <End Role="Grupos" EntitySet="Grupos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_asignarfase_aprendiz" Association="Self.fk_asignarfase_aprendiz">
+      <End Role="Aprendices" EntitySet="Aprendices" />
+      <End Role="Asignar_Fase" EntitySet="Asignar_Fase" />
+    </AssociationSet>
+    <AssociationSet Name="fk_asignarfase_estado" Association="Self.fk_asignarfase_estado">
+      <End Role="Estado_asignacion" EntitySet="Estado_asignacion" />
+      <End Role="Asignar_Fase" EntitySet="Asignar_Fase" />
+    </AssociationSet>
+    <AssociationSet Name="fk_asignarfase_faseciclo" Association="Self.fk_asignarfase_faseciclo">
+      <End Role="Fases_de_Ciclos" EntitySet="Fases_de_Ciclos" />
+      <End Role="Asignar_Fase" EntitySet="Asignar_Fase" />
+    </AssociationSet>
+    <AssociationSet Name="fk_bitacoras_proyectofa" Association="Self.fk_bitacoras_proyectofa">
+      <End Role="Bitacoras" EntitySet="Bitacoras" />
+      <End Role="Proyecto" EntitySet="Proyecto" />
+    </AssociationSet>
+    <AssociationSet Name="fk_bitapas_bitacoras" Association="Self.fk_bitapas_bitacoras">
+      <End Role="Bitacoras" EntitySet="Bitacoras" />
+      <End Role="Bitacora_Asesor" EntitySet="Bitacora_Asesor" />
+    </AssociationSet>
+    <AssociationSet Name="fk_bitapren_aprendiz" Association="Self.fk_bitapren_aprendiz">
+      <End Role="Aprendices" EntitySet="Aprendices" />
+      <End Role="Bitacora_Aprendiz" EntitySet="Bitacora_Aprendiz" />
+    </AssociationSet>
+    <AssociationSet Name="fk_bitapren_asesor" Association="Self.fk_bitapren_asesor">
+      <End Role="Asesores" EntitySet="Asesores" />
+      <End Role="Bitacora_Asesor" EntitySet="Bitacora_Asesor" />
+    </AssociationSet>
+    <AssociationSet Name="fk_bitapren_bitacoras" Association="Self.fk_bitapren_bitacoras">
+      <End Role="Bitacoras" EntitySet="Bitacoras" />
+      <End Role="Bitacora_Aprendiz" EntitySet="Bitacora_Aprendiz" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ciclos_estados" Association="Self.fk_ciclos_estados">
+      <End Role="Estados_Ciclos" EntitySet="Estados_Ciclos" />
+      <End Role="Ciclos" EntitySet="Ciclos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_cliente_solicitud" Association="Self.fk_cliente_solicitud">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Solicitud" EntitySet="Solicitud" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Estado_Agenda" Association="Self.fk_Estado_Agenda">
+      <End Role="EstadoAgenda" EntitySet="EstadoAgenda" />
+      <End Role="Agenda" EntitySet="Agenda" />
+    </AssociationSet>
+    <AssociationSet Name="fk_estadopro_proyectofa" Association="Self.fk_estadopro_proyectofa">
+      <End Role="Estado_Proyecto" EntitySet="Estado_Proyecto" />
+      <End Role="Proyecto" EntitySet="Proyecto" />
+    </AssociationSet>
+    <AssociationSet Name="fk_estados_usuarios" Association="Self.fk_estados_usuarios">
+      <End Role="Estados" EntitySet="Estados" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="fk_estadosoli_solicitud" Association="Self.fk_estadosoli_solicitud">
+      <End Role="Estado_Solicitud" EntitySet="Estado_Solicitud" />
+      <End Role="Solicitud" EntitySet="Solicitud" />
+    </AssociationSet>
+    <AssociationSet Name="fk_estadovia_solicitud" Association="Self.fk_estadovia_solicitud">
+      <End Role="Estado_Viabilidad" EntitySet="Estado_Viabilidad" />
+      <End Role="Solicitud" EntitySet="Solicitud" />
+    </AssociationSet>
+    <AssociationSet Name="fk_fasesdeciclo_estadosfases" Association="Self.fk_fasesdeciclo_estadosfases">
+      <End Role="Estados_Fases" EntitySet="Estados_Fases" />
+      <End Role="Fases_de_Ciclos" EntitySet="Fases_de_Ciclos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_fasesdeciclo_fases" Association="Self.fk_fasesdeciclo_fases">
+      <End Role="Fases" EntitySet="Fases" />
+      <End Role="Fases_de_Ciclos" EntitySet="Fases_de_Ciclos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_fasesdeciclos_ciclos" Association="Self.fk_fasesdeciclos_ciclos">
+      <End Role="Ciclos" EntitySet="Ciclos" />
+      <End Role="Fases_de_Ciclos" EntitySet="Fases_de_Ciclos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_gruap_aprendices" Association="Self.fk_gruap_aprendices">
+      <End Role="Aprendices" EntitySet="Aprendices" />
+      <End Role="Grupo_Aprendices" EntitySet="Grupo_Aprendices" />
+    </AssociationSet>
+    <AssociationSet Name="fk_gruap_grupos" Association="Self.fk_gruap_grupos">
+      <End Role="Grupos" EntitySet="Grupos" />
+      <End Role="Grupo_Aprendices" EntitySet="Grupo_Aprendices" />
+    </AssociationSet>
+    <AssociationSet Name="fk_grupos_proyectofa" Association="Self.fk_grupos_proyectofa">
+      <End Role="Grupos" EntitySet="Grupos" />
+      <End Role="Proyecto" EntitySet="Proyecto" />
+    </AssociationSet>
+    <AssociationSet Name="fk_modulos_operaciones" Association="Self.fk_modulos_operaciones">
+      <End Role="Modulos" EntitySet="Modulos" />
+      <End Role="Operaciones" EntitySet="Operaciones" />
+    </AssociationSet>
+    <AssociationSet Name="fk_operaciones_rolop" Association="Self.fk_operaciones_rolop">
+      <End Role="Operaciones" EntitySet="Operaciones" />
+      <End Role="Rol_Operaciones" EntitySet="Rol_Operaciones" />
+    </AssociationSet>
+    <AssociationSet Name="fk_personas_aprendiz" Association="Self.fk_personas_aprendiz">
+      <End Role="Personas" EntitySet="Personas" />
+      <End Role="Aprendices" EntitySet="Aprendices" />
+    </AssociationSet>
+    <AssociationSet Name="fk_personas_asesores" Association="Self.fk_personas_asesores">
+      <End Role="Personas" EntitySet="Personas" />
+      <End Role="Asesores" EntitySet="Asesores" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Proyecto_Agenda" Association="Self.fk_Proyecto_Agenda">
+      <End Role="Proyecto" EntitySet="Proyecto" />
+      <End Role="Agenda" EntitySet="Agenda" />
+    </AssociationSet>
+    <AssociationSet Name="fk_proyectocli_proyectofa" Association="Self.fk_proyectocli_proyectofa">
+      <End Role="Solicitud" EntitySet="Solicitud" />
+      <End Role="Proyecto" EntitySet="Proyecto" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Responsable" Association="Self.fk_Responsable">
+      <End Role="Asesores" EntitySet="Asesores" />
+      <End Role="Agenda" EntitySet="Agenda" />
+    </AssociationSet>
+    <AssociationSet Name="fk_rol_rolop" Association="Self.fk_rol_rolop">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Rol_Operaciones" EntitySet="Rol_Operaciones" />
+    </AssociationSet>
+    <AssociationSet Name="fk_roles_usuarios" Association="Self.fk_roles_usuarios">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="fk_sexo_personas" Association="Self.fk_sexo_personas">
+      <End Role="Sexo" EntitySet="Sexo" />
+      <End Role="Personas" EntitySet="Personas" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tipo" Association="Self.fk_tipo">
+      <End Role="Tipo_Imagen" EntitySet="Tipo_Imagen" />
+      <End Role="Imagenes" EntitySet="Imagenes" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tipoci_cliente" Association="Self.fk_tipoci_cliente">
+      <End Role="Tipo_Cliente" EntitySet="Tipo_Cliente" />
+      <End Role="Cliente" EntitySet="Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tipocli_solicitud" Association="Self.fk_tipocli_solicitud">
+      <End Role="Tipo_Solicitante" EntitySet="Tipo_Solicitante" />
+      <End Role="Solicitud" EntitySet="Solicitud" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tipodo_cliente" Association="Self.fk_tipodo_cliente">
+      <End Role="Documento" EntitySet="Documento" />
+      <End Role="Cliente" EntitySet="Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tipodo_personas" Association="Self.fk_tipodo_personas">
+      <End Role="Tipo_Documento" EntitySet="Tipo_Documento" />
+      <End Role="Personas" EntitySet="Personas" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tpcontrato_aprendices" Association="Self.fk_tpcontrato_aprendices">
+      <End Role="Tipo_Contrato" EntitySet="Tipo_Contrato" />
+      <End Role="Aprendices" EntitySet="Aprendices" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,219 @@
+﻿@model SoftwareFactory.Models.Agenda
+
+@{
+    ViewBag.Title = "Registrar agenda";
+    Layout =null;
+
+}
+
+
+<div class="container">
+
+
+
+    @using (Html.BeginForm())
+    {
+
+        @Html.AntiForgeryToken()
+
+        
+        <div class="form-horizontal row">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            
+
+            <div class="form-group col-sm-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-auto">
+                    <label class="font-weight-bold" for="inlineFormInputGroup">Responsable de la Agenda:</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-user"></i></div>
+                        </div>
+                        @Html.DropDownList("ResponsableAgenda", null, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.ResponsableAgenda, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group col-sm-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-auto">
+                    <label class="font-weight-bold" for="inlineFormInputGroup">Proyecto para Agendar:</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-project-diagram"></i></div>
+                        </div>
+                        @Html.DropDownList("ProyectoAgenda", null, new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.ProyectoAgenda, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-sm-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-auto">
+                    <label class="font-weight-bold" for="inlineFormInputGroup">Fecha de la agenda:</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-calendar-alt"></i></div>
+                        </div>
+                        <input type="text" autocomplete="off" readonly name="FechaAgenda" asp-for="FechaAgenda" id="calendario" class="form-control" placeholder="DD-MM-YY" />
+                    </div>
+                    <small id="errorFecha" class="form-text text-danger" hidden>Este campo es obligatorio*</small>
+                </div>
+            </div>
+
+            <div class="form-group col-sm-6  col-md-6 col-lg-6">
+                <div class="col-auto">
+                    <label class="font-weight-bold" for="inlineFormInputGroup">Hora inicial::</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-hourglass-start"></i></div>
+                        </div>
+                       
+                        <select name="HoraInicio" asp-for="HoraInicio" id="horaI" class="custom-select form-control">
+                            <option value="0" selected>00:00</option>
+                            <option value="7:00:00">07:00</option>
+                            <option value="8:00:00">08:00</option>
+                            <option value="9:00:00">09:00</option>
+                            <option value="10:00:00">10:00</option>
+                            <option value="11:00:00">11:00</option>
+                            <option value="12:00:00">12:00</option>
+                            <option value="13:00:00">13:00</option>
+                            <option value="14:00:00">14:00</option>
+                            <option value="15:00:00">15:00</option>
+                            <option value="16:00:00">16:00</option>
+                        </select>
+                    </div>
+                    <small id="errorHora" class="form-text text-danger" hidden>Este campo es obligatorio*</small>
+                </div>
+            </div>
+
+            <div class="form-group col-sm-6  col-md-6 col-lg-6">
+                <div class="col-auto">
+                    <label class="font-weight-bold" for="inlineFormInputGroup">Hora Final:</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-hourglass-end"></i></div>
+                        </div>
+
+                        <select name="HoraFinal" asp-for="HoraFinal" id="horaF" class="custom-select form-control">
+                            <option value="0" selected>00:00</option>
+                            <option value="8:00:00">08:00</option>
+                            <option value="9:00:00">09:00</option>
+                            <option value="10:00:00">10:00</option>
+                            <option value="11:00:00">11:00</option>
+                            <option value="12:00:00">12:00</option>
+                            <option value="13:00:00">13:00</option>
+                            <option value="14:00:00">14:00</option>
+                            <option value="15:00:00">15:00</option>
+                            <option value="16:00:00">16:00</option>
+                            <option value="17:00:00">17:00</option>
+                        </select>
+                    </div>
+                    
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                <div class="col-auto" align="left">
+                    <label class="font-weight-bold" for="inlineFormInputGroup">Descripción:</label>
+                    <div class="input-group ">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-crown"></i></div>
+                        </div>
+                        @Html.TextAreaFor(model => model.Asunto, new { @class = "form-control", @rows = "4", @cols = "50" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Asunto, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group col-sm-12 col-md-12 col-lg-12" align="center">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <Button type="button" onclick="Validar()" class="btn bg-gradient-info text-white" > Registrar </Button>
+                        
+                        <input type="submit" value="" id="enviar" class="btn bg-gradient-info text-white" hidden/>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    }
+
+</div>
+<style>
+    #ui-datepicker-div {
+        z-index: 1151 !important;
+    }
+</style>
+
+
+
+    <script>
+
+
+       function soloNumeros(e){
+           var key = window.Event ? e.which : e.keyCode
+           return (key >= 48 && key <= 57)
+        };
+
+        function Validar() {
+            var fecha = $("#calendario").val();
+            var hora = $("#horaI").val();
+
+                    
+            if (fecha.length < 1 || hora == 0) {
+
+                
+
+                if (fecha.length < 1) {
+
+                    $("#errorFecha").attr("hidden", false);
+                    var intervalo = setInterval(function () {
+
+                        $("#errorFecha").attr("hidden", true);
+                        clearInterval(intervalo);
+                    }, 10000);
+                }
+
+
+                if (hora == 0) {
+                    $("#errorHora").attr("hidden", false);
+                    var intervaloHora = setInterval(function () {
+
+                        $("#errorHora").attr("hidden", true);
+                        clearInterval(intervaloHora);
+                    }, 10000);
+                }
+            }
+            else {
+                $("#enviar").trigger("click");
+            }
+
+
+            
+        }
+
+
+
+        $('#calendario').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            minDate: '-0Y',
+            maxDate: '+3M',
+            dateFormat: 'mm/dd/yy',
+            beforeShowDay: $.datepicker.noWeekends,
+
+        });
+
+
+    </script>
+

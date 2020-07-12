@@ -1,0 +1,204 @@
+﻿@model SoftwareFactory.Models.Usuarios
+
+@{
+    Layout = null;
+}
+
+
+<html lang="es-co">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de clientes - Fabrica de Software</title>
+    <link rel="shortcut icon" href="~/vendor/img/logosena.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/CSS/Login/main.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+    <script src="~/Scripts/toastr.min.js"></script>
+    <script src="~/Scripts/FontAwesomeCDN/d502923bed.js"></script>
+    <style>
+        body {
+            background-image: url(../../Vendor/img/AffectionateInfiniteGuernseycow-size_restricted.gif);
+            background-size: cover;
+        }
+
+        #title {
+            background-color: #7fafc8;
+        }
+
+        #container-register {
+            background-color: #1d1f20bf;
+            position: relative;
+        }
+
+        input[type=submit] {
+            background: #7fafc8;
+            transition: .5s;
+            color: #383838;
+        }
+
+            input[type=submit]:hover {
+                background: #608294;
+                transition: 0.5s;
+                color: #ffffff;
+            }
+    </style>
+</head>
+
+<body>
+    <input value="@ViewBag.Success" id="Success" hidden/>
+    <input value="@ViewBag.Error" id="Error" hidden/>
+
+    <div id="container-register" style="height:558px !important;">
+        <div id="title">
+            <i class="material-icons lock">lock</i> Registro Clientes
+        </div>
+
+        <div class="form-horizontal row">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="input">
+                    <div class="input-addon">
+                        <i class="material-icons">email</i>
+                    </div>
+                    <input id="email" name="email" asp-for="email" placeholder="Correo Electronico" type="email" autocomplete="off">
+                </div>
+                <h5 style="color:#ff0000; padding:0; margin:0;" id="errorEmail" hidden>Este campo es obligatorio <i class="fas fa-exclamation-triangle"></i></h5>
+                <h5 style="color:#ff0000; padding:0; margin:0;" id="errorEmailFormato" hidden>El correo no es válido <i class="fas fa-exclamation-triangle"></i></h5>
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+
+                <div class="clearfix"></div>
+
+                <div class="input">
+                    <div class="input-addon">
+                        <i class="material-icons">face</i>
+                    </div>
+                    <input id="usuario" placeholder="Documento" name="id_usuario" asp-for="id_usuario" type="text" class="validate" autocomplete="off">
+                </div>
+                <h5 style="color:#ff0000; padding:0; margin:0;" id="errorLen" hidden>5 caracter mínimos <i class="fas fa-exclamation-triangle"></i></h5>
+                <h5 style="color:#ff0000; padding:0; margin:0;" id="errorLenM" hidden>11 caracteres máximo <i class="fas fa-exclamation-triangle"></i></h5>
+                <h5 style="color:#ff0000; padding:0; margin:0;" id="errorUsuario" hidden>Este campo es obligatorio <i class="fas fa-exclamation-triangle"></i></h5>
+                <h5 style="color:#ff0000; padding:0; margin:0;" id="errorSolonumero" hidden>Solo números <i class="fas fa-exclamation-triangle"></i></h5>
+                @Html.ValidationMessageFor(model => model.id_usuario, "", new { @class = "text-danger" })
+
+                <div class="clearfix"></div>
+
+                <div class="input">
+                    <div class="input-addon">
+                        <i class="material-icons">vpn_key</i>
+                    </div>
+                    <input id="Password" asp-for="hash_password" name="hash_password" placeholder="Contraseña" type="password" class="validate" autocomplete="off">
+                    <small class="form-text text-danger" hidden>*</small>
+                    <small class="form-text text-danger" hidden>*</small>
+                </div>
+                <h5 style="color:#ff0000; padding:0; margin:0;" id="errorContra" hidden>8 caracteres mínimo <i class="fas fa-exclamation-triangle"></i></h5>
+                <h5 style="color:#ff0000; padding:0; margin:0;" id="errorPassword" hidden>Este campo es obligatorio <i class="fas fa-exclamation-triangle"></i></h5>
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+
+                <div class="clearfix"></div>
+
+                <div class="input">
+
+                    <div class="input-addon">
+                        <i class="material-icons">vpn_key</i>
+                    </div>
+                    <input id="Password2" name="Password" placeholder="Repetir Contraseña" type="password" class="validate" autocomplete="off">
+                </div>
+                <h5 style="color:#ff0000; padding:0; margin:0;" id="errorContra2" hidden>Las contraseñan no coinciden <i class="fas fa-exclamation-triangle"></i></h5>
+                <h5 style="color:#08FF00; padding:0; margin:0;" id="errorContra3" hidden>Las contraseñan coinciden <i class="fas fa-check-circle"></i></h5>
+                <h5 style="color:#ff0000; padding:0; margin:0;" id="errorPassword2" hidden>Este campo es obligatorio <i class="fas fa-exclamation-triangle"></i></h5>
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+
+                <div class="clearfix"></div>
+                <div id="enviarH">
+                    <input type="submit" id="enviar" hidden />
+                </div>
+            }
+
+
+            <input type="submit" id="validar" value="Registrar" onclick="validarCampos()" />
+            <br />
+        </div>
+
+        <div class="privacy">
+            <a href="#">Terminos de privacidad</a>
+        </div>
+
+        <div class="register">
+            Ya tienes una cuenta?
+            <a href="~/Acceso/IniciarCliente"><button id="register-link">Iniciar sesión aquí</button></a>
+        </div>
+    </div>
+
+    <script src="~/Scripts/ValidacionRegistroCliente.js"></script>
+    
+    <script tag="Toast.js">
+     
+
+        $(document).ready(function () {
+
+            var error = $("#Error").val();
+            if (error.length > 0) {
+                Command: toastr["error"](error)
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-bottom-right",
+                    "preventDuplicates": true,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+            }
+
+            var success = $("#Success").val();
+            if (success.length > 0) {
+                Command: toastr["success"](success)
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": true,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "15000",
+                    "timeOut": "15000",
+                    "extendedTimeOut": "15000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+            }
+
+
+
+
+
+        });
+
+    </script>
+
+</body>
+</html>

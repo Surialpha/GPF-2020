@@ -1,0 +1,123 @@
+﻿@model SoftwareFactory.Models.Usuarios
+
+@{
+    ViewBag.Title = "Agregar Usuario";
+    Layout = "~/Views/Shared/_DashLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col" align="center">
+        <a href="~/Usuarios/Index" class="btn btn-primary btn-circle float-left" data-toggle="tooltip" data-placement="right" title="Atras"><i class="fas fa-reply"></i></a>
+        <h2>Agregar Usuarios</h2>
+    </div>
+</div>
+
+<div class="container">
+
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <hr />
+        <div class="form-horizontal row">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInputGroup">ID Usuario</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-id-card"></i></div>
+                        </div>
+                        @Html.EditorFor(model => model.id_usuario, new { htmlAttributes = new { @class = "form-control", @id = "usuario", @placeholder = "Ingrese número de documento" } })
+                    </div>
+                    <small id="errorLen" class="form-text text-danger" hidden>5 caracter mínimos*</small>
+                    <small id="errorLenM" class="form-text text-danger" hidden>15 caracteres máximo*</small>
+                    <small id="errorUsuario" class="form-text text-danger" hidden>Este campo es obligatorio*</small>
+                    <small id="errorSolonumero" class="form-text text-danger" hidden>Solo números*</small>
+                    @Html.ValidationMessageFor(model => model.id_usuario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInputGroup">Email</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-at"></i></div>
+                        </div>
+                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @id = "email", @type = "email", @placeholder = "Ingrese correo electrónico" } })
+                    </div>
+                    <small id="errorEmail" class="form-text text-danger" hidden>Este campo es obligatorio*</small>
+                    <small id="errorEmailFormato" class="form-text text-danger" hidden>El correo no es válido*</small>
+                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInputGroup">Contraseña</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-unlock-alt"></i></div>
+                        </div>
+                        @Html.EditorFor(model => model.hash_password, new { htmlAttributes = new { @class = "form-control", @type = "password", @id = "password", @placeholder = "Ingrese contraseña" } })
+                    </div>
+                    <small id="errorContra" class="form-text text-danger" hidden>8 caracteres mínimo*</small>
+                    <small id="errorPassword" class="form-text text-danger" hidden>Este campo es obligatorio*</small>
+                    @Html.ValidationMessageFor(model => model.hash_password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInputGroup">Rol</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-user-cog"></i></div>
+                        </div>
+                        @Html.DropDownList("id_rol", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.id_rol, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInputGroup">Estado</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-user-cog"></i></div>
+                        </div>
+                        @Html.DropDownList("id_estado", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.id_estado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-sm-12 col-md-12 col-lg-12" align="center">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" id="enviar" hidden />
+
+                        <input value="Registrar" class="btn bg-gradient-info text-white" onclick="validarCampos()" style="cursor: pointer" title="Registrar usuario" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+
+@section script {
+    <script src="~/Scripts/ValidarCreate.js"></script>
+
+
+
+
+}

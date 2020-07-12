@@ -1,0 +1,89 @@
+﻿@model SoftwareFactory.Models.Nuestros_Servicios
+@{
+    ViewBag.Title = "EditarServicio";
+    Layout = "~/Views/Shared/_DashLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col" align="center">
+        <a href="~/Admin/Index" class="btn btn-primary btn-circle float-left" data-toggle="tooltip" data-placement="right" title="Atras"><i class="fas fa-reply"></i></a>
+        <h2>Editar Servicio</h2>
+    </div>
+    <hr />
+</div>
+
+
+<div class="container text-center">
+
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <hr />
+        <div class="form-horizontal row">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger"})
+
+            <div class="col-sm-4">
+                @Html.EditorFor(model => model.id, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nombre", @style = "display:none" } })
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="col-auto">
+
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-text-width"></i></div>
+                            </div>
+                            @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nombre" } })
+                        </div>
+
+                        @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="form-horizontal row">
+
+
+            <div class="form-group">
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInputGroup">Apellidos</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-text-height"></i></div>
+                        </div>
+                        @Html.TextAreaFor(model => model.descripcion, new { @class = "form-control", @cols = "500", @row = "800" })
+
+
+
+                      
+                    </div>
+                    @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-sm-12 col-md-12 col-lg-12" align="center">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Editar" class="btn bg-gradient-info text-white" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+     }
+
+<br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br />
+<br /><br />

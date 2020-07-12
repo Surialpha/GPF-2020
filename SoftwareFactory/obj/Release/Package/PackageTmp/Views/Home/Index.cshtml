@@ -1,0 +1,609 @@
+﻿@model SoftwareFactory.Models.pqrs
+@{
+    ViewBag.Title = "Inicio";
+}
+
+<!-- Seccion Quienes Somos -->
+<section-content>
+    <div class="container" id="uno">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="font-weight-bold mt-5 mb-4">
+                    <span style="color:#fc7323; font-size: 3rem;">¿</span>Quienes
+                    somos<span style="color:#fc7323; font-size: 3rem;">?</span>
+                </h2>
+            </div>
+            <div class="col-12 text-center">
+                <p class="mb-5 mt-3" style="font-size:1.5rem;">
+                    <span class="font-weight-bold text-uppercase" style="color:#fc7323;"> Fábrica de Software</span>
+                    @ViewBag.QuienesSomos
+                </p>
+            </div>
+
+        </div>
+        <div class="row mt-5 mb-4">
+            <div class="col-md-6 col-sm-12">
+                <div class="text-center">
+                    <img src="~/Vendor/img/fotofabrica.png" height="400rem" width="400rem" class="imgcomo" alt="...">
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 ">
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <h2 class="font-weight-bold">
+                            <span style="color:#fc7323; font-size: 3rem;">¿</span>Cómo lo
+                            hacemos
+                            <span style="color:#fc7323; font-size: 3rem;">?</span>
+                        </h2>
+                    </div>
+                    <div class="col-sm-12">
+                        <p class="mb-5 mt-3" style="font-size:1.5rem;">
+                            @ViewBag.ComoLoHacemos
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section-content>
+<!-- end Seccion Quienes Somos -->
+<!-- Card Servicios -->
+<div class="sec1" id="dos">
+    <div class="container text-center">
+        <div class="col-12 my-5">
+            <p class="text-white font-weight-bold" style="font-size:3rem;">Nuestros Servicios</p>
+        </div>
+        <div class="container">
+            <div class="row blog">
+                <div class="carousel-item active mb-5">
+                    <div class="row">
+
+
+                        <div class="col-md-3">
+                            <div class="card cardservices">
+                                <div class="card-body mb-5">
+                                    <h5 class="card-title"
+                                        style="font-weight: normal;color: #fc7323;font-size: 1.5em;">
+
+                                        @foreach (var n in ViewBag.Servicio)
+                                        {
+                                            if (n.id == 1)
+                                            {
+                                                @n.nombre;
+                                            }
+                                        }
+                                    </h5>
+                                    <img src="~/Vendor/img/programming2.png" class="p-3 mb-4 card-img-top" alt="...">
+                                    <p class="card-text justify-content-around " style="font-size: 0.8rem;">
+                                        @foreach (var n in ViewBag.Servicio)
+                                        {
+                                            if (n.id == 1)
+                                            {
+                                                @n.descripcion;
+                                            }
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="card cardservices">
+                                <div class="card-body mb-5">
+                                    <h5 class="card-title"
+                                        style="font-weight: normal;color: #fc7323;font-size: 1.5em;">
+                                        @foreach (var n in ViewBag.Servicio)
+                                        {
+                                            if (n.id == 2)
+                                            {
+                                                @n.nombre;
+                                            }
+                                        }
+                                    </h5>
+                                    <img src="~/Vendor/img/webservices2.png" class="p-3 mb-4 card-img-top" alt="...">
+                                    <p class="card-text justify-content-around " style="font-size: 0.8rem;">
+                                        @foreach (var n in ViewBag.Servicio)
+                                        {
+                                            if (n.id == 2)
+                                            {
+                                                @n.descripcion;
+                                            }
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="card cardservices">
+                                <div class="card-body mb-5">
+                                    <h5 class="card-title"
+                                        style="font-weight: normal;color: #fc7323;font-size: 1.5em;">
+                                        @foreach (var n in ViewBag.Servicio)
+                                        {
+                                            if (n.id == 3)
+                                            {
+                                                @n.nombre;
+                                            }
+                                        }
+                                    </h5>
+                                    <img src="~/Vendor/img/basedatos2.png" class="p-3 mb-4 card-img-top" alt="...">
+                                    <p class="card-text justify-content-around " style="font-size: 0.8rem;">
+                                        @foreach (var n in ViewBag.Servicio)
+                                        {
+                                            if (n.id == 3)
+                                            {
+                                                @n.descripcion;
+                                            }
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="card cardservices">
+                                <div class="card-body mb-5">
+                                    <h5 class="card-title"
+                                        style="font-weight: normal;color: #fc7323;font-size: 1.5em;">
+                                        @foreach (var n in ViewBag.Servicio)
+                                        {
+                                            if (n.id == 4)
+                                            {
+                                                @n.nombre;
+                                            }
+                                        }
+                                    </h5>
+                                    <img src="~/Vendor/img/desarrollomovil2.png" class="p-3 mb-4 card-img-top" alt="...">
+                                    <p class="card-text justify-content-around " style="font-size: 0.8rem;">
+                                        @foreach (var n in ViewBag.Servicio)
+                                        {
+                                            if (n.id == 4)
+                                            {
+                                                @n.descripcion;
+                                            }
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+<!-- End Card Servicios -->
+<!-- Litte Div acerca de proyectos -->
+
+
+<div class="container" id="cuatro">
+    <div class="row ">
+        <div class="col-12 text-center">
+            <h2 class="font-weight-bold mt-5 mb-4">
+                <span style="color:#fc7323; font-size: 3rem;">¿</span>Tienes un
+                Proyecto<span style="color:#fc7323; font-size: 3rem;">?</span>
+            </h2>
+        </div>
+        <div class="col-12 text-center">
+            <p style="font-size:1.5rem;">
+                Llena nuestro formulario de viabilidad de proyecto y prodremos ayudarte
+            </p>
+            <a href="/Home/Formulario" class="btn btn-outline-bg mb-5">Ir al formulario</a>
+
+        </div>
+
+    </div>
+</div>
+<!-- End Litte Div acerca de proyectos -->
+<!-- Seccion como adquirir -->
+<div class="sec2" id="tres">
+    <div class="col-12 mt-5  text-center">
+        <p class="text-white font-weight-bold" style="font-size:3rem;">¿Cómo adquirir nuestros servicios?</p>
+    </div>
+
+    <div class="container mb-5">
+
+        <div class="card bg-light  mt-5 mb-4 ">
+            <div class="card-body">
+                <div class="row UpFather">
+                    <div class="col-lg-4 col-sm-12" align="center">
+                        <img src="~/Vendor/img/empresarios2.png" style="height: 11rem;" alt="...">
+                    </div>
+                    <div class="col-lg-8 col-sm-12 DownSon">
+                        <h5 class="card-title mb-4" style="color: #fc7323;">
+
+                            @foreach (var n in ViewBag.Adquirir)
+                            {
+                                if (n.id == 1)
+                                {
+                                    @n.nombre;
+                                }
+                            }
+                        </h5>
+                        <p class="card-text" style="text-align : center;">
+                            @foreach (var n in ViewBag.Adquirir)
+                            {
+                                if (n.id == 1)
+                                {
+                                    @n.descripcion;
+                                }
+                            }
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card bg-light  mt-5 mb-4">
+            <div class="card-body">
+                <div class="row UpFather">
+                    <div class="col-lg-8 col-sm-12 DownSon">
+                        <h5 class="card-title mb-4" style="color: #fc7323;">
+                            @foreach (var n in ViewBag.Adquirir)
+                            {
+                                if (n.id == 2)
+                                {
+                                    @n.nombre;
+                                }
+                            }
+                        </h5>
+                        <p class="card-text" style="text-align : center;">
+                            @foreach (var n in ViewBag.Adquirir)
+                            {
+                                if (n.id == 2)
+                                {
+                                    @n.descripcion;
+                                }
+                            }
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-sm-12" align="center">
+                        <img src="~/Vendor/img/censena2.png" style="height: 11rem;" alt="...">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card bg-light  mt-5 mb-4 ">
+            <div class="card-body">
+                <div class="row UpFather">
+                    <div class="col-lg-4 col-sm-12" align="center">
+                        <img src="~/Vendor/img/empresarios2.png" style="height: 11rem;" alt="...">
+                    </div>
+                    <div class="col-lg-8 col-sm-12 DownSon">
+                        <h5 class="card-title mb-4" style="color: #fc7323;">
+                            @foreach (var n in ViewBag.Adquirir)
+                            {
+                                if (n.id == 3)
+                                {
+                                    @n.nombre;
+                                }
+                            }
+                        </h5>
+                        <p class="card-text" style="text-align : center;">
+                            @foreach (var n in ViewBag.Adquirir)
+                            {
+                                if (n.id == 3)
+                                {
+                                    @n.descripcion;
+                                }
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<!-- End Seccion como adquirir -->
+<!-- Fotos equipo de trabajo -->
+
+<section-content>
+    <div class="container mb-5" align="center">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="font-weight-bold mt-5 mb-4">Nuestro Equipo de Trabajo</h2>
+            </div>
+            <div class="col-lg-12">
+                <h4 class="font-weight-bold mt-5 mb-4" style="color:#fc7323;">Lider de Fábrica</h4>
+                @if (ViewBag.Imagenes != null)
+                {
+                    var count = 0;
+                    var imgC = ViewBag.Imagenes.Count;
+                    foreach (var imagen in ViewBag.Imagenes)
+                    {
+
+                        if (imagen.idTipo == 1)
+                        {
+                            <img src="../../../Vendor/ImgIndex/@imagen.imageUrl" class="rounded mx-auto d-block"
+                                 style="height: 20rem;" alt="@imagen.nombreUsuario">
+                            break;
+                        }
+                        else if (imagen.idTipo == 2) { count++; }
+                        else if (imagen.idTipo == 3) { count++; }
+                        if (count == imgC)
+                        {
+                            <img src="~/Vendor/img/Personas-Eliminar/UnknownUser.jpg" class="rounded mx-auto d-block"
+                                 style="height: 20rem;" alt="Lider de Fabrica">
+                        }
+                    }
+                }
+
+                else
+                {
+                    <img src="~/Vendor/img/Personas-Eliminar/UnknownUser.jpg" class="rounded mx-auto d-block"
+                         style="height: 20rem;" alt="Lider de Fabrica">
+                }
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="font-weight-bold mt-5 mb-4" style="color:#fc7323;">Asesores Técnicos</h4>
+
+                <!--Carousel Wrapper-->
+                <div class="carousel slide carousel-multi-item carousel-multi-item-2" data-ride="carousel">
+
+                    <!--Slides-->
+                    <div class="carousel-inner" role="listbox">
+
+                        @if (ViewBag.Imagenes != null)
+                        {
+                            var count = 0;
+                            var imgC = ViewBag.Imagenes.Count;
+                            foreach (var imagen in ViewBag.Imagenes)
+                            {
+                                if (imagen.idTipo == 2)
+                                {
+                                    <div class="col-md-3 mb-3">
+                                        <div class="card">
+                                            <img class="img-fluid" src="../../../Vendor/ImgIndex/@imagen.imageUrl"
+                                                 alt="@imagen.nombreUsuario" style="height: 15rem;">
+                                        </div>
+                                    </div>
+                                }
+                                else if (imagen.idTipo == 1) { count++; }
+                                else if (imagen.idTipo == 3) { count++; }
+                                if (count == imgC)
+                                {
+                                    <div class="col-md-3 mb-3">
+                                        <div class="card">
+                                            <img class="img-fluid" src="~/Vendor/img/Personas-Eliminar/UnknownUser.jpg"
+                                                 alt="Card image cap">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <div class="card">
+                                            <img class="img-fluid" src="~/Vendor/img/Personas-Eliminar/UnknownUser.jpg"
+                                                 alt="Card image cap">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <div class="card">
+                                            <img class="img-fluid" src="~/Vendor/img/Personas-Eliminar/UnknownUser.jpg"
+                                                 alt="Card image cap">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <div class="card">
+                                            <img class="img-fluid" src="~/Vendor/img/Personas-Eliminar/UnknownUser.jpg"
+                                                 alt="Card image cap">
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+                        }
+
+                        else
+                        {
+
+                            <div class="col-md-3 mb-3">
+                                <div class="card">
+                                    <img class="img-fluid" src="~/Vendor/img/Personas-Eliminar/UnknownUser.jpg"
+                                         alt="Card image cap">
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="card">
+                                    <img class="img-fluid" src="~/Vendor/img/Personas-Eliminar/UnknownUser.jpg"
+                                         alt="Card image cap">
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="card">
+                                    <img class="img-fluid" src="~/Vendor/img/Personas-Eliminar/UnknownUser.jpg"
+                                         alt="Card image cap">
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="card">
+                                    <img class="img-fluid" src="~/Vendor/img/Personas-Eliminar/UnknownUser.jpg"
+                                         alt="Card image cap">
+                                </div>
+                            </div>
+                        }
+
+
+
+
+
+                    </div>
+
+                </div>
+                <!--/.Carousel Wrapper-->
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="font-weight-bold mt-5 mb-4" style="color:#fc7323;">Aprendices</h4>
+
+                <!--Carousel Wrapper-->
+                <div class="carousel slide carousel-multi-item carousel-multi-item-2" data-ride="carousel">
+
+                    <!--Slides-->
+                    <div class="carousel-inner" role="listbox">
+
+
+
+                        @if (ViewBag.Imagenes != null)
+                        {
+                            var count = 0;
+                            var imgC = ViewBag.Imagenes.Count;
+                            foreach (var imagen in ViewBag.Imagenes)
+                            {
+                                if (imagen.idTipo == 3)
+                                {
+                                    <div class="col-md-3 mb-3">
+                                        <div class="card">
+                                            <img class="img-fluid" src="../../../Vendor/ImgIndex/@imagen.imageUrl"
+                                                 alt="@imagen.nombreUsuario" style="height: 15rem;">
+                                        </div>
+                                    </div>
+                                }
+                                else if (imagen.idTipo == 1) { count++; }
+                                else if (imagen.idTipo == 2) { count++; }
+                                if (count == imgC)
+                                {
+                                    <div class="col-md-3 mb-3">
+                                        <div class="card">
+                                            <img class="img-fluid" src="~/Vendor/img/Personas-Eliminar/UnknownUser.jpg"
+                                                 alt="Card image cap">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <div class="card">
+                                            <img class="img-fluid" src="~/Vendor/img/Personas-Eliminar/UnknownUser.jpg"
+                                                 alt="Card image cap">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <div class="card">
+                                            <img class="img-fluid" src="~/Vendor/img/Personas-Eliminar/UnknownUser.jpg"
+                                                 alt="Card image cap">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <div class="card">
+                                            <img class="img-fluid" src="~/Vendor/img/Personas-Eliminar/UnknownUser.jpg"
+                                                 alt="Card image cap">
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+                        }
+
+                        else
+                        {
+
+                            <div class="col-md-3 mb-3">
+                                <div class="card">
+                                    <img class="img-fluid" src="~/Vendor/img/Personas-Eliminar/UnknownUser.jpg"
+                                         alt="Card image cap">
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="card">
+                                    <img class="img-fluid" src="~/Vendor/img/Personas-Eliminar/UnknownUser.jpg"
+                                         alt="Card image cap">
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="card">
+                                    <img class="img-fluid" src="~/Vendor/img/Personas-Eliminar/UnknownUser.jpg"
+                                         alt="Card image cap">
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="card">
+                                    <img class="img-fluid" src="~/Vendor/img/Personas-Eliminar/UnknownUser.jpg"
+                                         alt="Card image cap">
+                                </div>
+                            </div>
+                        }
+
+
+
+                    </div>
+
+                </div>
+                <!--/.Carousel Wrapper-->
+
+            </div>
+        </div>
+
+
+    </div>
+</section-content>
+
+<!-- End Fotos equipo de trabajo -->
+<!-- Contactenos -->
+
+<div class="sec3" id="cinco">
+
+    <div class="container my-5">
+        <div class="col-12 mt-5  text-center">
+            <p class="text-white font-weight-bold" style="font-size:2rem;">Formulario de Contacto</p>
+        </div>
+        <div class="col-12 text-center">
+
+
+            @using (Html.BeginForm())
+            {
+
+                @Html.AntiForgeryToken()
+
+
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        @Html.EditorFor(model => model.correo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Correo electronico", @type = "email", @id = "correo" } })
+                        @Html.ValidationMessageFor(model => model.correo, "", new { @class = "text-danger" })
+                        <small id="errorCorreo" class="form-text text-danger" hidden></small>
+                    </div>
+                    
+
+
+                    <div class="form-group col-md-6">
+                        @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nombre o nombre de empresa", @id = "nombre" } })
+                        @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                        <small id="errorNombre" class="form-text text-danger" hidden></small>
+                    </div>
+                   
+                </div>
+
+                <div class="form-group">
+                    @Html.TextAreaFor(model => model.descripcion, new { @class = "form-control", @rows = "4", @cols = "50", @placeholder = "Puedes dejarnos tus dudas y/o preguntas por medio de este formulario...", @id = "desc" })
+                </div>
+                @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+                <small id="errorDescripcion" class="form-text text-danger" hidden></small>
+
+                <br />
+                <br />
+                
+                <Button type="button" onclick="Validar()" class="btn btn-primary"> Enviar  </Button>
+
+                <input type="submit" value="" id="enviar" class="btn bg-gradient-info text-white" hidden />
+
+            }
+        </div>
+
+    </div>
+
+</div> 
+
+<script src="~/Scripts/Pqrs.js"></script>

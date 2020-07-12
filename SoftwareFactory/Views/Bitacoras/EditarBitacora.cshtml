@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "EditarBitacora";
+    Layout = null;
+    var Bitacoras = ViewBag.Bitacora;
+}
+
+@using (Html.BeginForm("EditarBitacora", "Bitacoras", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+
+
+    <div class="form-horizontal row">
+
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <div class="col-auto" align="left">
+                <label class="font-weight-bold" for="inlineFormInputGroup">ID Bitacora:</label>
+                <div class="input-group ">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text bg-dark text-white"><i class="fas fa-crown"></i></div>
+                    </div>
+                    <input type="number" asp-for="id"  value="@Bitacoras.id" id="id" name="id" readonly class="form-control" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <div class="col-auto" align="left">
+                <label class="font-weight-bold" for="inlineFormInputGroup">Anexe archivo:</label>
+                <div class="input-group">
+
+
+                    <div class="input-group-prepend">
+                        <div class="input-group-text bg-dark text-white" id="activar" style="cursor:pointer;">Elegir</div>
+                    </div>
+                    <input type="text" id="labelFile"  value="@Bitacoras.archivo" placeholder="Documento PDF" class="form-control" readonly />
+
+                    <input type="file" name="file"  asp-for="file"   id="archivo" hidden />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <div class="col-auto" align="left">
+                <label class="font-weight-bold" for="inlineFormInputGroup">Descripción:</label>
+                <div class="input-group ">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text bg-dark text-white"><i class="fas fa-clipboard"></i></div>
+                    </div>
+                    <textarea id="descripcion" name="descripcion" asp-for="descripcion" rows="4" cols="50" class="form-control">@Bitacoras.descripcion</textarea>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="form-group col-sm-12 col-md-12 col-lg-12" align="right">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn bg-gradient-success text-white" />
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+
+}

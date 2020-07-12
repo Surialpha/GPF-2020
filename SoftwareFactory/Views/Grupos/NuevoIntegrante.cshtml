@@ -1,0 +1,35 @@
+﻿<div>
+
+
+    @using (Html.BeginForm("NuevoIntegrante", "Grupos", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="row">
+
+            <input type="number" id="GrupoIntegrante" asp-for="GrupoIntegrante" class="col" name="GrupoIntegrante" hidden/>
+
+            <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                <div class="col-auto" align="left">
+                    <label class="font-weight-bold" for="inlineFormInputGroup">Descripción:</label>
+                    <div class="input-group ">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-crown"></i></div>
+                        </div>
+                        @Html.DropDownList("id_aprendiz", null , new {@class="form-control" , @name="Integrante" })
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="modal-footer col-12">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                <input type="submit" value="Agregar" class="btn btn-primary">
+            </div> 
+        
+        </div>
+
+            }
+        </div>
+

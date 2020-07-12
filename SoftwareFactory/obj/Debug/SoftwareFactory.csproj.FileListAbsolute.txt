@@ -1,0 +1,292 @@
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\SoftwareFactory.dll.config
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\SoftwareFactory.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\SoftwareFactory.pdb
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\csc.exe
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\csc.exe.config
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\csc.rsp
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\csi.exe
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\csi.exe.config
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\csi.rsp
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.AppContext.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Console.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.IO.Compression.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.IO.Pipes.AccessControl.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.IO.Pipes.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Security.Claims.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.ValueTuple.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\vbc.exe
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\vbc.exe.config
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\vbc.rsp
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\VBCSCompiler.exe
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\EntityFramework.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\EntityFramework.SqlServer.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\System.Web.Helpers.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\System.Web.Mvc.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\System.Web.Razor.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\System.Web.Webpages.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\System.Web.Webpages.Razor.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\EntityFramework.xml
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\EntityFramework.SqlServer.xml
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\System.Web.Razor.xml
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\System.Web.Webpages.xml
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\System.Web.Webpages.Razor.xml
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\System.Web.Helpers.xml
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\System.Web.Mvc.xml
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\obj\Debug\SoftwareFactory.csprojAssemblyReference.cache
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\obj\Debug\SoftwareFactory.csproj.CoreCompileInputs.cache
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\obj\Debug\SoftwareFactory.csproj.CopyComplete
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\obj\Debug\SoftwareFactory.dll
+C:\Users\Surialpha\source\repos\SoftwareFactory\SoftwareFactory\obj\Debug\SoftwareFactory.pdb
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\SoftwareFactory.dll.config
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\SoftwareFactory.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\SoftwareFactory.pdb
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\csc.exe
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\csc.exe.config
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\csc.rsp
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\csi.exe
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\csi.exe.config
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\csi.rsp
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.AppContext.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Console.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.IO.Compression.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.IO.Pipes.AccessControl.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.IO.Pipes.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Security.Claims.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.ValueTuple.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\vbc.exe
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\vbc.exe.config
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\vbc.rsp
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\VBCSCompiler.exe
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\EntityFramework.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\EntityFramework.SqlServer.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\System.Web.Helpers.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\System.Web.Mvc.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\System.Web.Razor.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\System.Web.Webpages.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\System.Web.Webpages.Razor.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\EntityFramework.xml
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\EntityFramework.SqlServer.xml
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\System.Web.Razor.xml
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\System.Web.Webpages.xml
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\System.Web.Webpages.Razor.xml
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\System.Web.Helpers.xml
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\System.Web.Mvc.xml
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\obj\Debug\SoftwareFactory.csprojAssemblyReference.cache
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\obj\Debug\SoftwareFactory.csproj.CoreCompileInputs.cache
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\obj\Debug\SoftwareFactory.csproj.CopyComplete
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\obj\Debug\SoftwareFactory.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\SoftwareFactory\SoftwareFactory\obj\Debug\SoftwareFactory.pdb
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\SoftwareFactory.dll.config
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\SoftwareFactory.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\SoftwareFactory.pdb
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\csc.exe
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\csc.exe.config
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\csc.rsp
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\csi.exe
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\csi.exe.config
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\csi.rsp
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.AppContext.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Console.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.IO.Compression.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.IO.Pipes.AccessControl.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.IO.Pipes.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Security.Claims.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.ValueTuple.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\vbc.exe
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\vbc.exe.config
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\vbc.rsp
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\VBCSCompiler.exe
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\EntityFramework.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\EntityFramework.SqlServer.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\System.Web.Helpers.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\System.Web.Mvc.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\System.Web.Razor.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\System.Web.Webpages.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\System.Web.Webpages.Razor.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\EntityFramework.xml
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\EntityFramework.SqlServer.xml
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\System.Web.Razor.xml
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\System.Web.Webpages.xml
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\System.Web.Webpages.Razor.xml
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\System.Web.Helpers.xml
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\System.Web.Mvc.xml
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\obj\Debug\SoftwareFactory.csprojAssemblyReference.cache
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\obj\Debug\SoftwareFactory.csproj.CoreCompileInputs.cache
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\obj\Debug\SoftwareFactory.csproj.CopyComplete
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\obj\Debug\SoftwareFactory.dll
+C:\Users\Surialpha\Documents\GPF\FsManagment\Pruebas Integradas\SoftwareFactory\obj\Debug\SoftwareFactory.pdb
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\SoftwareFactory.dll.config
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\SoftwareFactory.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\SoftwareFactory.pdb
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\csc.exe
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\csc.exe.config
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\csc.rsp
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\csi.exe
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\csi.exe.config
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\csi.rsp
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.AppContext.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Console.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.IO.Compression.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.IO.Pipes.AccessControl.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.IO.Pipes.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Security.Claims.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.ValueTuple.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\vbc.exe
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\vbc.exe.config
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\vbc.rsp
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\VBCSCompiler.exe
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\EntityFramework.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\EntityFramework.SqlServer.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\System.Web.Helpers.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\System.Web.Mvc.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\System.Web.Razor.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\System.Web.Webpages.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\System.Web.Webpages.Razor.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\EntityFramework.xml
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\EntityFramework.SqlServer.xml
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\System.Web.Razor.xml
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\System.Web.Webpages.xml
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\System.Web.Webpages.Razor.xml
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\System.Web.Helpers.xml
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\System.Web.Mvc.xml
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\obj\Debug\SoftwareFactory.csproj.CoreCompileInputs.cache
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\obj\Debug\SoftwareFactory.csproj.CopyComplete
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\obj\Debug\SoftwareFactory.dll
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\obj\Debug\SoftwareFactory.pdb
+C:\Users\Surialpha\Documents\Pruebas Integradas\SoftwareFactory\obj\Debug\SoftwareFactory.csprojAssemblyReference.cache

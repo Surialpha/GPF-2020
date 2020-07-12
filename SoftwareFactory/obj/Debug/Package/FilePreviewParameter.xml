@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="FabricaSoftwareSENA" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Surialpha\\Documents\\GPF\\FsManagment\\SoftwareFactory\\SoftwareFactory\\obj\\Debug\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Surialpha\\Documents\\GPF\\FsManagment\\SoftwareFactory\\SoftwareFactory\\obj\\Debug\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="FabricaSoftwareEntities-Web.config Connection String" description="" value="metadata=res://*/Models.FSEntities.csdl|res://*/Models.FSEntities.ssdl|res://*/Models.FSEntities.msl;provider=System.Data.SqlClient;provider connection string=&quot;Server=tcp:senaserver.database.windows.net,1433;Initial Catalog=FabricaSoftware;Persist Security Info=False;User ID=LiderFabrica;Password=Fabrica2020;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Surialpha\\Documents\\GPF\\FsManagment\\SoftwareFactory\\SoftwareFactory\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='FabricaSoftwareEntities']/@connectionString" />
+  </parameter>
+</parameters>

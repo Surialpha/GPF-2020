@@ -1,0 +1,358 @@
+﻿
+@{
+    ViewBag.Title = "Administrar página";
+    Layout = "~/Views/Shared/_DashLayout.cshtml";
+
+    SoftwareFactory.Models.Quienes_Somos modeloQuienes = (SoftwareFactory.Models.Quienes_Somos)ViewBag.Quienes;
+    SoftwareFactory.Models.Como_Lo_Hacemos modeloComo = (SoftwareFactory.Models.Como_Lo_Hacemos)ViewBag.como;
+
+}
+
+<div class="row">
+    <div class="col" align="center">
+        <h2>Administrar página</h2>
+        <hr />
+    </div>
+</div>
+
+
+
+
+
+<div class="row">
+    <div class="col-sm-6">
+
+        <div class="card shadow mb-4 border-bottom-primary border-left-primary cardservices">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">QUIENES SOMOS</h6>
+                <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; transform: translate3d(-156px, 19px, 0px); top: 0px; left: 0px; will-change: transform;">
+                        <div class="dropdown-header">Acciones</div>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#quienes">Editar información</a>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                @ViewBag.QuienesSomos
+            </div>
+        </div>
+
+    </div>
+    <div class="col-sm-6">
+
+        <div class="card shadow mb-4 border-bottom-warning border-left-warning cardservices">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-warning">COMO LO HACEMOS</h6>
+                <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" x-placement="bottom-end" style="position: absolute; transform: translate3d(-156px, 19px, 0px); top: 0px; left: 0px; will-change: transform;">
+                        <div class="dropdown-header">Acciones</div>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#como">Editar información</a>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                @ViewBag.ComoLoHacemos
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col" align="center">
+        <h2>Nuestros Servicios</h2>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <table id="NuestrosServicios" class="table table-striped display">
+            <thead class="thead bg-gray-900 text-white">
+                <tr>
+                    <th>
+                        #id
+                    </th>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Descripción
+                    </th>
+                    <th>
+                        Acciones
+                    </th>
+            </thead>
+        </table>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col" align="center">
+        <h2>Adquirir Servicios</h2>
+        <hr />
+    </div>
+</div><div class="row">
+    <div class="col">
+        <table id="AdquirirServicios" class="table table-striped display">
+            <thead class="thead bg-gray-900 text-white">
+                <tr>
+                    <th>
+                        #id
+                    </th>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Descripción
+                    </th>
+                    <th>
+                        Acciones
+                    </th>
+            </thead>
+        </table>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col" align="center">
+        <h2>Imagenes Index</h2>
+        <hr />
+    </div>
+</div><div class="row">
+    <div class="col">
+        <table id="ImagenesIndex" class="table table-striped display">
+            <thead class="thead bg-gray-900 text-white">
+                <tr>
+                    <th>
+                        #ID
+                    </th>
+                    <th>
+                        Nombre Usuario
+                    </th>
+                    <th>
+                        Tipo Imagen
+                    </th>
+                    <th>
+                        Imagen
+                    </th>
+                    <th>
+                        Acciones
+
+                        <a data-toggle="modal" data-target="#Imagen" class="btn-circle btn-sm bg-gradient-success text-white btn-circle ml-5" data-toggle="tooltip" data-placement="right" title="Nuevo">
+                            <i class="fas fa-user-plus"></i>
+                        </a>
+                    </th>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+
+
+<!-- Modal -->
+<div class="modal fade" id="quienes" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Editar QUIENES SOMOS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @Html.Partial("EditQuienes", modeloQuienes)
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="como" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Editar COMO LO HACEMOS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            @Html.Partial("EditComoLoHacemos", modeloComo);
+
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="Imagen" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Agregar Nueva Imagen</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            @Html.Partial("AgregarImagenes");
+
+
+        </div>
+    </div>
+</div>
+
+
+@section script{
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+    <script src="~/Scripts/DatatablesCDN/dataTables.select.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/jszip.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/pdfmake.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/vfs_fonts.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.html5.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.print.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.colVis.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/dataTables.jqueryui.min.js"></script>
+    <script src="~/Scripts/DatatablesCDN/buttons.jqueryui.min.js"></script>
+
+    <script>
+
+
+
+        $(document).ready(function () {
+
+
+             $("#activar").on("click", function () {
+
+                $("#archivo").trigger("click");
+
+            });
+
+            $("#labelFile").on("click", function () {
+
+                $("#archivo").trigger("click");
+
+            });
+
+        $("#archivo").on("change", function () {
+
+            $("#labelFile").val($("#archivo").val());
+            console.log($("#archivo").val());
+        });
+
+          $("#NuestrosServicios").DataTable({
+
+                "ajax": {
+
+                    "url": '@Url.Action("ListarServicio","Admin")',
+                    "type": "GET",
+                    "datatype":"json"
+                },
+
+
+              "language": {"url":'//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json'},
+
+                "responsive": true,
+
+                "columns": [
+                    { "data":"idServicio"},
+                    { "data":"nombre"},
+                    { "data":"descripcion"},
+                    { "data": "idServicio", "render": function (data) {
+                        return "<a href='/Admin/EditarServicio/" + data + "' class='btn  bg-gradient-primary text-white btn-circle' data-toggle='tooltip' data-placement='right' title='Editar'><i class='fas fa-edit'></i> "
+                    }, "oderable": false
+                    }
+
+                ]
+
+          });
+
+            $("#ImagenesIndex").DataTable({
+
+                "ajax": {
+
+                    "url": '@Url.Action("Imagenes","Admin")',
+                    "type": "GET",
+                    "datatype":"json"
+                },
+
+
+              "language": {"url":'//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json'},
+
+                "responsive": true,
+
+                "columns": [
+                    { "data":"idImagen"},
+                    { "data":"nombre"},
+                    { "data":"TipoImagen"},
+                    {
+                        "data": "imagenUrl", "render": function (urlimagen) {
+                            return "<img class='img-profile rounded-circle' src='../../../Vendor/ImgIndex/" + urlimagen + "' style='height: 2rem;width: 2rem;'>"
+                        },"oderable": false
+                    },
+                    { "data": "idImagen", "render": function (data) {
+                        return "<a href='/Admin/EliminarImagen/" + data + "' class='btn  bg-gradient-danger text-white btn-circle' data-toggle='tooltip' data-placement='right' title='Eliminar'><i class='fas fa-trash'></i> "
+                    }, "oderable": false
+                    }
+
+                ]
+
+          });
+
+            $("#AdquirirServicios").DataTable({
+
+                "ajax": {
+
+                    "url": '@Url.Action("ListarAdquirir","Admin")',
+                    "type": "GET",
+                    "datatype":"json"
+                },
+
+
+              "language": {"url":'//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json'},
+
+                "responsive": true,
+
+                "columns": [
+                    { "data":"idAdquirir"},
+                    { "data":"nombre"},
+                    { "data":"descripcion"},
+                    { "data": "idAdquirir", "render": function (data) {
+                        return "<a href='/Admin/EditarAdquirir/" + data + "' class='btn  bg-gradient-primary text-white btn-circle' data-toggle='tooltip' data-placement='right' title='Editar'><i class='fas fa-edit'></i> "
+                    }, "oderable": false
+                    }
+
+                ]
+
+             });
+        });
+
+
+
+    </script>
+
+    <!-- Button trigger modal -->
+    <!-- Modal -->
+
+
+}
+

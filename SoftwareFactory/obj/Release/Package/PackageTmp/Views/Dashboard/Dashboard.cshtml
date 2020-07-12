@@ -1,0 +1,794 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_DashLayout.cshtml";
+
+    var Rol = int.Parse(Session["Rol"].ToString());
+    var asesor = "Si";
+
+}
+
+@if (Rol == 1)
+{
+
+    //Administrador
+
+    <div class="row">
+
+
+
+        <div class="col">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">N° de proyectos solicitados por estado</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">N° de usuarios en la plataforma</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <canvas id="myChart2"></canvas>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="col" style="pointer-events: none;">
+
+            <a class="weatherwidget-io" href="https://forecast7.com/es/6d25n75d56/medellin/" data-label_1="CLÍMA" data-label_2="Medellín, Antioquia" data-theme="dark">CLÍMA Medellín, Antioquia</a>
+            <script>
+                !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
+            </script>
+
+            <div class="cleanslate w24tz-current-time w24tz-middle" style="display: inline-block !important; visibility: hidden !important; min-width:100% !important; min-height:145px !important;"><p><a href="//24timezones.com/Medell%C3%ADn/hora" style="text-decoration: none" class="clock24" id="tz24-1584994906-c1150-eyJob3VydHlwZSI6IjEyIiwic2hvd2RhdGUiOiIxIiwic2hvd3NlY29uZHMiOiIxIiwiY29udGFpbmVyX2lkIjoiY2xvY2tfYmxvY2tfY2I1ZTc5MWE1YTk4Mjc3IiwidHlwZSI6ImRiIiwibGFuZyI6ImVzIn0=" title="Hora Mundial - Medellín" target="_blank" rel="nofollow">Medellín</a></p><div id="clock_block_cb5e791a5a98277"></div></div>
+            <script type="text/javascript" src="//w.24timezones.com/l.js" async></script>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="row">
+
+
+
+        <div class="col-4">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Cantidad de Proyectos asignados por asesor</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <canvas id="myChart3"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">N° proyectos ejecutados por meses</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <canvas id="myChart4"></canvas>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="col-4">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Tipo de clientes registrados</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <canvas id="myChart5"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    @section script{
+        <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+
+        <script>
+
+            var datosSolicitud = {}
+
+            $(document).ready(function () {
+
+                $('.weatherwidget-io').on('click', function () {
+                    $('.weatherwidget-io').off('click');
+                });
+
+                Solicitud()
+                Usuarios()
+                AsesoresCuenta()
+                ProyectoMes()
+                TipoClientes()
+
+            });
+
+
+            async function TipoClientes() {
+
+                var url = "/Clientes/ChartTipoClientes/"
+
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    cache: false,
+                    dataType: 'json',
+                    success: function (result) {
+                        var datos = JSON.parse(result)
+
+                        var coloR = [];
+
+                        var dynamicColors = function () {
+                            var r = Math.floor(Math.random() * 255);
+                            var g = Math.floor(Math.random() * 255);
+                            var b = Math.floor(Math.random() * 255);
+                            return "rgb(" + r + "," + g + "," + b + ",0.43)";
+                        }
+
+                        for (var i in datos) {
+                            coloR.push(dynamicColors());
+                        }
+
+                        var ctx5 = document.getElementById('myChart5');
+                        var myChart5 = new Chart(ctx5, {
+
+                            type: 'doughnut',
+                            data: {
+                                labels: ['Cliente Externo', 'Cliente SENA'],
+                                datasets: [{
+                                    label: 'N° clientes',
+                                    data: datos,
+                                    backgroundColor: coloR,
+                                    borderColor: coloR,
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                rotation: 1 * Math.PI,
+                                circumference: 1 * Math.PI,
+                                responsive: true,
+                                scales: {
+                                    x: {
+                                        display: true,
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'Month'
+                                        }
+                                    },
+                                    y: {
+                                        display: true,
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'Value'
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+
+
+            async function ProyectoMes() {
+
+                var url = "/Proyectos/ChartProyectosPorAño/"
+
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    cache: false,
+                    dataType: 'json',
+                    success: function (result) {
+                        var datos = JSON.parse(result)
+
+                        var coloR = [];
+
+                        var dynamicColors = function () {
+                            var r = Math.floor(Math.random() * 255);
+                            var g = Math.floor(Math.random() * 255);
+                            var b = Math.floor(Math.random() * 255);
+                            return "rgb(" + r + "," + g + "," + b + ",0.23)";
+                        }
+
+                        for (var i in datos) {
+                            coloR.push(dynamicColors());
+                        }
+
+                        var ctx4 = document.getElementById('myChart4');
+                        var myChart4 = new Chart(ctx4, {
+
+                            type: 'line',
+                            data: {
+                                labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',],
+                                datasets: [{
+                                    label: 'N° de proyectos',
+                                    data: datos,
+                                    backgroundColor: coloR,
+                                    borderColor: coloR,
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                scales: {
+                                    x: {
+                                        display: true,
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'Month'
+                                        }
+                                    },
+                                    y: {
+                                        display: true,
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'Value'
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+
+            async function AsesoresCuenta() {
+
+                var url = "/Proyectos/ChartAsesoresProyectos/"
+
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    cache: false,
+                    dataType: 'json',
+                    success: function (result) {
+                        var datos = JSON.parse(result)
+
+                        var coloR = [];
+
+                        var dynamicColors = function () {
+                            var r = Math.floor(Math.random() * 255);
+                            var g = Math.floor(Math.random() * 255);
+                            var b = Math.floor(Math.random() * 255);
+                            return "rgb(" + r + "," + g + "," + b + ",0.43)";
+                        }
+
+                        for (var i in result[0]) {
+                            coloR.push(dynamicColors());
+                        }
+
+                        var ctx3 = document.getElementById('myChart3');
+                        var myChart3 = new Chart(ctx3, {
+
+                            type: 'doughnut',
+                            data: {
+                                labels: datos[0],
+                                datasets: [{
+                                    label: 'N° de proyectos',
+                                    data: datos[1],
+                                    backgroundColor: coloR,
+                                    borderColor: coloR,
+                                    borderWidth: 1
+                                }]
+                            }
+                        });
+                    }
+                });
+            }
+
+            async function Solicitud() {
+                var url = "/Solicitud/ChartSolicitud/"
+
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    cache: false,
+                    dataType: 'json',
+                    success: function (result) {
+                        var datos = JSON.parse(result)
+
+                        var coloR = [];
+
+                        var dynamicColors = function () {
+                            var r = Math.floor(Math.random() * 255);
+                            var g = Math.floor(Math.random() * 255);
+                            var b = Math.floor(Math.random() * 255);
+                            return "rgb(" + r + "," + g + "," + b + ",0.43)";
+                        }
+
+                        for (var i in datos) {
+                            coloR.push(dynamicColors());
+                        }
+
+
+
+                        var ctx = document.getElementById('myChart');
+                        var myChart = new Chart(ctx, {
+
+                            type: 'radar',
+                            data: {
+                                labels: ['Enviados', 'Recibidos', 'Revisión', 'Modificar', 'Aprobados', 'Descartados'],
+                                datasets: [{
+                                    label: 'N° de proyectos',
+                                    data: datos,
+                                    backgroundColor: coloR,
+                                    borderColor: coloR,
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                legend: {
+                                    display: false
+                                },
+                                tooltips: {
+                                    callbacks: {
+                                        beforeTitle: function (tooltipItem) {
+                                            return tooltipItem.yLabel;
+                                        }
+                                    }
+                                }
+                            }
+                        });
+
+                    }
+                });
+            }
+
+
+            async function Usuarios() {
+                var url = "/Usuarios/ChartUsuarios/"
+
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    cache: false,
+                    dataType: 'json',
+                    success: function (result) {
+                        var datos = JSON.parse(result)
+
+                        var coloR = [];
+                        var coloR2 = [];
+
+                        var dynamicColors = function () {
+                            var r = Math.floor(Math.random() * 255);
+                            var g = Math.floor(Math.random() * 255);
+                            var b = Math.floor(Math.random() * 255);
+                            return "rgb(" + r + "," + g + "," + b + ",0.43)";
+                        }
+
+                        for (var i in datos[0]) {
+                            coloR.push(dynamicColors());
+                        }
+                        for (var i in datos[0]) {
+                            coloR2.push(dynamicColors());
+                        }
+
+
+                        var ctx2 = document.getElementById('myChart2');
+                        var myChart2 = new Chart(ctx2, {
+
+                            type: 'bar',
+                            data: {
+                                labels: ['Aprendices', 'Asesores', 'Clientes', 'Administradores'],
+                                datasets: [{
+                                    label: 'Activos',
+                                    data: datos[0],
+                                    backgroundColor: coloR,
+                                    borderColor: coloR,
+                                    borderWidth: 1
+                                },
+                                {
+                                    label: 'Inactivos',
+                                    data: datos[1],
+                                    backgroundColor: coloR2,
+                                    borderColor: coloR2,
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                legend: {
+                                    display: true
+                                },
+                                tooltips: {
+                                    callbacks: {
+                                        beforeTitle: function (tooltipItem) {
+                                            return tooltipItem.yLabel;
+                                        }
+                                    }
+                                },
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+
+                    }
+                });
+            }
+
+
+
+
+
+
+
+
+        </script>
+
+
+    }
+
+
+
+
+
+
+}
+else
+{
+    //Vista asesor y aprendiz
+
+
+    <div class="row">
+
+
+
+        <div class="col-4">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Proyectos asignados</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Numero de bitacoras registradas</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <canvas id="myChart2"></canvas>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="col-4" style="pointer-events: none;">
+
+            <a class="weatherwidget-io" href="https://forecast7.com/es/6d25n75d56/medellin/" data-label_1="CLÍMA" data-label_2="Medellín, Antioquia" data-theme="dark">CLÍMA Medellín, Antioquia</a>
+            <script>
+                !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
+            </script>
+
+            <div class="cleanslate w24tz-current-time w24tz-middle" style="display: inline-block !important; visibility: hidden !important; min-width:100% !important; min-height:145px !important;"><p><a href="//24timezones.com/Medell%C3%ADn/hora" style="text-decoration: none" class="clock24" id="tz24-1584994906-c1150-eyJob3VydHlwZSI6IjEyIiwic2hvd2RhdGUiOiIxIiwic2hvd3NlY29uZHMiOiIxIiwiY29udGFpbmVyX2lkIjoiY2xvY2tfYmxvY2tfY2I1ZTc5MWE1YTk4Mjc3IiwidHlwZSI6ImRiIiwibGFuZyI6ImVzIn0=" title="Hora Mundial - Medellín" target="_blank" rel="nofollow">Medellín</a></p><div id="clock_block_cb5e791a5a98277"></div></div>
+            <script type="text/javascript" src="//w.24timezones.com/l.js" async></script>
+
+        </div>
+
+
+    </div>
+
+
+    if (Rol == 4)
+    {
+        <div class="row">
+
+
+            <div class="col-4">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Cantidad de Proyectos asignados por asesor</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <canvas id="myChart3"></canvas>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    }
+
+
+    @section script{
+        <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+
+
+        <script>
+
+            var datosSolicitud = {}
+
+            $(document).ready(function () {
+
+                $('.weatherwidget-io').on('click', function () {
+                    $('.weatherwidget-io').off('click');
+                });
+
+                Proyecto()
+                Bitacoras()
+                AsesoresCuenta();
+
+
+            });
+
+
+
+
+
+            async function Proyecto() {
+
+                var url = "/Proyectos/ChartProyectosAsignados/"
+                var Titulos = []
+
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    cache: false,
+                    dataType: 'json',
+                    success: function (result) {
+                        var datos = JSON.parse(result)
+
+                        if (datos[0].length == 1) {
+                            var contenido = datos[0]
+
+                            if (contenido[0] == "1") {
+                                Titulos = ['En desarrollo']
+                            }
+                            else if (contenido[0] == "2") {
+                                Titulos = ['Terminado']
+                            }
+                            else {
+                                Titulos = ['Suspendido']
+                            }
+                        }
+                        else if (datos[0].length == 2) {
+
+                            var contenido = datos[0]
+
+                            if (contenido[0] == "1" && contenido[1] == "2") {
+                                Titulos = ['En desarrollo', 'Terminados']
+                            }
+                            else if (contenido[0] == "1" && contenido[1] == "3") {
+                                Titulos = ['En desarrollo', 'Suspendido']
+                            }
+                            else {
+                                Titulos = ['Terminados', 'Suspendido']
+                            }
+                        }
+                        else {
+                            Titulos = ['En Desarrollo', 'Terminado', 'Suspendido']
+                        }
+
+                        var coloR = [];
+
+                        var dynamicColors = function () {
+                            var r = Math.floor(Math.random() * 255);
+                            var g = Math.floor(Math.random() * 255);
+                            var b = Math.floor(Math.random() * 255);
+                            return "rgb(" + r + "," + g + "," + b + ",0.33)";
+                        }
+
+                        for (var i in datos[0]) {
+                            coloR.push(dynamicColors());
+                        }
+
+                        var ctx = document.getElementById('myChart');
+                        var myChart = new Chart(ctx, {
+
+                            type: 'doughnut',
+                            data: {
+                                labels: Titulos,
+                                datasets: [{
+                                    label: 'N° clientes',
+                                    data: datos[1],
+                                    backgroundColor: coloR,
+                                    borderColor: coloR,
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                rotation: 1 * Math.PI,
+                                circumference: 1 * Math.PI,
+                                responsive: true,
+                                scales: {
+                                    x: {
+                                        display: true,
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'Month'
+                                        }
+                                    },
+                                    y: {
+                                        display: true,
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'Value'
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+
+
+            async function Bitacoras() {
+
+                var url = "/Bitacoras/ChartBitacoras/"
+
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    cache: false,
+                    dataType: 'json',
+                    success: function (result) {
+                        var datos = JSON.parse(result)
+
+
+                        var coloR = [];
+
+                        var dynamicColors = function () {
+                            var r = Math.floor(Math.random() * 255);
+                            var g = Math.floor(Math.random() * 255);
+                            var b = Math.floor(Math.random() * 255);
+                            return "rgb(" + r + "," + g + "," + b + ",0.33)";
+                        }
+
+                        for (var i in datos[0]) {
+                            coloR.push(dynamicColors());
+                        }
+
+                        var ctx2 = document.getElementById('myChart2');
+                        var myChart2 = new Chart(ctx2, {
+
+                            type: 'bar',
+                            data: {
+                                labels: datos[0],
+                                datasets: [{
+                                    label: 'N° de bitacoras registradas',
+                                    data: datos[1],
+                                    backgroundColor: coloR,
+                                    borderColor: coloR,
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                rotation: 1 * Math.PI,
+                                circumference: 1 * Math.PI,
+                                responsive: true,
+                                scales: {
+                                    x: {
+                                        display: true,
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'Month'
+                                        }
+                                    },
+                                    y: {
+                                        display: true,
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'Value'
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+
+            async function AsesoresCuenta() {
+
+                var asesor = "@asesor"
+                console.log(asesor)
+
+                if (asesor === "Si") {
+
+                    var url = "/Proyectos/ChartAsesoresProyectos/"
+
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        cache: false,
+                        dataType: 'json',
+                        success: function (result) {
+                            var datos = JSON.parse(result)
+
+                            var coloR = [];
+
+                            var dynamicColors = function () {
+                                var r = Math.floor(Math.random() * 255);
+                                var g = Math.floor(Math.random() * 255);
+                                var b = Math.floor(Math.random() * 255);
+                                return "rgb(" + r + "," + g + "," + b + ",0.43)";
+                            }
+
+                            for (var i in result[0]) {
+                                coloR.push(dynamicColors());
+                            }
+
+                            var ctx3 = document.getElementById('myChart3');
+                            var myChart3 = new Chart(ctx3, {
+
+                                type: 'pie',
+                                data: {
+                                    labels: datos[0],
+                                    datasets: [{
+                                        label: 'N° de proyectos',
+                                        data: datos[1],
+                                        backgroundColor: coloR,
+                                        borderColor: coloR,
+                                        borderWidth: 1
+                                    }]
+                                }
+                            });
+                        }
+                    });
+                }
+
+            }
+
+
+        </script>
+
+
+    }
+}
+
+
+

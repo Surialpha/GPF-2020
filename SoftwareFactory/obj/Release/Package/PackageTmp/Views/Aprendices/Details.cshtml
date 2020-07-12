@@ -1,0 +1,92 @@
+﻿@model SoftwareFactory.Models.Aprendices
+
+@{
+    ViewBag.Title = "Detalles Aprendiz";
+    Layout = "~/Views/Shared/_DashLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col" align="center">
+        <a href="~/Aprendices/Index" class="btn btn-primary btn-circle float-left mr-1" data-toggle="tooltip" data-placement="right" title="Atras"><i class="fas fa-reply"></i></a>
+        <a href="~/Aprendices/Edit/@Model.id_aprendiz" class="btn bg-gradient-warning text-white btn-circle float-left ml-1" data-toggle="tooltip" data-placement="right" title="Editar">
+            <i class="fas fa-edit"></i>
+        </a>
+        <h2>Detalles Aprendiz</h2>
+        <hr />
+    </div>
+</div>
+
+
+<div class="container">
+
+    <div class="row">
+
+
+
+
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <div class="col-auto">
+                <label class="sr-only" for="inlineFormInputGroup">Documento</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-crown"></i></div>
+                    </div>
+                    @Html.EditorFor(model => model.id_aprendiz, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            <div class="col-auto">
+                <label class="sr-only" for="inlineFormInputGroup">Inicio del Contrato</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-calendar-alt"></i></div>
+                    </div>
+                    @Html.EditorFor(model => model.inicio_contrato, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            <div class="col-auto">
+                <label class="sr-only" for="inlineFormInputGroup">Fin del Contrato</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-calendar-alt"></i></div>
+                    </div>
+                    @Html.EditorFor(model => model.fin_contrato, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <div class="col-auto">
+                <label class="sr-only" for="inlineFormInputGroup">Tipo de contrato</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-file-contract"></i></div>
+                    </div>
+                    <input type="text" name="tipoCon" value="@ViewBag.id_contrato" class="form-control" readonly />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <div class="col-auto" align="left">
+                <label class="font-weight-bold" for="inlineFormInputGroup">Descripción:</label>
+                <div class="input-group ">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text bg-gradient-info text-white"><i class="fas fa-clipboard"></i></div>
+                    </div>
+                    @Html.TextAreaFor(model => model.descripcion, new { @class = "form-control", @rows = "4", @cols = "50", @readonly = true })
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
