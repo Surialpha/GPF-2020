@@ -331,6 +331,11 @@ namespace SoftwareFactory.Controllers
 
                 var dia = DateTime.Now.Day.ToString();
                 var mes = DateTime.Now.Month.ToString();
+                
+                if (mes.Length == 1)
+                {
+                    mes = '0' + mes;
+                }
 
                 if (dia.Equals(fecha[0]) && mes.Equals(fecha[1]))
                 {
